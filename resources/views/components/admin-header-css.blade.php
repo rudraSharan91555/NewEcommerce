@@ -27,6 +27,9 @@
 	<link rel="stylesheet" href="{{asset('assets/css/header-colors.css')}}" />
 	<link rel="stylesheet" href="https://developercodez.com/developerCorner/parsley/parsley.css" >
 	<script src="{{asset('assets/js/jquery.min.js')}}"></script>
+	{{-- <script src="{{asset('assets/js/jquery.min.js')}}"></script> --}}
+	<link rel="stylesheet" href="{{asset('snackbar/dist/js-snackbar.css')}}" />
+	    <link rel="stylesheet" type="text/css" href="{{asset('multiSelect/example-styles.css')}}">
 	
 	<title>Ecommerce</title>
 </head>

@@ -122,6 +122,7 @@ $(document).ready(function() {
                     console.log("Response:", result); 
 
                     if (result.status === 'success') {
+                        
                         showAlert(result.status, result.message);
                         
                         setTimeout(function() {
@@ -224,4 +225,13 @@ $(document).ready(function() {
 		table.buttons().container()
 			.appendTo('#example2_wrapper .col-md-6:eq(0)');
 	});
+</script>
+<script>
+	function showAlert(status, message) {
+		SnackBar({
+			status: status,
+			message: message,
+			position: "br"
+		});
+	}
 </script>
