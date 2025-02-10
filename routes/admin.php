@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\dashboardController;
 use App\Http\Controllers\Admin\homeBannerController;
 use App\Http\Controllers\Admin\profileController;
+use App\Http\Controllers\Admin\sizeController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -18,6 +19,10 @@ Route::post('/saveProfile',[profileController::class,'store']);
 // Home Banner
 Route::get('/home_banner',[homeBannerController::class,'index']);
 Route::post('/updateHomeBanner', [homeBannerController::class, 'store'])->name('admin.updateHomeBanner');
+
+// Size
+Route::get('/manage_size',[sizeController::class,'index']);
+Route::post('/updatesize', [sizeController::class, 'store']);
 
 
 // Delete Data

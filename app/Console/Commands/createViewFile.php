@@ -13,7 +13,7 @@ class createViewFile extends Command
      *
      * @var string
      */
-    protected $signature = 'make:adminview {view}';
+    protected $signature = 'make:adminTableview {view}';
 
     /**
      * The console command description.
