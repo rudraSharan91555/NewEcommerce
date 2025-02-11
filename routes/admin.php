@@ -1,11 +1,15 @@
 <?php
 
 use App\Http\Controllers\Admin\attributeController;
+use App\Http\Controllers\Admin\brandController;
+use App\Http\Controllers\Admin\categoryController;
 use App\Http\Controllers\Admin\colorController;
 use App\Http\Controllers\Admin\dashboardController;
 use App\Http\Controllers\Admin\homeBannerController;
+use App\Http\Controllers\Admin\productController;
 use App\Http\Controllers\Admin\profileController;
 use App\Http\Controllers\Admin\sizeController;
+use App\Http\Controllers\Admin\taxController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -37,6 +41,28 @@ Route::post('/update_attribute_name',[attributeController::class,'store_attribut
 Route::get('/attribute_value',[attributeController::class,'index_attribute_value']);
 Route::post('/update_attribute_value',[attributeController::class,'store_attribute_value']);
 
+// Category
+Route::get('/category',[categoryController::class,'index']);
+Route::post('/update_category',[categoryController::class,'store']);
+
+Route::get('/category_attribute',[categoryController::class,'index_category_attribute']);
+Route::post('/update_category_attribute',[categoryController::class,'store_category_attribute']);
+
+// Brands
+Route::get('/brands',[brandController::class,'index']);
+Route::post('/updateBrand',[brandController::class,'store']);
+
+// Tax
+Route::get('/tax',[taxController::class,'index']);
+Route::post('/updateTax',[taxController::class,'store']);
+
+// Product
+Route::get('/product',[productController::class,'index']);
+Route::get('/manage_product/{id?}',[productController::class,'view_product']);
+Route::post('/updateProduct',[productController::class,'store']);
+Route::post('/getAttributes',[productController::class,'getAttributes']);
+Route::post('/createNewAttr',[productController::class,'createNewAttr']);
+Route::post('/removeAttrId',[productController::class,'removeAttrId']);
 
 // Delete Data
 Route::get('/deleteData/{id?}/{table?}',[dashboardController::class,'deleteData']);
