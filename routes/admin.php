@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\attributeController;
+use App\Http\Controllers\Admin\colorController;
 use App\Http\Controllers\Admin\dashboardController;
 use App\Http\Controllers\Admin\homeBannerController;
 use App\Http\Controllers\Admin\profileController;
@@ -23,6 +25,17 @@ Route::post('/updateHomeBanner', [homeBannerController::class, 'store'])->name('
 // Size
 Route::get('/manage_size',[sizeController::class,'index']);
 Route::post('/updatesize', [sizeController::class, 'store']);
+
+// Color
+Route::get('/manage_color',[colorController::class,'index']);
+Route::post('/updatecolor', [colorController::class, 'store']);
+
+// Attribute
+Route::get('/attribute_name',[attributeController::class,'index_attribute_name']);
+Route::post('/update_attribute_name',[attributeController::class,'store_attribute_name']);
+
+Route::get('/attribute_value',[attributeController::class,'index_attribute_value']);
+Route::post('/update_attribute_value',[attributeController::class,'store_attribute_value']);
 
 
 // Delete Data
