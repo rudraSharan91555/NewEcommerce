@@ -21,7 +21,7 @@
           "User"
         ],
         "summary": "User Login",
-        "operationId": "login",
+        "operationId": "register",
         "produces": [
           "application/json"
         ],
@@ -60,7 +60,46 @@
           }
         }
       }
-    } 
+    },
+    "/auth/login": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "User Login",
+        "operationId": "login",
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "formData",
+            "description": "Enter Email",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "formData",
+            "description": "password",
+            "required": true,
+            "type": "string"
+          }  
+         
+        ],
+        "responses": {
+          "200": {
+            "description": "Data"
+          }
+        }
+      }
+    }  
    
     
    

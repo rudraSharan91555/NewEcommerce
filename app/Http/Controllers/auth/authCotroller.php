@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Role;
 use App\Models\User;
 use App\Traits\ApiResponse;
 use Illuminate\Http\Request;
@@ -31,7 +32,9 @@ class authCotroller extends Controller
             'password' => bcrypt($request->password),
             'email' => $request->email
         ]);
+        $customer = Role::where('slug','customer')->first();
 
+        $user->roles()->attach($customer);
         return $this->success([
             'token' => $user->createToken('API Token')->plainTextToken
         ]);
@@ -53,13 +56,12 @@ class authCotroller extends Controller
                     return response()->json(['status' => 200, 'message' => 'Admin User', 'url' => 'admin/dashboard']);
                 } else {
 
-                    $user = User::where('id', Auth::User()->id)->first();
+                    $user = User::find(Auth::User()->id)->first();
                     $user['token'] = $user->createToken('API Token')->plainTextToken;
                     // return response()->json(['status'=>200,'message'=>'Succesfull login']);
-                    return $this->success(
-                        ['user' => $user],
-                        'succesfull login'
-                    );
+                    return $this->success([
+                         $user,'Succesfull login'
+                    ]);
                 }
             } else {
                 return response()->json(['status' => 404, 'message' => 'Wrong Cred']);
