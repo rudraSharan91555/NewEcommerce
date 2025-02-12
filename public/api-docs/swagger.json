@@ -131,7 +131,81 @@
           }
         }
       }
-    }    
+    },
+    "/updateUser": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Show User Data",
+        "operationId": "updateUser",
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+        
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Enter Bearer Token",
+            "required": true,
+            "type": "string"
+          } ,
+          {
+            "name": "name",
+            "in": "formData",
+            "description": "Enter name",
+            "required": false,
+            "type": "string"
+          }  
+         
+        ],
+        "responses": {
+          "200": {
+            "description": "Data"
+          }
+        }
+      }
+    },
+    "/auth/logout": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Show User Data",
+        "operationId": "logout",
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+        
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Enter Bearer Token",
+            "required": true,
+            "type": "string"
+          }  
+         
+        ],
+        "responses": {
+          "200": {
+            "description": "Data"
+          }
+        }
+      }
+    }
+    
    
     
    

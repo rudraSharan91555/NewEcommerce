@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Admin\AuthController;
+
 use App\Http\Controllers\auth\authCotroller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -22,4 +22,27 @@ Route::post('/auth/login', [authCotroller::class, 'loginUser']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+// Route::group(['middleware' => ['auth:sanctum']],function (){
+//     Route::get('/user',function(Request $request){
+//         return $request->user();
+//     });
+//     Route::post('/updateUser', [authCotroller::class, '/updateUser']);
+
+//     // Route::post('/auth/logout',)
+// });
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    });
+
+    Route::post('/updateUser', [authCotroller::class, 'updateUser']);
+
+    Route::post('/auth/logout',function(Request $request){
+        auth()->user()->tokens()->delete(); 
+        return [
+            'message' => 'Tokens Revoked'
+        ];
+    });
 });
