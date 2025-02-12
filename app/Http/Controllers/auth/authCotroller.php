@@ -58,10 +58,10 @@ class authCotroller extends Controller
 
                     $user = User::find(Auth::User()->id)->first();
                     $user['token'] = $user->createToken('API Token')->plainTextToken;
-                    // return response()->json(['status'=>200,'message'=>'Succesfull login']);
-                    return $this->success([
-                         $user,'Succesfull login'
-                    ]);
+                    return $this->success(
+                        ['user' => $user],
+                        'succesfull login'
+                    );
                 }
             } else {
                 return response()->json(['status' => 404, 'message' => 'Wrong Cred']);

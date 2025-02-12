@@ -99,7 +99,39 @@
           }
         }
       }
-    }  
+    },
+    "/user": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Show User Data",
+        "operationId": "showUser",
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Enter Bearer Token",
+            "required": true,
+            "type": "string"
+          }
+         
+        ],
+        "responses": {
+          "200": {
+            "description": "Data"
+          }
+        }
+      }
+    }    
    
     
    
