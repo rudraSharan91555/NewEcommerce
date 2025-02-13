@@ -6,7 +6,7 @@
             <section class="slider-area position-relative">
                 <div class="third-slider-active">
                     <div class="third-slider-item third-slider-bg"
-                        style="background-image:url('/front_assets/img/slider/third_slider_bg.jpg')">
+                        data-background="/front_assets/img/slider/third_slider_bg.jpg">
                         <div class="container custom-container-two">
                             <div class="third-slider-wrap">
                                 <div class="row align-items-center">
@@ -25,10 +25,10 @@
                                     <div class="col-lg-6">
                                         <div class="third-slider-img">
                                             <div class="img-shape"
-                                                data-background="../assets/img/slider/third_slide_shape.png"
+                                                data-background="/front_assets/img/slider/third_slide_shape.png"
                                                 data-animation-in="zoomIn" data-delay-in="1" data-duration-in="1.5">
                                             </div>
-                                            <img src="../assets/img/slider/third_slider_img01.png" alt=""
+                                            <img src="/front_assets/img/slider/third_slider_img01.png" alt=""
                                                 class="main-img" data-animation-in="slideInRight2" data-delay-in="1"
                                                 data-duration-in="1.5">
                                         </div>
@@ -38,7 +38,7 @@
                         </div>
                     </div>
                     <div class="third-slider-item third-slider-bg"
-                        data-background="../assets/img/slider/third_slider_bg.jpg">
+                        data-background="/front_assets/img/slider/third_slider_bg.jpg">
                         <div class="container custom-container-two">
                             <div class="third-slider-wrap">
                                 <div class="row align-items-center">
@@ -57,10 +57,10 @@
                                     <div class="col-lg-6">
                                         <div class="third-slider-img">
                                             <div class="img-shape"
-                                                data-background="../assets/img/slider/third_slide_shape.png"
+                                                data-background="/front_assets/img/slider/third_slide_shape.png"
                                                 data-animation-in="zoomIn" data-delay-in="1" data-duration-in="1.5">
                                             </div>
-                                            <img src="../assets/img/slider/third_slider_img02.png" alt=""
+                                            <img src="/front_assets/img/slider/third_slider_img02.png" alt=""
                                                 class="main-img" data-animation-in="slideInRight2" data-delay-in="1"
                                                 data-duration-in="1.5">
                                         </div>
@@ -70,7 +70,7 @@
                         </div>
                     </div>
                     <div class="third-slider-item third-slider-bg"
-                        data-background="../assets/img/slider/third_slider_bg.jpg">
+                        data-background="/front_assets/img/slider/third_slider_bg.jpg">
                         <div class="container custom-container-two">
                             <div class="third-slider-wrap">
                                 <div class="row align-items-center">
@@ -89,10 +89,10 @@
                                     <div class="col-lg-6">
                                         <div class="third-slider-img">
                                             <div class="img-shape"
-                                                data-background="../assets/img/slider/third_slide_shape.png"
+                                                data-background="/front_assets/img/slider/third_slide_shape.png"
                                                 data-animation-in="zoomIn" data-delay-in="1" data-duration-in="1.5">
                                             </div>
-                                            <img src="../assets/img/slider/third_slider_img03.png" alt=""
+                                            <img src="/front_assets/img/slider/third_slider_img03.png" alt=""
                                                 class="main-img" data-animation-in="slideInRight2" data-delay-in="1"
                                                 data-duration-in="1.5">
                                         </div>
@@ -102,7 +102,7 @@
                         </div>
                     </div>
                     <div class="third-slider-item third-slider-bg"
-                        data-background="../assets/img/slider/third_slider_bg.jpg">
+                        data-background="/front_assets/img/slider/third_slider_bg.jpg">
                         <div class="container custom-container-two">
                             <div class="third-slider-wrap">
                                 <div class="row align-items-center">
@@ -121,10 +121,10 @@
                                     <div class="col-lg-6">
                                         <div class="third-slider-img">
                                             <div class="img-shape"
-                                                data-background="../assets/img/slider/third_slide_shape.png"
+                                                data-background="/front_assets/img/slider/third_slide_shape.png"
                                                 data-animation-in="zoomIn" data-delay-in="1" data-duration-in="1.5">
                                             </div>
-                                            <img src="../assets/img/slider/third_slider_img04.png" alt=""
+                                            <img src="/front_assets/img/slider/third_slider_img04.png" alt=""
                                                 class="main-img" data-animation-in="slideInRight2" data-delay-in="1"
                                                 data-duration-in="1.5">
                                         </div>
@@ -147,7 +147,7 @@
                     <div class="col-lg-4 col-md-6 col-sm-9">
                         <div class="shoes-cat-item mb-50">
                             <div class="thumb mb-30">
-                                <a href="shop-sidebar.html"><img src="../assets/img/images/shoes_cat_img01.jpg"
+                                <a href="shop-sidebar.html"><img src="/front_assets/img/images/shoes_cat_img01.jpg"
                                         alt=""></a>
                             </div>
                             <div class="content">
@@ -161,7 +161,7 @@
                     <div class="col-lg-4 col-md-6 col-sm-9">
                         <div class="shoes-cat-item mb-50">
                             <div class="thumb mb-30">
-                                <a href="shop-sidebar.html"><img src="../assets/img/images/shoes_cat_img02.jpg"
+                                <a href="shop-sidebar.html"><img src="/front_assets/img/images/shoes_cat_img02.jpg"
                                         alt=""></a>
                             </div>
                             <div class="content">
@@ -175,7 +175,7 @@
                     <div class="col-lg-4 col-md-6 col-sm-9">
                         <div class="shoes-cat-item mb-50">
                             <div class="thumb mb-30">
-                                <a href="shop-sidebar.html"><img src="../assets/img/images/shoes_cat_img03.jpg"
+                                <a href="shop-sidebar.html"><img src="/front_assets/img/images/shoes_cat_img03.jpg"
                                         alt=""></a>
                             </div>
                             <div class="content">
@@ -240,7 +240,7 @@
                             <div class="tab-pane show active" id="accessories" role="tabpanel"
                                 aria-labelledby="accessories-tab">
                                 <div class="trending-products-banner banner-animation">
-                                    <a href="shop-sidebar.html"><img src="../assets/img/images/trending_banner03.jpg"
+                                    <a href="shop-sidebar.html"><img src="/front_assets/img/images/trending_banner03.jpg"
                                             alt=""></a>
                                 </div>
                                 <div class="row trending-product-active">
@@ -249,7 +249,7 @@
                                             <div class="features-product-thumb">
                                                 <div class="discount-tag">-20%</div>
                                                 <a href="shop-details.html">
-                                                    <img src="../assets/img/product/shoes_product01.jpg" alt="">
+                                                    <img src="/front_assets/img/product/shoes_product01.jpg" alt="">
                                                 </a>
                                                 <div class="product-overlay-action">
                                                     <ul>
@@ -288,7 +288,7 @@
                                         <div class="features-product-item">
                                             <div class="features-product-thumb">
                                                 <a href="shop-details.html">
-                                                    <img src="../assets/img/product/shoes_product02.jpg" alt="">
+                                                    <img src="/front_assets/img/product/shoes_product02.jpg" alt="">
                                                 </a>
                                                 <div class="product-overlay-action">
                                                     <ul>
@@ -325,7 +325,7 @@
                                         <div class="features-product-item">
                                             <div class="features-product-thumb">
                                                 <a href="shop-details.html">
-                                                    <img src="../assets/img/product/shoes_product03.jpg" alt="">
+                                                    <img src="/front_assets/img/product/shoes_product03.jpg" alt="">
                                                 </a>
                                                 <div class="product-overlay-action">
                                                     <ul>
@@ -364,7 +364,7 @@
                                         <div class="features-product-item">
                                             <div class="features-product-thumb">
                                                 <a href="shop-details.html">
-                                                    <img src="../assets/img/product/shoes_product04.jpg" alt="">
+                                                    <img src="/front_assets/img/product/shoes_product04.jpg" alt="">
                                                 </a>
                                                 <div class="product-overlay-action">
                                                     <ul>
@@ -402,7 +402,7 @@
                                             <div class="features-product-thumb">
                                                 <div class="discount-tag">-20%</div>
                                                 <a href="shop-details.html">
-                                                    <img src="../assets/img/product/shoes_product05.jpg" alt="">
+                                                    <img src="/front_assets/img/product/shoes_product05.jpg" alt="">
                                                 </a>
                                                 <div class="product-overlay-action">
                                                     <ul>
@@ -442,7 +442,7 @@
                                             <div class="features-product-thumb">
                                                 <div class="discount-tag">-20%</div>
                                                 <a href="shop-details.html">
-                                                    <img src="../assets/img/product/shoes_product06.jpg" alt="">
+                                                    <img src="/front_assets/img/product/shoes_product06.jpg" alt="">
                                                 </a>
                                                 <div class="product-overlay-action">
                                                     <ul>
@@ -481,7 +481,7 @@
                             </div>
                             <div class="tab-pane" id="bags" role="tabpanel" aria-labelledby="bags-tab">
                                 <div class="trending-products-banner banner-animation">
-                                    <a href="shop-sidebar.html"><img src="../assets/img/images/trending_banner02.jpg"
+                                    <a href="shop-sidebar.html"><img src="/front_assets/img/images/trending_banner02.jpg"
                                             alt=""></a>
                                 </div>
                                 <div class="row trending-product-active">
@@ -490,7 +490,7 @@
                                             <div class="features-product-thumb">
                                                 <div class="discount-tag">-20%</div>
                                                 <a href="shop-details.html">
-                                                    <img src="../assets/img/product/shoes_product07.jpg" alt="">
+                                                    <img src="/front_assets/img/product/shoes_product07.jpg" alt="">
                                                 </a>
                                                 <div class="product-overlay-action">
                                                     <ul>
@@ -529,7 +529,7 @@
                                         <div class="features-product-item">
                                             <div class="features-product-thumb">
                                                 <a href="shop-details.html">
-                                                    <img src="../assets/img/product/shoes_product08.jpg" alt="">
+                                                    <img src="/front_assets/img/product/shoes_product08.jpg" alt="">
                                                 </a>
                                                 <div class="product-overlay-action">
                                                     <ul>
@@ -566,7 +566,7 @@
                                         <div class="features-product-item">
                                             <div class="features-product-thumb">
                                                 <a href="shop-details.html">
-                                                    <img src="../assets/img/product/shoes_product01.jpg" alt="">
+                                                    <img src="/front_assets/img/product/shoes_product01.jpg" alt="">
                                                 </a>
                                                 <div class="product-overlay-action">
                                                     <ul>
@@ -605,7 +605,7 @@
                                         <div class="features-product-item">
                                             <div class="features-product-thumb">
                                                 <a href="shop-details.html">
-                                                    <img src="../assets/img/product/shoes_product02.jpg" alt="">
+                                                    <img src="/front_assets/img/product/shoes_product02.jpg" alt="">
                                                 </a>
                                                 <div class="product-overlay-action">
                                                     <ul>
@@ -643,7 +643,7 @@
                                             <div class="features-product-thumb">
                                                 <div class="discount-tag">-20%</div>
                                                 <a href="shop-details.html">
-                                                    <img src="../assets/img/product/shoes_product03.jpg" alt="">
+                                                    <img src="/front_assets/img/product/shoes_product03.jpg" alt="">
                                                 </a>
                                                 <div class="product-overlay-action">
                                                     <ul>
@@ -683,7 +683,7 @@
                                             <div class="features-product-thumb">
                                                 <div class="discount-tag">-20%</div>
                                                 <a href="shop-details.html">
-                                                    <img src="../assets/img/product/shoes_product04.jpg" alt="">
+                                                    <img src="/front_assets/img/product/shoes_product04.jpg" alt="">
                                                 </a>
                                                 <div class="product-overlay-action">
                                                     <ul>
@@ -722,7 +722,7 @@
                             </div>
                             <div class="tab-pane" id="bSellers" role="tabpanel" aria-labelledby="bSellers-tab">
                                 <div class="trending-products-banner banner-animation">
-                                    <a href="shop-sidebar.html"><img src="../assets/img/images/trending_banner.jpg"
+                                    <a href="shop-sidebar.html"><img src="/front_assets/img/images/trending_banner.jpg"
                                             alt=""></a>
                                 </div>
                                 <div class="row trending-product-active">
@@ -731,7 +731,7 @@
                                             <div class="features-product-thumb">
                                                 <div class="discount-tag">-20%</div>
                                                 <a href="shop-details.html">
-                                                    <img src="../assets/img/product/shoes_product05.jpg" alt="">
+                                                    <img src="/front_assets/img/product/shoes_product05.jpg" alt="">
                                                 </a>
                                                 <div class="product-overlay-action">
                                                     <ul>
@@ -770,7 +770,7 @@
                                         <div class="features-product-item">
                                             <div class="features-product-thumb">
                                                 <a href="shop-details.html">
-                                                    <img src="../assets/img/product/shoes_product06.jpg" alt="">
+                                                    <img src="/front_assets/img/product/shoes_product06.jpg" alt="">
                                                 </a>
                                                 <div class="product-overlay-action">
                                                     <ul>
@@ -807,7 +807,7 @@
                                         <div class="features-product-item">
                                             <div class="features-product-thumb">
                                                 <a href="shop-details.html">
-                                                    <img src="../assets/img/product/shoes_product07.jpg" alt="">
+                                                    <img src="/front_assets/img/product/shoes_product07.jpg" alt="">
                                                 </a>
                                                 <div class="product-overlay-action">
                                                     <ul>
@@ -846,7 +846,7 @@
                                         <div class="features-product-item">
                                             <div class="features-product-thumb">
                                                 <a href="shop-details.html">
-                                                    <img src="../assets/img/product/shoes_product08.jpg" alt="">
+                                                    <img src="/front_assets/img/product/shoes_product08.jpg" alt="">
                                                 </a>
                                                 <div class="product-overlay-action">
                                                     <ul>
@@ -884,7 +884,7 @@
                                             <div class="features-product-thumb">
                                                 <div class="discount-tag">-20%</div>
                                                 <a href="shop-details.html">
-                                                    <img src="../assets/img/product/shoes_product01.jpg" alt="">
+                                                    <img src="/front_assets/img/product/shoes_product01.jpg" alt="">
                                                 </a>
                                                 <div class="product-overlay-action">
                                                     <ul>
@@ -924,7 +924,7 @@
                                             <div class="features-product-thumb">
                                                 <div class="discount-tag">-20%</div>
                                                 <a href="shop-details.html">
-                                                    <img src="../assets/img/product/shoes_product02.jpg" alt="">
+                                                    <img src="/front_assets/img/product/shoes_product02.jpg" alt="">
                                                 </a>
                                                 <div class="product-overlay-action">
                                                     <ul>
@@ -963,7 +963,7 @@
                             </div>
                             <div class="tab-pane" id="shirts" role="tabpanel" aria-labelledby="shirts-tab">
                                 <div class="trending-products-banner banner-animation">
-                                    <a href="shop-sidebar.html"><img src="../assets/img/images/trending_banner02.jpg"
+                                    <a href="shop-sidebar.html"><img src="/front_assets/img/images/trending_banner02.jpg"
                                             alt=""></a>
                                 </div>
                                 <div class="row trending-product-active">
@@ -972,7 +972,7 @@
                                             <div class="features-product-thumb">
                                                 <div class="discount-tag">-20%</div>
                                                 <a href="shop-details.html">
-                                                    <img src="../assets/img/product/shoes_product03.jpg" alt="">
+                                                    <img src="/front_assets/img/product/shoes_product03.jpg" alt="">
                                                 </a>
                                                 <div class="product-overlay-action">
                                                     <ul>
@@ -1011,7 +1011,7 @@
                                         <div class="features-product-item">
                                             <div class="features-product-thumb">
                                                 <a href="shop-details.html">
-                                                    <img src="../assets/img/product/shoes_product04.jpg" alt="">
+                                                    <img src="/front_assets/img/product/shoes_product04.jpg" alt="">
                                                 </a>
                                                 <div class="product-overlay-action">
                                                     <ul>
@@ -1048,7 +1048,7 @@
                                         <div class="features-product-item">
                                             <div class="features-product-thumb">
                                                 <a href="shop-details.html">
-                                                    <img src="../assets/img/product/shoes_product05.jpg" alt="">
+                                                    <img src="/front_assets/img/product/shoes_product05.jpg" alt="">
                                                 </a>
                                                 <div class="product-overlay-action">
                                                     <ul>
@@ -1087,7 +1087,7 @@
                                         <div class="features-product-item">
                                             <div class="features-product-thumb">
                                                 <a href="shop-details.html">
-                                                    <img src="../assets/img/product/shoes_product06.jpg" alt="">
+                                                    <img src="/front_assets/img/product/shoes_product06.jpg" alt="">
                                                 </a>
                                                 <div class="product-overlay-action">
                                                     <ul>
@@ -1125,7 +1125,7 @@
                                             <div class="features-product-thumb">
                                                 <div class="discount-tag">-20%</div>
                                                 <a href="shop-details.html">
-                                                    <img src="../assets/img/product/shoes_product07.jpg" alt="">
+                                                    <img src="/front_assets/img/product/shoes_product07.jpg" alt="">
                                                 </a>
                                                 <div class="product-overlay-action">
                                                     <ul>
@@ -1165,7 +1165,7 @@
                                             <div class="features-product-thumb">
                                                 <div class="discount-tag">-20%</div>
                                                 <a href="shop-details.html">
-                                                    <img src="../assets/img/product/shoes_product08.jpg" alt="">
+                                                    <img src="/front_assets/img/product/shoes_product08.jpg" alt="">
                                                 </a>
                                                 <div class="product-overlay-action">
                                                     <ul>
@@ -1204,7 +1204,7 @@
                             </div>
                             <div class="tab-pane" id="shoesTwo" role="tabpanel" aria-labelledby="shoesTwo-tab">
                                 <div class="trending-products-banner banner-animation">
-                                    <a href="shop-sidebar.html"><img src="../assets/img/images/trending_banner.jpg"
+                                    <a href="shop-sidebar.html"><img src="/front_assets/img/images/trending_banner.jpg"
                                             alt=""></a>
                                 </div>
                                 <div class="row trending-product-active">
@@ -1213,7 +1213,7 @@
                                             <div class="features-product-thumb">
                                                 <div class="discount-tag">-20%</div>
                                                 <a href="shop-details.html">
-                                                    <img src="../assets/img/product/shoes_product01.jpg" alt="">
+                                                    <img src="/front_assets/img/product/shoes_product01.jpg" alt="">
                                                 </a>
                                                 <div class="product-overlay-action">
                                                     <ul>
@@ -1252,7 +1252,7 @@
                                         <div class="features-product-item">
                                             <div class="features-product-thumb">
                                                 <a href="shop-details.html">
-                                                    <img src="../assets/img/product/shoes_product02.jpg" alt="">
+                                                    <img src="/front_assets/img/product/shoes_product02.jpg" alt="">
                                                 </a>
                                                 <div class="product-overlay-action">
                                                     <ul>
@@ -1289,7 +1289,7 @@
                                         <div class="features-product-item">
                                             <div class="features-product-thumb">
                                                 <a href="shop-details.html">
-                                                    <img src="../assets/img/product/shoes_product03.jpg" alt="">
+                                                    <img src="/front_assets/img/product/shoes_product03.jpg" alt="">
                                                 </a>
                                                 <div class="product-overlay-action">
                                                     <ul>
@@ -1328,7 +1328,7 @@
                                         <div class="features-product-item">
                                             <div class="features-product-thumb">
                                                 <a href="shop-details.html">
-                                                    <img src="../assets/img/product/shoes_product04.jpg" alt="">
+                                                    <img src="/front_assets/img/product/shoes_product04.jpg" alt="">
                                                 </a>
                                                 <div class="product-overlay-action">
                                                     <ul>
@@ -1366,7 +1366,7 @@
                                             <div class="features-product-thumb">
                                                 <div class="discount-tag">-20%</div>
                                                 <a href="shop-details.html">
-                                                    <img src="../assets/img/product/shoes_product05.jpg" alt="">
+                                                    <img src="/front_assets/img/product/shoes_product05.jpg" alt="">
                                                 </a>
                                                 <div class="product-overlay-action">
                                                     <ul>
@@ -1406,7 +1406,7 @@
                                             <div class="features-product-thumb">
                                                 <div class="discount-tag">-20%</div>
                                                 <a href="shop-details.html">
-                                                    <img src="../assets/img/product/shoes_product06.jpg" alt="">
+                                                    <img src="/front_assets/img/product/shoes_product06.jpg" alt="">
                                                 </a>
                                                 <div class="product-overlay-action">
                                                     <ul>
@@ -1445,7 +1445,7 @@
                             </div>
                             <div class="tab-pane" id="travelOut" role="tabpanel" aria-labelledby="travelOut-tab">
                                 <div class="trending-products-banner banner-animation">
-                                    <a href="shop-sidebar.html"><img src="../assets/img/images/trending_banner02.jpg"
+                                    <a href="shop-sidebar.html"><img src="/front_assets/img/images/trending_banner02.jpg"
                                             alt=""></a>
                                 </div>
                                 <div class="row trending-product-active">
@@ -1454,7 +1454,7 @@
                                             <div class="features-product-thumb">
                                                 <div class="discount-tag">-20%</div>
                                                 <a href="shop-details.html">
-                                                    <img src="../assets/img/product/shoes_product07.jpg" alt="">
+                                                    <img src="/front_assets/img/product/shoes_product07.jpg" alt="">
                                                 </a>
                                                 <div class="product-overlay-action">
                                                     <ul>
@@ -1493,7 +1493,7 @@
                                         <div class="features-product-item">
                                             <div class="features-product-thumb">
                                                 <a href="shop-details.html">
-                                                    <img src="../assets/img/product/shoes_product08.jpg" alt="">
+                                                    <img src="/front_assets/img/product/shoes_product08.jpg" alt="">
                                                 </a>
                                                 <div class="product-overlay-action">
                                                     <ul>
@@ -1530,7 +1530,7 @@
                                         <div class="features-product-item">
                                             <div class="features-product-thumb">
                                                 <a href="shop-details.html">
-                                                    <img src="../assets/img/product/shoes_product01.jpg" alt="">
+                                                    <img src="/front_assets/img/product/shoes_product01.jpg" alt="">
                                                 </a>
                                                 <div class="product-overlay-action">
                                                     <ul>
@@ -1569,7 +1569,7 @@
                                         <div class="features-product-item">
                                             <div class="features-product-thumb">
                                                 <a href="shop-details.html">
-                                                    <img src="../assets/img/product/shoes_product02.jpg" alt="">
+                                                    <img src="/front_assets/img/product/shoes_product02.jpg" alt="">
                                                 </a>
                                                 <div class="product-overlay-action">
                                                     <ul>
@@ -1607,7 +1607,7 @@
                                             <div class="features-product-thumb">
                                                 <div class="discount-tag">-20%</div>
                                                 <a href="shop-details.html">
-                                                    <img src="../assets/img/product/shoes_product03.jpg" alt="">
+                                                    <img src="/front_assets/img/product/shoes_product03.jpg" alt="">
                                                 </a>
                                                 <div class="product-overlay-action">
                                                     <ul>
@@ -1647,7 +1647,7 @@
                                             <div class="features-product-thumb">
                                                 <div class="discount-tag">-20%</div>
                                                 <a href="shop-details.html">
-                                                    <img src="../assets/img/product/shoes_product04.jpg" alt="">
+                                                    <img src="/front_assets/img/product/shoes_product04.jpg" alt="">
                                                 </a>
                                                 <div class="product-overlay-action">
                                                     <ul>
@@ -1714,7 +1714,7 @@
                     <div class="col-xl-3 col-lg-4 col-sm-6 grid-item grid-sizer cat-two">
                         <div class="new-arrival-item text-center mb-50">
                             <div class="thumb mb-25">
-                                <a href="shop-details.html"><img src="../assets/img/product/shoes_arrival_product01.jpg"
+                                <a href="shop-details.html"><img src="/front_assets/img/product/shoes_arrival_product01.jpg"
                                         alt=""></a>
                                 <div class="product-overlay-action">
                                     <ul>
@@ -1733,7 +1733,7 @@
                         <div class="new-arrival-item text-center mb-50">
                             <div class="thumb mb-25">
                                 <div class="discount-tag">- 20%</div>
-                                <a href="shop-details.html"><img src="../assets/img/product/shoes_arrival_product02.jpg"
+                                <a href="shop-details.html"><img src="/front_assets/img/product/shoes_arrival_product02.jpg"
                                         alt=""></a>
                                 <div class="product-overlay-action">
                                     <ul>
@@ -1751,7 +1751,7 @@
                     <div class="col-xl-3 col-lg-4 col-sm-6 grid-item grid-sizer cat-two cat-one">
                         <div class="new-arrival-item text-center mb-50">
                             <div class="thumb mb-25">
-                                <a href="shop-details.html"><img src="../assets/img/product/shoes_arrival_product03.jpg"
+                                <a href="shop-details.html"><img src="/front_assets/img/product/shoes_arrival_product03.jpg"
                                         alt=""></a>
                                 <div class="product-overlay-action">
                                     <ul>
@@ -1770,7 +1770,7 @@
                         <div class="new-arrival-item text-center mb-50">
                             <div class="thumb mb-25">
                                 <div class="discount-tag new">New</div>
-                                <a href="shop-details.html"><img src="../assets/img/product/shoes_arrival_product04.jpg"
+                                <a href="shop-details.html"><img src="/front_assets/img/product/shoes_arrival_product04.jpg"
                                         alt=""></a>
                                 <div class="product-overlay-action">
                                     <ul>
@@ -1789,7 +1789,7 @@
                         <div class="new-arrival-item text-center mb-50">
                             <div class="thumb mb-25">
                                 <div class="discount-tag">- 20%</div>
-                                <a href="shop-details.html"><img src="../assets/img/product/shoes_arrival_product05.jpg"
+                                <a href="shop-details.html"><img src="/front_assets/img/product/shoes_arrival_product05.jpg"
                                         alt=""></a>
                                 <div class="product-overlay-action">
                                     <ul>
@@ -1808,7 +1808,7 @@
                         <div class="new-arrival-item text-center mb-50">
                             <div class="thumb mb-25">
                                 <div class="discount-tag new">New</div>
-                                <a href="shop-details.html"><img src="../assets/img/product/shoes_arrival_product06.jpg"
+                                <a href="shop-details.html"><img src="/front_assets/img/product/shoes_arrival_product06.jpg"
                                         alt=""></a>
                                 <div class="product-overlay-action">
                                     <ul>
@@ -1826,7 +1826,7 @@
                     <div class="col-xl-3 col-lg-4 col-sm-6 grid-item grid-sizer cat-one">
                         <div class="new-arrival-item text-center mb-50">
                             <div class="thumb mb-25">
-                                <a href="shop-details.html"><img src="../assets/img/product/shoes_arrival_product07.jpg"
+                                <a href="shop-details.html"><img src="/front_assets/img/product/shoes_arrival_product07.jpg"
                                         alt=""></a>
                                 <div class="product-overlay-action">
                                     <ul>
@@ -1845,7 +1845,7 @@
                         <div class="new-arrival-item text-center mb-50">
                             <div class="thumb mb-25">
                                 <div class="discount-tag">- 45%</div>
-                                <a href="shop-details.html"><img src="../assets/img/product/shoes_arrival_product08.jpg"
+                                <a href="shop-details.html"><img src="/front_assets/img/product/shoes_arrival_product08.jpg"
                                         alt=""></a>
                                 <div class="product-overlay-action">
                                     <ul>
@@ -1869,7 +1869,7 @@
         <section class="shoes-banner-area">
             <div class="container">
                 <div class="shoes-banner-active">
-                    <div class="shoes-banner-bg" data-background="../assets/img/bg/shoes-banner_bg.jpg">
+                    <div class="shoes-banner-bg" data-background="/front_assets/img/bg/shoes-banner_bg.jpg">
                         <div class="row">
                             <div class="col-12">
                                 <div class="shoes-banner-content">
@@ -1879,7 +1879,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="shoes-banner-bg" data-background="../assets/img/bg/shoes-banner_bg.jpg">
+                    <div class="shoes-banner-bg" data-background="/front_assets/img/bg/shoes-banner_bg.jpg">
                         <div class="row">
                             <div class="col-12">
                                 <div class="shoes-banner-content">
@@ -1889,7 +1889,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="shoes-banner-bg" data-background="../assets/img/bg/shoes-banner_bg.jpg">
+                    <div class="shoes-banner-bg" data-background="/front_assets/img/bg/shoes-banner_bg.jpg">
                         <div class="row">
                             <div class="col-12">
                                 <div class="shoes-banner-content">
@@ -1910,7 +1910,7 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-3 col-md-6 col-sm-8">
                         <div class="promo-services-item mb-40">
-                            <div class="icon"><img src="../assets/img/icon/promo_icon01.png" alt=""></div>
+                            <div class="icon"><img src="/front_assets/img/icon/promo_icon01.png" alt=""></div>
                             <div class="content">
                                 <h6>payment & delivery</h6>
                                 <p>Delivered, when you receive arrives</p>
@@ -1919,7 +1919,7 @@
                     </div>
                     <div class="col-lg-3 col-md-6 col-sm-8">
                         <div class="promo-services-item mb-40">
-                            <div class="icon"><img src="../assets/img/icon/promo_icon02.png" alt=""></div>
+                            <div class="icon"><img src="/front_assets/img/icon/promo_icon02.png" alt=""></div>
                             <div class="content">
                                 <h6>Return Product</h6>
                                 <p>Retail, a Product Return Process</p>
@@ -1928,7 +1928,7 @@
                     </div>
                     <div class="col-lg-3 col-md-6 col-sm-8">
                         <div class="promo-services-item mb-40">
-                            <div class="icon"><img src="../assets/img/icon/promo_icon03.png" alt=""></div>
+                            <div class="icon"><img src="/front_assets/img/icon/promo_icon03.png" alt=""></div>
                             <div class="content">
                                 <h6>money back guarantee</h6>
                                 <p>Options Including 24/7</p>
@@ -1937,7 +1937,7 @@
                     </div>
                     <div class="col-lg-3 col-md-6 col-sm-8">
                         <div class="promo-services-item mb-40">
-                            <div class="icon"><img src="../assets/img/icon/promo_icon04.png" alt=""></div>
+                            <div class="icon"><img src="/front_assets/img/icon/promo_icon04.png" alt=""></div>
                             <div class="content">
                                 <h6>Quality support</h6>
                                 <p>Support Options Including 24/7</p>
@@ -1957,7 +1957,7 @@
                         <div class="insta-post-item">
                             <a href="#">
                                 <i class="fab fa-instagram"></i>
-                                <img src="../assets/img/instagram/s_insta_post01.jpg" alt="">
+                                <img src="/front_assets/img/instagram/s_insta_post01.jpg" alt="">
                             </a>
                         </div>
                     </div>
@@ -1965,7 +1965,7 @@
                         <div class="insta-post-item">
                             <a href="#">
                                 <i class="fab fa-instagram"></i>
-                                <img src="../assets/img/instagram/s_insta_post02.jpg" alt="">
+                                <img src="/front_assets/img/instagram/s_insta_post02.jpg" alt="">
                             </a>
                         </div>
                     </div>
@@ -1973,7 +1973,7 @@
                         <div class="insta-post-item">
                             <a href="#">
                                 <i class="fab fa-instagram"></i>
-                                <img src="../assets/img/instagram/s_insta_post03.jpg" alt="">
+                                <img src="/front_assets/img/instagram/s_insta_post03.jpg" alt="">
                             </a>
                         </div>
                     </div>
@@ -1981,7 +1981,7 @@
                         <div class="insta-post-item">
                             <a href="#">
                                 <i class="fab fa-instagram"></i>
-                                <img src="../assets/img/instagram/s_insta_post04.jpg" alt="">
+                                <img src="/front_assets/img/instagram/s_insta_post04.jpg" alt="">
                             </a>
                         </div>
                     </div>
@@ -1989,7 +1989,7 @@
                         <div class="insta-post-item">
                             <a href="#">
                                 <i class="fab fa-instagram"></i>
-                                <img src="../assets/img/instagram/s_insta_post05.jpg" alt="">
+                                <img src="/front_assets/img/instagram/s_insta_post05.jpg" alt="">
                             </a>
                         </div>
                     </div>
@@ -1997,7 +1997,7 @@
                         <div class="insta-post-item">
                             <a href="#">
                                 <i class="fab fa-instagram"></i>
-                                <img src="../assets/img/instagram/s_insta_post03.jpg" alt="">
+                                <img src="/front_assets/img/instagram/s_insta_post03.jpg" alt="">
                             </a>
                         </div>
                     </div>
@@ -2005,7 +2005,7 @@
                         <div class="insta-post-item">
                             <a href="#">
                                 <i class="fab fa-instagram"></i>
-                                <img src="../assets/img/instagram/s_insta_post04.jpg" alt="">
+                                <img src="/front_assets/img/instagram/s_insta_post04.jpg" alt="">
                             </a>
                         </div>
                     </div>
