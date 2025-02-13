@@ -136,7 +136,7 @@
                 </div>
             </section>
             <!-- slider-area-end -->
-        </template>
+        
 
 
 
@@ -2016,6 +2016,7 @@
 
 
         <!-- main-area-end -->
+    </template>
     </Layout>
 </template>
 <script>
@@ -2024,6 +2025,9 @@ export default {
     name: 'Index',
     components: {
         Layout
+    },
+    mounted(){
+        console.log("first")
     }
 }
 </script>
