@@ -1,15 +1,16 @@
 import { createWebHistory, createRouter } from 'vue-router'
 import test from './test.vue'
 import Layout from './frontTemplate/Layout.vue';
+import Index from './frontTemplate/Index.vue';
 
 
 
 const routes = [
 
     {
-        name: 'Layout',
+        name: 'Index',
         path: '/',
-        component:Layout,
+        component:Index,
 
     },
    
