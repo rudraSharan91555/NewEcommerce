@@ -11,6 +11,10 @@
     {
       "name": "User",
       "description": "All User Operations"
+    },
+    {
+      "name": "Home Page",
+      "description": "All Home Page Data"
     }
   
   ],
@@ -196,6 +200,33 @@
             "required": true,
             "type": "string"
           }  
+         
+        ],
+        "responses": {
+          "200": {
+            "description": "Data"
+          }
+        }
+      }
+    },
+    "/getHomeData": {
+      "get": {
+        "tags": [
+          "Home Page Data"
+        ],
+        "summary": "Home Page Data",
+        "operationId": "getHomeData",
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+        
+          
          
         ],
         "responses": {

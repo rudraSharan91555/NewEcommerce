@@ -33,6 +33,7 @@
         <div class="col">
             <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="saveData('0','','')" class="btn btn-outline-info px-5 radius-30">Add ADD Attribute value</button>
         </div>
+        <hr/>
         <div class="card">
             <div class="card-body">
                 <div class="table-responsive">

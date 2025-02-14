@@ -7,13 +7,13 @@
 	<div class="page-content">
 		<!--breadcrumb-->
 		<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-			<div class="breadcrumb-title pe-3">Home Banner</div>
+			<div class="breadcrumb-title pe-3">Manage Product</div>
 			<div class="ps-3">
 				<nav aria-label="breadcrumb">
 					<ol class="breadcrumb mb-0 p-0">
 						<li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
 						</li>
-						<li class="breadcrumb-item active" aria-current="page">Home Banner</li>
+						<li class="breadcrumb-item active" aria-current="page">Manage Product</li>
 					</ol>
 				</nav>
 			</div>
@@ -31,11 +31,12 @@
 			</div>
 		</div>
 
-		<h6 class="mb-0 text-uppercase">Home Banner</h6>
+		<h6 class="mb-0 text-uppercase">Manage Product</h6>
 		<hr />
 		<div class="col">
-			<button type="button" onclick="saveData('0','','','')" class="btn btn-outline-info px-5 radius-30" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Home Banner</button>
+			<button type="button" onclick="saveData('0','','','')" class="btn btn-outline-info px-5 radius-30" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Manage Product</button>
 		</div>
+		<hr/>
 		<div class="card">
 			<div class="card-body">
 				<div class="row">

@@ -10,7 +10,6 @@ use App\Traits\SaveFile;
 use App\Models\Attribute;
 use App\Models\Category;
 use App\Models\CategoryAttribute;
-
 class categoryController extends Controller
 {
     use ApiResponse;
