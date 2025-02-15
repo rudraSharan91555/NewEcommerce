@@ -12,6 +12,13 @@ use Illuminate\Http\Request;
 class HomePageController extends Controller
 {
     use ApiResponse;
+
+    public function getCategoriesData()
+    {
+      $data['categories'] = Category::with('subcategories')->where('parent_category_id', Null)->get();
+      return $this->success(['data' => $data], 'Successfully data fetched');
+    }
+
     public function  getHomeData(){
         $data = [];
         $data['banner'] = HomeBanner::get();
@@ -19,4 +26,5 @@ class HomePageController extends Controller
         $data['brands'] = Brand::get();
         return $this->success(['data'=>$data],'Sucessfully data fetched');
     }
+    
 }

@@ -19,13 +19,13 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-// Route::get('/', function () {
-//     return redirect('admin/dashboard');
-// });
-
 Route::get('/', function () {
-    return view('index');
+    return redirect('admin/dashboard');
 });
+
+// Route::get('/', function () {
+//     return view('index');
+// });
 
 Route::get('/login', function () {
     return view('auth/signIn');

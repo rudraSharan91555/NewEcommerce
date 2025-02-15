@@ -235,6 +235,33 @@
           }
         }
       }
+    },
+    "/getCategoriesData": {
+      "get": {
+        "tags": [
+          "Home Page Data"
+        ],
+        "summary": "Home Page Data",
+        "operationId": "getCategoriesData",
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+        
+          
+         
+        ],
+        "responses": {
+          "200": {
+            "description": "Data"
+          }
+        }
+      }
     }
     
    

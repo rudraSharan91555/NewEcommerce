@@ -20,7 +20,8 @@ class HomeBanner extends Model
     protected function Image(): Attribute
     {
         return Attribute::make(
-            get: fn($value) => $value ? URL::to('public/images/' . $value) : null
+            // get: fn($value) => $value ? URL::to('public/images/' . $value) : null
+            get: fn ($value) => URL::to(''.$value.'')
         );
     }
 }
