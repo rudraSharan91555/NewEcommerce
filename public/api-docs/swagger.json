@@ -236,13 +236,13 @@
         }
       }
     },
-    "/getCategoriesData": {
+    "/getHeaderCategoriesData": {
       "get": {
         "tags": [
           "Home Page Data"
         ],
         "summary": "Home Page Data",
-        "operationId": "getCategoriesData",
+        "operationId": "getHeaderCategoriesData",
         "produces": [
           "application/json"
         ],

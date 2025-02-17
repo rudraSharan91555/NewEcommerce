@@ -39,5 +39,5 @@ Route::post('/updateUser', [authCotroller::class, 'updateUser']);
 });
 
 // Frontend Data
-Route::get('/getCategoriesData', [HomePageController::class, 'getCategoriesData']);
+Route::get('/getHeaderCategoriesData', [HomePageController::class, 'getCategoriesData']);
 Route::get('/getHomeData', [HomePageController::class, 'getHomeData']);
