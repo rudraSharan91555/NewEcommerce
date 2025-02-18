@@ -398,13 +398,13 @@ export default {
                 // console.log(data.data.data.data.categories);
                 if(data.status == 200 && data.data.data.data.categories.length >0){
                     this.headerCategories = data.data.data.data.categories;
-                    console.log(this.headerCategories);
+                    // console.log(this.headerCategories);
                 }else{
                     console.log('Data not Found');
                    console.log(data); 
                 }              
             }catch(error){
-                
+                console.log("Error");
             }
         }
     }
