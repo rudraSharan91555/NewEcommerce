@@ -63,7 +63,7 @@
                                                             <a href="shop-sidebar.html">
                                                                 <img :src=" item.image "
                                                                     alt="">
-                                                                <span class="btn">Man Shop</span>
+                                                                <span class="btn"> Shop</span>
                                                             </a>
                                                         </li>
                                                     </ul>                                                    

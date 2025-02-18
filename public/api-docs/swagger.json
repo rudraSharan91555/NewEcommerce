@@ -209,33 +209,6 @@
         }
       }
     },
-    "/getHomeData": {
-      "get": {
-        "tags": [
-          "Home Page Data"
-        ],
-        "summary": "Home Page Data",
-        "operationId": "getHomeData",
-        "produces": [
-          "application/json"
-        ],
-        "security": [
-          {
-            "APIKeyHeader": []
-          }
-        ],
-        "parameters": [
-        
-          
-         
-        ],
-        "responses": {
-          "200": {
-            "description": "Data"
-          }
-        }
-      }
-    },
     "/getHeaderCategoriesData": {
       "get": {
         "tags": [
@@ -262,9 +235,34 @@
           }
         }
       }
+    },
+    "/getHomeData": {
+      "get": {
+        "tags": [
+          "Home Page Data"
+        ],
+        "summary": "Home Page Data",
+        "operationId": "getHomeData",
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+        
+          
+         
+        ],
+        "responses": {
+          "200": {
+            "description": "Data"
+          }
+        }
+      }
     }
-    
-   
     
    
   },

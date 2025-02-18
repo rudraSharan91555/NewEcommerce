@@ -15,14 +15,16 @@ class HomePageController extends Controller
 
     public function getCategoriesData()
     {
-      $data['categories'] = Category::with('subcategories')->where('parent_category_id', Null)->get();
+      $data['categories'] = Category::with('subcategories')
+      // ->where('parent_category_id', Null)
+      ->get();
       return $this->success(['data' => $data], 'Successfully data fetched');
     }
 
     public function  getHomeData(){
         $data = [];
         $data['banner'] = HomeBanner::get();
-        $data['categories'] = Category::with('products')->get();
+        $data['categories'] = Category::with('products:id,category_id,name,slug,image,item_code')->get();
         $data['brands'] = Brand::get();
         return $this->success(['data'=>$data],'Sucessfully data fetched');
     }
