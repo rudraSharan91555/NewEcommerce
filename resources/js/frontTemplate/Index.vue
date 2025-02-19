@@ -88,9 +88,9 @@
                             <ul class="nav nav-tabs" id="trendingTab" role="tablist">
 
                                 <!-- for -->
-                                <li v-for="(catItem,index) in getShortArray(6)" :key="catItem.id"class="nav-item" role="presentation">
-                                    <a :class="'nav-link'+showActiveClass(1,index)" id="accessories-tab" data-toggle="tab"
-                                        href="#accessories" role="tab" aria-controls="accessories"
+                                <li v-for="(catItem,index) in getShortArray(6)" :key="catItem.id" class="nav-item" role="presentation">
+                                    <a :class="'nav-link'+showActiveClass(1,index)" :id="'cat'+catItem.id" data-toggle="tab"
+                                        :href="'#cat'+catItem.id" role="tab" :aria-controls="'cat'+catItem.id"
                                         aria-selected="true">{{catItem.name}}</a>
                                 </li>
                                 <!-- if -->
@@ -101,9 +101,11 @@
                         </div>
                     </div>
                     <div class="col-10">
-                        <div class="tab-content tp-tab-content" id="trendingTabContent">
-                            <div class="tab-pane show active" id="accessories" role="tabpanel"
-                                aria-labelledby="accessories-tab">
+                        <div class="tab-content tp-tab-content d-flex flex-columm" id="trendingTabContent">
+                            <!-- for and if -->
+                            <div v-for="(catItem,index) in getShortArray(6)" :key="catItem.id" :class="'tab-pane'+showActiveClass(2,index)" 
+                            :id="'cat'+catItem.id" role="tabpanel"
+                                :aria-labelledby="'cat'+catItem.id">
                                 <div class="trending-products-banner banner-animation">
                                     <a href="shop-sidebar.html"><img src="/front_assets/img/images/trending_banner03.jpg"
                                             alt=""></a>
