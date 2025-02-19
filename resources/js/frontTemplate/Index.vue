@@ -16,8 +16,8 @@
                                                 data-duration-in="1.5">best offer !</h3>
                                             <h2 class="title" data-animation-in="fadeInUp" data-delay-in=".4"
                                                 data-duration-in="1.5">{{ item.text}}</h2>
-                                            <!-- <p data-animation-in="fadeInUp" data-delay-in=".6" data-duration-in="1.5">
-                                                Get up to 50% off Today Only</p> -->
+                                            <p data-animation-in="fadeInUp" data-delay-in=".6" data-duration-in="1.5">
+                                                Get up to 50% off Today Only</p>
                                             <a href="shop-sidebar.html" class="btn" data-animation-in="fadeInUp"
                                                 data-delay-in=".8" data-duration-in="1.5">Shop now</a>
                                         </div>
@@ -28,7 +28,7 @@
                                                 data-background="/front_assets/img/slider/third_slide_shape.png"
                                                 data-animation-in="zoomIn" data-delay-in="1" data-duration-in="1.5">
                                             </div>
-                                            <img :src="item.image" alt="Image" style="height: 537px; width: 560px;"
+                                            <img :src="item.image" alt="Image"
                                                 class="main-img" data-animation-in="slideInRight2" data-delay-in="1"
                                                 data-duration-in="1.5">
                                         </div>
@@ -49,20 +49,22 @@
         <div class="shoes-category-area pt-80 pb-30">
             <div class="container custom-container-two">
                 <div class="row justify-content-center">
-                    <div class="col-lg-4 col-md-6 col-sm-9">
+
+                    <div v-for="item in getShortArray(3)" :key="item.id" class="col-lg-4 col-md-6 col-sm-9">
                         <div class="shoes-cat-item mb-50">
                             <div class="thumb mb-30">
-                                <a href="shop-sidebar.html"><img src="/front_assets/img/images/shoes_cat_img01.jpg"
+                                <a href="shop-sidebar.html"><img :src="item.image"
                                         alt=""></a>
                             </div>
                             <div class="content">
                                 <ul>
-                                    <li><a href="shop-sidebar.html">Women Shoes</a></li>
+                                    <li><a href="shop-sidebar.html">{{item.name}}</a></li>
                                     <li><span>18</span></li>
                                 </ul>
                             </div>
                         </div>
                     </div>
+
                     
                 </div>
             </div>
@@ -84,11 +86,16 @@
                         <div class="trending-products-list">
                             <h5>Category</h5>
                             <ul class="nav nav-tabs" id="trendingTab" role="tablist">
-                                <li class="nav-item" role="presentation">
-                                    <a class="nav-link active" id="accessories-tab" data-toggle="tab"
+
+                                <!-- for -->
+                                <li v-for="(catItem,index) in getShortArray(6)" :key="catItem.id"class="nav-item" role="presentation">
+                                    <a :class="'nav-link'+showActiveClass(1,index)" id="accessories-tab" data-toggle="tab"
                                         href="#accessories" role="tab" aria-controls="accessories"
-                                        aria-selected="true">Athletes Shoes</a>
+                                        aria-selected="true">{{catItem.name}}</a>
                                 </li>
+                                <!-- if -->
+
+                                <!-- endles for -->
                             </ul>
                             <p class="offer"><a href="#">Limited-Time Offer!</a></p>
                         </div>
@@ -697,6 +704,21 @@ export default {
         this.getHomeBanner();
     },
     methods:{
+        showActiveClass(type,index)
+        {
+            // type 1= 1 ->cat type==2  products
+            if(type == 1 && index == 0){
+                return 'active';
+            }else if( type == 2 && index == 0){
+                return 'show active';
+            }else{
+                return '';
+            }
+        },
+        getShortArray(size)
+        {
+            return this.homeCategories.slice(0,size);
+        },
         async getHomeBanner()
         {
             try{
