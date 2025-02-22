@@ -56,7 +56,7 @@
                                                     <ul class="mega-menu-col">
                                                         <li class="mega-title"><a href="shop.html">{{ item.name }}</a></li>
                                                         <li v-for="subitem in item.subcategories" :key="subitem.id" >
-                                                            <router-link :to="'/category/'+item.slug">{{  subitem.name}}</router-link> 
+                                                            <router-link :to="'/category/'+subitem.slug">{{  subitem.name}}</router-link> 
                                                         
                                                         </li>
                                                     </ul>
