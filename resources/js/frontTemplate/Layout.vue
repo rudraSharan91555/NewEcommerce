@@ -1,5 +1,5 @@
 <template>
-    <div id="preloader">
+    <!-- <div id="preloader">
         <div id="ctn-preloader" class="ctn-preloader">
             <div class="animation-preloader">
                 <div class="spinner"></div>
@@ -21,7 +21,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- preloader end -->
 
 

@@ -4,6 +4,8 @@ export function getUrlList() {
         // getHeaderCategoriesData: baseUrl + "/getHeaderCategoriesData",
         getHeaderCategoriesData : ''+baseUrl+'/getHeaderCategoriesData', 
         getHomeData : ''+baseUrl+'/getHomeData', 
+        getCategoryData : ''+baseUrl+'/getCategoryData',
+        getProductData : ''+baseUrl+'/getProductData',
     };
 }
 
