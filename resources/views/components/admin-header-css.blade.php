@@ -30,6 +30,9 @@
     {{-- <script src="{{asset('assets/js/jquery.min.js')}}"></script> --}}
     <link rel="stylesheet" href="{{ asset('snackbar/dist/js-snackbar.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('multiSelect/example-styles.css') }}">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
 
     <title>Ecommerce</title>
 </head>

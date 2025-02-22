@@ -16,6 +16,7 @@
 <script src="https://developercodez.com/developerCorner/parsley/parsley.min.js"></script>
 <script src="{{ asset('snackbar/dist/js-snackbar.js') }}"></script>
 <script type="text/javascript" src="{{ asset('multiSelect/jquery.multi-select.js') }}"></script>
+
 <script type="text/javascript">
     $(function() {
         $('#attribute_id').multiSelect();

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\HomeBanner;
+use App\Models\Product;
 use App\Traits\ApiResponse;
 use Illuminate\Http\Request;
 
@@ -26,6 +27,8 @@ class HomePageController extends Controller
         $data['banner'] = HomeBanner::get();
         $data['categories'] = Category::with('products:id,category_id,name,slug,image,item_code')->get();
         $data['brands'] = Brand::get();
+        // $data['products'] = Product::with('productAttributes')->select('id','category_id','image','name','slug','item_code')->get();
+        $data['products'] = Product::with('productAttributes')->select('id', 'category_id', 'image', 'name', 'slug', 'item_code')->get();
         return $this->success(['data'=>$data],'Sucessfully data fetched');
     }
     
