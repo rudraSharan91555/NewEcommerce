@@ -15,6 +15,14 @@
     {
       "name": "Home Page",
       "description": "All Home Page Data"
+    },
+    {
+      "name": "Category Page Data",
+      "description": "All Category Page Data"
+    },
+    {
+      "name": "Product Page Data",
+      "description": "All Product Page Data"
     }
   
   ],
@@ -262,7 +270,42 @@
           }
         }
       }
+    },
+    "/getCategoryData/{slug}": {
+      "get": {
+        "tags": [
+          "Category Page Data"
+        ],
+        "summary": "Category Page Data",
+        "operationId": "getCategoryDataData",
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "path",
+            "description": "Enter slug",
+            "required": true,
+            "type": "string"
+          }  
+          
+         
+        ],
+        "responses": {
+          "200": {
+            "description": "Data"
+          }
+        }
+      }
     }
+   
+    
     
    
   },
