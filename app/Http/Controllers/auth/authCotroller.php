@@ -11,7 +11,7 @@ use App\Traits\ApiResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
-class authCotroller extends Controller
+class authCotroller extends Controller 
 {
     use ApiResponse;
 

@@ -2,10 +2,14 @@
 
 
 
+use App\Http\Controllers\Admin\AuthController;
 use Illuminate\Support\Facades\Route;
 // use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\auth\authCotroller;
 use Illuminate\Support\Facades\Auth;
+
+
+// Route::get('/createAdmin',[AuthController::class,'createCustomer']);
 
 
 // Route::get('/', function () {
@@ -33,9 +37,9 @@ Route::get('/logout',function (){
 });
 
 
-// Route::get('/{vue_capture?}', function() {
-//     return view('index');
-// })->where('vue_capture', '[\/\w\.-]*');
+Route::get('/{vue_capture?}', function() {
+    return view('index');
+})->where('vue_capture', '[\/\w\.-]*');
 
 // Route::get('/{vue_capture?}', function () {
 //     return view('index');
