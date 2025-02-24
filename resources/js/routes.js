@@ -13,6 +13,7 @@ const routes = [
         component:Index,
 
     },
+    
     {
         name: 'Category',
         path: '/category/:slug?',

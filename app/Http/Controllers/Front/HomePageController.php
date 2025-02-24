@@ -52,8 +52,8 @@ class HomePageController extends Controller
       $slug             = $request->slug;
       $category = Category::where('slug', $slug)->first();
       if (isset($category->id)) {
-        // $products = Product::where('category_id', $category->id)->with('productAttributes')->select('id', 'name', 'slug', 'image', 'item_code')->paginate(10);
-        $products = $this->getFilterProducts($category->id, $size, $color, $brand, $attribute, $lowPrice, $highPrice);
+        $products = Product::where('category_id', $category->id)->with('productAttributes')->select('id', 'name', 'slug', 'image', 'item_code')->paginate(10);
+        // $products = $this->getFilterProducts($category->id, $size, $color, $brand, $attribute, $lowPrice, $highPrice);
         if ($category->parent_category_id == Null || $category->parent_category_id == '') {
           // parent cat
           $categories = Category::where('parent_category_id', $category->id)->get();
