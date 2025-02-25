@@ -12,7 +12,7 @@ class HomeBanner extends Model
     use HasFactory;
 
     protected $fillable = [
-        'text', // ✅ 'name' hata ke 'text' add karein
+        'text', 
         'link',
         'image',
     ];
