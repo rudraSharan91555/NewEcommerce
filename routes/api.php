@@ -39,6 +39,6 @@ Route::post('/updateUser', [authCotroller::class, 'updateUser']);
 });
 
 // // Frontend Data
-// Route::get('/getHeaderCategoriesData', [HomePageController::class, 'getCategoriesData']);
-Route::post('/getHomeData', [HomePageController::class, 'getHomeData']);
+Route::get('/getHeaderCategoriesData', [HomePageController::class, 'getCategoriesData']);
+Route::get('/getHomeData', [HomePageController::class, 'getHomeData']);
 // Route::get('/getCategoryData/{slug?}', [HomePageController::class, 'getCategoryData']);

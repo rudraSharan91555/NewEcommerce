@@ -3,7 +3,7 @@ export function getUrlList() {
     return {
         getHeaderCategoriesData : ''+baseUrl+'/getHeaderCategoriesData', 
         getHomeData : ''+baseUrl+'/getHomeData', 
-        getCategoryData : ''+baseUrl+'/getCategoryData',
+        // getCategoryData : ''+baseUrl+'/getCategoryData',
     };
 }
 

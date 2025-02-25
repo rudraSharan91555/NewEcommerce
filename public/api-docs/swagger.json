@@ -248,7 +248,7 @@
     }
     ,
     "/getHomeData": {
-      "post": {
+      "get": {
         "tags": [
           "Home Page Data"
         ],

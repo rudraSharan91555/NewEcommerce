@@ -18,6 +18,15 @@ class HomePageController extends Controller
 {
     use ApiResponse;
 
+    public function getCategoriesData()
+    {
+      {
+        $data['categories'] = Category::with('subcategories')
+        // ->where('parent_category_id', Null)
+        ->get();
+        return $this->success(['data' => $data], 'Successfully data fetched');
+      }
+    }
     public function getHomeData()
     {
       $data = [];
