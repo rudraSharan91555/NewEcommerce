@@ -42,9 +42,9 @@
                         <div class="menu-wrap">
                             <nav class="menu-nav show">
                                 <div class="logo">
-                                    <a href="index.html" class="main-logo"><img src="../assets/img/logo/fw_logo.png"
+                                    <a href="index.html" class="main-logo"><img src="/front_assets/img/logo/fw_logo.png"
                                             alt="Logo"></a>
-                                    <a href="index.html" class="sticky-logo"><img src="../assets/img/logo/logo.png"
+                                    <a href="index.html" class="sticky-logo"><img src="/front_assets/img/logo/logo.png"
                                             alt="Logo"></a>
                                 </div>
                                 <div class="navbar-wrap main-menu d-none d-lg-flex">
@@ -53,63 +53,63 @@
                                             <ul class="mega--menu--wrap scroll">
                                                 <li>
                                                     <a href="index.html">
-                                                        <span class="img"><img src="../assets/img/home-demo/home_01.jpg"
+                                                        <span class="img"><img src="/front_assets/img/home-demo/home_01.jpg"
                                                                 alt=""></span>
                                                         <span class="text">Home style One</span>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="index-2.html">
-                                                        <span class="img"><img src="../assets/img/home-demo/home_02.jpg"
+                                                        <span class="img"><img src="/front_assets/img/home-demo/home_02.jpg"
                                                                 alt=""></span>
                                                         <span class="text">Home style Two</span>
                                                     </a>
                                                 </li>
                                                 <li class="active">
                                                     <a href="index-3.html">
-                                                        <span class="img"><img src="../assets/img/home-demo/home_03.jpg"
+                                                        <span class="img"><img src="/front_assets/img/home-demo/home_03.jpg"
                                                                 alt=""></span>
                                                         <span class="text">Home style Three</span>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="index-4.html">
-                                                        <span class="img"><img src="../assets/img/home-demo/home_04.jpg"
+                                                        <span class="img"><img src="/front_assets/img/home-demo/home_04.jpg"
                                                                 alt=""></span>
                                                         <span class="text">Home style four</span>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="index-5.html">
-                                                        <span class="img"><img src="../assets/img/home-demo/home_05.jpg"
+                                                        <span class="img"><img src="/front_assets/img/home-demo/home_05.jpg"
                                                                 alt=""></span>
                                                         <span class="text">Home style five</span>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="index-6.html">
-                                                        <span class="img"><img src="../assets/img/home-demo/home_06.jpg"
+                                                        <span class="img"><img src="/front_assets/img/home-demo/home_06.jpg"
                                                                 alt=""></span>
                                                         <span class="text">Home style six</span>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="index-7.html">
-                                                        <span class="img"><img src="../assets/img/home-demo/home_07.jpg"
+                                                        <span class="img"><img src="/front_assets/img/home-demo/home_07.jpg"
                                                                 alt=""></span>
                                                         <span class="text">Home style seven</span>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="index-8.html">
-                                                        <span class="img"><img src="../assets/img/home-demo/home_08.jpg"
+                                                        <span class="img"><img src="/front_assets/img/home-demo/home_08.jpg"
                                                                 alt=""></span>
                                                         <span class="text">Home style eight</span>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="index-9.html">
-                                                        <span class="img"><img src="../assets/img/home-demo/home_09.jpg"
+                                                        <span class="img"><img src="/front_assets/img/home-demo/home_09.jpg"
                                                                 alt=""></span>
                                                         <span class="text">Home style nine</span>
                                                     </a>
@@ -142,7 +142,7 @@
                                                     <ul class="mega-menu-col sub-cat-post">
                                                         <li>
                                                             <a href="shop-sidebar.html">
-                                                                <img src="../assets/img/product/sub_menu_img01.jpg"
+                                                                <img src="/front_assets/img/product/sub_menu_img01.jpg"
                                                                     alt="">
                                                                 <span class="btn">Man Shop</span>
                                                             </a>
@@ -151,7 +151,7 @@
                                                     <ul class="mega-menu-col sub-cat-post">
                                                         <li>
                                                             <a href="shop-sidebar.html">
-                                                                <img src="../assets/img/product/sub_menu_img02.jpg"
+                                                                <img src="/front_assets/img/product/sub_menu_img02.jpg"
                                                                     alt="">
                                                                 <span class="btn">Women’s Shop</span>
                                                             </a>
@@ -179,7 +179,7 @@
                                             <ul class="minicart">
                                                 <li class="d-flex align-items-start">
                                                     <div class="cart-img">
-                                                        <a href="#"><img src="../assets/img/product/cart_p01.jpg"
+                                                        <a href="#"><img src="/front_assets/img/product/cart_p01.jpg"
                                                                 alt=""></a>
                                                     </div>
                                                     <div class="cart-content">
@@ -195,7 +195,7 @@
                                                 </li>
                                                 <li class="d-flex align-items-start">
                                                     <div class="cart-img">
-                                                        <a href="#"><img src="../assets/img/product/cart_p02.jpg"
+                                                        <a href="#"><img src="/front_assets/img/product/cart_p02.jpg"
                                                                 alt=""></a>
                                                     </div>
                                                     <div class="cart-content">
@@ -233,7 +233,7 @@
                         <div class="mobile-menu">
                             <div class="close-btn"><i class="flaticon-targeting-cross"></i></div>
                             <nav class="menu-box">
-                                <div class="nav-logo"><a href="index.html"><img src="../assets/img/logo/logo.png" alt=""
+                                <div class="nav-logo"><a href="index.html"><img src="/front_assets/img/logo/logo.png" alt=""
                                             title=""></a>
                                 </div>
                                 <div class="menu-outer">
@@ -303,7 +303,7 @@
 
         <!-- off-canvas-start -->
         <div class="sidebar-toggle-btn"><a href="#" class="navSidebar-button"><img
-                    src="../assets/img/icon/sidebar_toggle_icon.png" alt=""></a></div>
+                    src="/front_assets/img/icon/sidebar_toggle_icon.png" alt=""></a></div>
         <div class="sidebar-off-canvas info-group">
             <div class="off-canvas-overlay"></div>
             <div class="off-canvas-widget scroll">
@@ -317,7 +317,7 @@
                         <div class="sidebar-info-contents">
                             <div class="content-inner">
                                 <div class="logo mb-30">
-                                    <a href="index.html"><img src="../assets/img/logo/logo.png" alt=""></a>
+                                    <a href="index.html"><img src="/front_assets/img/logo/logo.png" alt=""></a>
                                 </div>
                                 <div class="content-box">
                                     <p>WooCommerce and WordPress are both free, open source software reasons many ...
@@ -404,7 +404,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="footer-logo">
-                            <a href="index.html"><img src="../assets/img/logo/w_logo.png" alt=""></a>
+                            <a href="index.html"><img src="/front_assets/img/logo/w_logo.png" alt=""></a>
                         </div>
                     </div>
                 </div>
@@ -447,7 +447,7 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="pay-method-img">
-                            <img src="../assets/img/images/payment_method_img.png" alt="">
+                            <img src="/front_assets/img/images/payment_method_img.png" alt="">
                         </div>
                     </div>
                 </div>
@@ -455,10 +455,27 @@
         </div>
     </footer>
     <!-- footer-area-end -->
-
+    <div id="scripts"></div>
 </template>
 <script>
 export default {
     name: 'Layout',
+    mounted() {
+        var src = ['/front_assets/js/popper.min.js', '/front_assets/js/bootstrap.min.js'
+            , '/front_assets/js/isotope.pkgd.min.js', '/front_assets/js/imagesloaded.pkgd.min.js'
+            , '/front_assets/js/jquery.magnific-popup.min.js', '/front_assets/js/jquery.mCustomScrollbar.concat.min.js'
+            , '/front_assets/js/bootstrap-datepicker.min.js', '/front_assets/js/jquery.nice-select.min.js'
+            , '/front_assets/js/jquery.countdown.min.js', '/front_assets/js/swiper-bundle.min.js'
+            , '/front_assets/js/jarallax.min.js', '/front_assets/js/slick.min.js'
+            , '/front_assets/js/wow.min.js', '/front_assets/js/nav-tool.js'
+            , '/front_assets/js/plugins.js', '/front_assets/js/main.js'];
+        for (var i = 0; i < src.length; i++) {
+            const script = document.createElement('script');
+            script.src = src[i];
+            script.async = false;
+            document.getElementById('scripts').appendChild(script);
+        }
+    },
 }
+
 </script>
