@@ -36,7 +36,7 @@
     @vite('resources/js/app.js')
 </body>
 <!-- JS here -->
-        {{-- <script src="{{asset('front_assets/js/popper.min.js')}}"></script>
+        <script src="{{asset('front_assets/js/popper.min.js')}}"></script>
         <script src="{{asset('front_assets/js/bootstrap.min.js')}}"></script>
         <script src="{{asset('front_assets/js/isotope.pkgd.min.js')}}"></script>
         <script src="{{asset('front_assets/js/imagesloaded.pkgd.min.js')}}"></script>
@@ -51,7 +51,7 @@
         <script src="{{asset('front_assets/js/wow.min.js')}}"></script>
         <script src="{{asset('front_assets/js/nav-tool.js')}}"></script>
         <script src="{{asset('front_assets/js/plugins.js')}}"></script>
-        <script src="{{asset('front_assets/js/main.js')}}"></script> --}}
+        <script src="{{asset('front_assets/js/main.js')}}"></script>
 
 
 </html>

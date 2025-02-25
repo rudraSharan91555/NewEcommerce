@@ -1,25 +1,24 @@
 import { createWebHistory, createRouter } from 'vue-router'
 import Layout from './frontTemplate/Layout.vue';
-import Index from './frontTemplate/Index.vue';
-import Category from './frontTemplate/Category.vue';
+// import Index from './frontTemplate/Index.vue';
 
 
 
 const routes = [
 
     {
-        name: 'Index',
+        name: 'Layout',
         path: '/',
-        component:Index,
+        component:Layout,
 
     },
     
-    {
-        name: 'Category',
-        path: '/category/:slug?',
-        component: Category,
+    // {
+    //     name: 'Category',
+    //     path: '/category/:slug?',
+    //     component: Category,
 
-    },
+    // },
    
 
 ];

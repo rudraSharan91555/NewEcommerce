@@ -3,7 +3,7 @@
   "info": {
     "description": "\n\nHeader -> api_key :  \n\n",
     "version": "1.0.0",
-    "title": "E-commerce" 
+    "title": "E-commerce"
   },
   "host": "127.0.0.1:8000",
   "basePath": "/api",
@@ -13,7 +13,7 @@
       "description": "All User Operations"
     },
     {
-      "name": "Home Page",
+      "name": "Home Page Data",
       "description": "All Home Page Data"
     },
     {
@@ -89,6 +89,7 @@
           }
         ],
         "parameters": [
+        
           {
             "name": "email",
             "in": "formData",
@@ -128,13 +129,14 @@
           }
         ],
         "parameters": [
+        
           {
             "name": "Authorization",
             "in": "header",
             "description": "Enter Bearer Token",
             "required": true,
             "type": "string"
-          }
+          } 
          
         ],
         "responses": {
@@ -190,7 +192,7 @@
           "User"
         ],
         "summary": "Show User Data",
-        "operationId": "logout",
+        "operationId": "updateUser",
         "produces": [
           "application/json"
         ],
@@ -243,7 +245,8 @@
           }
         }
       }
-    },
+    }
+    ,
     "/getHomeData": {
       "get": {
         "tags": [
@@ -270,7 +273,8 @@
           }
         }
       }
-    },
+    }
+    ,
     "/getCategoryData/{slug}": {
       "get": {
         "tags": [
@@ -305,7 +309,6 @@
       }
     }
    
-    
     
    
   },
