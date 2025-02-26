@@ -4,16 +4,6 @@ export function getUrlList() {
         getHeaderCategoriesData : ''+baseUrl+'/getHeaderCategoriesData', 
         getHomeData : ''+baseUrl+'/getHomeData', 
         getCategoryData : ''+baseUrl+'/getCategoryData',
-        getProductData : ''+baseUrl+'/getProductData',
-        getUserData : ''+baseUrl+'/getUserData',
-        getCartData : ''+baseUrl+'/getCartData',
-        addToCart : ''+baseUrl+'/addToCart',
-        removeCartData : ''+baseUrl+'/removeCartData',
-        addCoupon : ''+baseUrl+'/addCoupon',
-        removeCoupon : ''+baseUrl+'/removeCoupon',
-        getUserCoupon : ''+baseUrl+'/getUserCoupon',
-        getPincodeDetails : ''+baseUrl+'/getPincodeDetails',
-        placeOrder : ''+baseUrl+'/placeOrder',
     };
 }
 

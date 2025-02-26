@@ -396,7 +396,7 @@ export default {
                 let data = await axios.get(getUrlList().getHeaderCategoriesData);
                 if(data.status == 200 && data.data.data.data.categories.length > 0){
                     this.headerCategories = data.data.data.data.categories;
-                    console.log(this.headerCategories);
+                    // console.log(this.headerCategories);
                 }else{
                     console.log('Data not Found');
                     console.log(data);
