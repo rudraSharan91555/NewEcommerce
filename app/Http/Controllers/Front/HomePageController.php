@@ -36,6 +36,11 @@ class HomePageController extends Controller
       $data['products'] = Product::with('productAttributes')->select('id', 'category_id', 'image', 'name', 'slug', 'item_code')->get();
       return $this->success(['data'=>$data],'Successfully data fetched');
     }
-   
+
+    public function getCategoryData($slug='')
+    {
+      $data = Category::where('slug',$slug)->with('products:id,category_id,name,slug,image,item_code')->get(); 
+      return $this->success(['data'=>$data],'Successfully data fetched');
+    }   
 
 }

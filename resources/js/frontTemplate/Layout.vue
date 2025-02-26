@@ -50,7 +50,8 @@
                                 <div class="navbar-wrap main-menu d-none d-lg-flex">
                                     <ul class="navigation">
                                         <li v-for="item in headerCategories" :key="item.id" class="has--mega--menu">
-                                            <a href="#">{{ item.name }}</a>
+                                            <!-- <router-link :to="'category/'+item.slug" >{{ item.name }}</router-link> -->
+                                            <router-link :to="'/category/'+item.slug">{{ item.name }}</router-link>
                                             <ul class="mega-menu">
                                                 <li class="mega-menu-wrap">
                                                     <ul class="mega-menu-col">
