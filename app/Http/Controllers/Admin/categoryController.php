@@ -37,7 +37,7 @@ class categoryController extends Controller
             return $this->error($validation->errors()->first(), 400, []);
             // return response()->json(['status'=>400,'message'=>$validation->errors()->first()]);
         } else {
-            // $slug = replaceStr($request->slug);
+            $slug = replaceStr($request->slug);
             if ($request->id > 0) {
                 $image = Category::find($request->id);
                 $imageName = $image->image;
@@ -53,7 +53,7 @@ class categoryController extends Controller
                 Category::updateOrCreate(
                     ['id' => $request->id],
                     [
-                        'name' => $request->name, 'slug' => $request->slug, 'image' => $imageName,
+                        'name' => $request->name, 'slug' => $slug, 'image' => $imageName,
                         'parent_category_id' => $request->parent_category_id
                     ]
                 );
@@ -61,7 +61,7 @@ class categoryController extends Controller
                 Category::updateOrCreate(
                     ['id' => $request->id],
                     [
-                        'name' => $request->name, 'slug' => $request->slug, 'image' => $imageName,
+                        'name' => $request->name, 'slug' => $slug, 'image' => $imageName,
                     ]
                 );
             }

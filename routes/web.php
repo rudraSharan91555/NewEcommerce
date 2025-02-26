@@ -3,6 +3,7 @@
 
 
 use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Front\HomePageController;
 use Illuminate\Support\Facades\Route;
 // use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\auth\authCotroller;
