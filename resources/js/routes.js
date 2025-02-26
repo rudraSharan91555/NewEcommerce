@@ -1,7 +1,6 @@
 import { createWebHistory, createRouter } from 'vue-router'
 import Layout from './frontTemplate/Layout.vue';
 import Index from './frontTemplate/Index.vue';
-import Category from './frontTemplate/Category.vue';
 
 
 
@@ -14,12 +13,12 @@ const routes = [
 
     },
     
-    {
-        name: 'Category',
-        path: '/category/:slug?',
-        component: Category,
+    // {
+    //     name: 'Category',
+    //     path: '/category/:slug?',
+    //     component: Category,
 
-    },
+    // },
    
 
 ];

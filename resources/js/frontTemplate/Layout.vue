@@ -1,5 +1,6 @@
 <template>
-    <!-- <div id="preloader">
+    <!-- preloader  -->
+    <div id="preloader">
         <div id="ctn-preloader" class="ctn-preloader">
             <div class="animation-preloader">
                 <div class="spinner"></div>
@@ -21,7 +22,7 @@
                 </div>
             </div>
         </div>
-    </div> -->
+    </div>
     <!-- preloader end -->
 
 
@@ -41,40 +42,37 @@
                         <div class="menu-wrap">
                             <nav class="menu-nav show">
                                 <div class="logo">
-                                     <router-link :to="'/'"  class="main-logo"><img src="/front_assets/img/logo/fw_logo.png"
-                                            alt="Logo"></router-link>
-                                            <router-link :to="'/'" class="sticky-logo"><img src="/front_assets/img/logo/logo.png"
-                                            alt="Logo"></router-link>
+                                    <a href="index.html" class="main-logo"><img src="/front_assets/img/logo/fw_logo.png"
+                                            alt="Logo"></a>
+                                    <a href="index.html" class="sticky-logo"><img src="/front_assets/img/logo/logo.png"
+                                            alt="Logo"></a>
                                 </div>
                                 <div class="navbar-wrap main-menu d-none d-lg-flex">
                                     <ul class="navigation">
-                                      
                                         <li v-for="item in headerCategories" :key="item.id" class="has--mega--menu">
-                                            <router-link :to="'/category/'+item.slug">{{ item.name }}</router-link>
+                                            <a href="#">{{ item.name }}</a>
                                             <ul class="mega-menu">
                                                 <li class="mega-menu-wrap">
                                                     <ul class="mega-menu-col">
                                                         <li class="mega-title"><a href="shop.html">{{ item.name }}</a></li>
-                                                        <li v-for="subitem in item.subcategories" :key="subitem.id" >
-                                                            <router-link :to="'/category/'+subitem.slug">{{ subitem.name }}</router-link>
-                                                            </li>
-                                                     
+                                                        <li v-for="subitem in item.subcategories" :key="subitem">
+                                                            <a href="shop-sidebar.html">{{ subitem.name }}</a></li>
+                                                        
                                                     </ul>
-                                                  
                                                     <ul class="mega-menu-col sub-cat-post">
                                                         <li>
                                                             <a href="shop-sidebar.html">
-                                                                <img :src=" item.image " alt="">
+                                                                <img :src = "item.image" alt="">
                                                                 <span class="btn">{{ item.name }}</span>
                                                             </a>
                                                         </li>
                                                     </ul>
-                                                 
+                                                    
                                                 </li>
                                             </ul>
                                         </li>
                                         <li><a href="about-us.html">About Us</a></li>
-                                       
+                                        
                                         <li><a href="contact.html">Contact Us</a></li>
                                     </ul>
                                 </div>
@@ -83,34 +81,49 @@
                                         <li class="header-search"><a href="#" data-toggle="modal"
                                                 data-target="#search-modal"><i class="flaticon-search"></i></a></li>
                                         <li class="header-shop-cart"><a href="#"><i
-                                                    class="flaticon-shopping-bag"></i><span>{{ cartCount }}</span></a>
+                                                    class="flaticon-shopping-bag"></i><span>0</span></a>
                                             <ul class="minicart">
-                                                <li v-if="cartCount > 0" v-for="item in cartProduct" :key="item.id" class="d-flex align-items-start">
+                                                <li class="d-flex align-items-start">
                                                     <div class="cart-img">
-                                                        <a href="#"><img :src=" item.products[0].image "
+                                                        <a href="#"><img src="/front_assets/img/product/cart_p01.jpg"
                                                                 alt=""></a>
                                                     </div>
                                                     <div class="cart-content">
-                                                        <h4><a href="#">{{ item.products[0].name }}</a></h4>
+                                                        <h4><a href="#">Exclusive Winter Jackets</a></h4>
                                                         <div class="cart-price">
-                                                            <span class="new">Rs {{ item.products[0].product_attributes[0].price }}</span>
-                                                            <span><del>Rs {{ item.products[0].product_attributes[0].mrp }}</del></span>
+                                                            <span class="new">$229.9</span>
+                                                            <span><del>$229.9</del></span>
                                                         </div>
                                                     </div>
                                                     <div class="del-icon">
-                                                        <a href="javascript:void(0)" @click="removeCartData(item.products[0].id,item.products[0].product_attributes[0].id,1)"><i class="far fa-trash-alt"></i></a>
+                                                        <a href="#"><i class="far fa-trash-alt"></i></a>
                                                     </div>
                                                 </li>
-                                              
+                                                <li class="d-flex align-items-start">
+                                                    <div class="cart-img">
+                                                        <a href="#"><img src="/front_assets/img/product/cart_p02.jpg"
+                                                                alt=""></a>
+                                                    </div>
+                                                    <div class="cart-content">
+                                                        <h4><a href="#">Winter Jackets For Women</a></h4>
+                                                        <div class="cart-price">
+                                                            <span class="new">$229.9</span>
+                                                            <span><del>$229.9</del></span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="del-icon">
+                                                        <a href="#"><i class="far fa-trash-alt"></i></a>
+                                                    </div>
+                                                </li>
                                                 <li>
                                                     <div class="total-price">
                                                         <span class="f-left">Total:</span>
-                                                        <span class="f-right">Rs {{ cartTotal }}</span>
+                                                        <span class="f-right">$239.9</span>
                                                     </div>
                                                 </li>
                                                 <li>
                                                     <div class="checkout-link">
-                                                        <router-link :to="'/ShoppingCart'" >Shopping Cart</router-link>
+                                                        <a href="#">Shopping Cart</a>
                                                         <a class="black-color" href="#">Checkout</a>
                                                     </div>
                                                 </li>
@@ -144,8 +157,7 @@
                                                 <li><a href="index-9.html">Home Nine</a></li>
                                             </ul>
                                         </li>
-                                        <li  class="menu-item-has-children">
-                                            <a href="#">Shop</a>
+                                        <li  class="menu-item-has-children"><a href="#">Shop</a>
                                             <ul class="submenu">
                                                 <li><a href="shop.html">Shop Page</a></li>
                                                 <li><a href="shop-sidebar.html">Shop Sidebar</a></li>
@@ -214,7 +226,8 @@
                                     <a href="index.html"><img src="/front_assets/img/logo/logo.png" alt=""></a>
                                 </div>
                                 <div class="content-box">
-                                    <p>WooCommerce and WordPress are both free, open source software reasons many ...</p>
+                                    <p>WooCommerce and WordPress are both free, open source software reasons many ...
+                                    </p>
                                 </div>
                                 <div class="contact-info">
                                     <h4 class="title">CONTACT US</h4>
@@ -280,13 +293,15 @@
 
     </header>
     <!-- header-area-end -->
+
+    <!-- main-area -->
     <main>
-        <slot name="content" :addToCart="addToCart" :cartCount="cartCount" :cartProduct="cartProduct"
-         :cartTotal="cartTotal" :removeCartData="removeCartData" :addCoupon="addCoupon" :getCartData="getCartData"
-         :removeCoupon="removeCoupon" :couponName="couponName">
+        <slot name="content">
 
         </slot>
     </main>
+    <!-- main-area-end -->
+
 
     <!-- footer-area -->
     <footer class="dark-bg pt-55 pb-80">
@@ -332,20 +347,21 @@
             <div class="copyright-wrap">
                 <div class="row align-items-center">
                     <div class="col-lg-6">
-                    <div class="copyright-text">
-                        <p>&copy; 2021 <a href="index.html">adara</a>. All Rights Reserved | Ph (+09) 456 457869</p>
+                        <div class="copyright-text">
+                            <p>&copy; 2021 <a href="index.html">adara</a>. All Rights Reserved | Ph (+09) 456 457869</p>
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="pay-method-img">
-                        <img src="/front_assets/img/images/payment_method_img.png" alt="">
+                    <div class="col-lg-6">
+                        <div class="pay-method-img">
+                            <img src="/front_assets/img/images/payment_method_img.png" alt="">
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</footer>
-<div id="scripts"></div>
+    </footer>
+    <!-- footer-area-end -->
+    <div id="scripts"></div>
 </template>
 <script>
 import axios from 'axios';
@@ -353,244 +369,43 @@ import getUrlList from '../provider.js';
 export default {
     name: 'Layout',
     data(){
-        return {
-            
+        return{
             headerCategories:[],
-            user_info:{
-                'user_id':'',
-                'auth':false
-            },
-            cartCount:0,
-            cartProduct:[],
-            cartTotal:0,
-            oldCart:0,
-            couponName:'',
-        
         }
     },
-    watch:{
-        cartProduct(val){
-            this.cartTotal = 0;
-
-            for(var item in val){
-                this.cartTotal += val[item].qty * val[item].products[0].product_attributes[0].price;
-            }
-            this.oldCart = this.cartTotal;
-            this.getUserCoupon();
-        }
-    },
-    mounted(){
-        var src = ['/front_assets/js/popper.min.js','/front_assets/js/bootstrap.min.js'
-        ,'/front_assets/js/isotope.pkgd.min.js','/front_assets/js/imagesloaded.pkgd.min.js'
-        ,'/front_assets/js/jquery.magnific-popup.min.js','/front_assets/js/jquery.mCustomScrollbar.concat.min.js'
-        ,'/front_assets/js/bootstrap-datepicker.min.js','/front_assets/js/jquery.nice-select.min.js'
-        ,'/front_assets/js/jquery.countdown.min.js','/front_assets/js/swiper-bundle.min.js'
-        ,'/front_assets/js/jarallax.min.js','/front_assets/js/slick.min.js'
-        ,'/front_assets/js/wow.min.js','/front_assets/js/nav-tool.js'
-        ,'/front_assets/js/plugins.js','/front_assets/js/main.js'];
-        for( var i=0; i<src.length;i++){
+    mounted() {
+        var src = ['/front_assets/js/popper.min.js', '/front_assets/js/bootstrap.min.js'
+            , '/front_assets/js/isotope.pkgd.min.js', '/front_assets/js/imagesloaded.pkgd.min.js'
+            , '/front_assets/js/jquery.magnific-popup.min.js', '/front_assets/js/jquery.mCustomScrollbar.concat.min.js'
+            , '/front_assets/js/bootstrap-datepicker.min.js', '/front_assets/js/jquery.nice-select.min.js'
+            , '/front_assets/js/jquery.countdown.min.js', '/front_assets/js/swiper-bundle.min.js'
+            , '/front_assets/js/jarallax.min.js', '/front_assets/js/slick.min.js'
+            , '/front_assets/js/wow.min.js', '/front_assets/js/nav-tool.js'
+            , '/front_assets/js/plugins.js', '/front_assets/js/main.js'];
+        for (var i = 0; i < src.length; i++) {
             const script = document.createElement('script');
             script.src = src[i];
-            script.async=false;
+            script.async = false;
             document.getElementById('scripts').appendChild(script);
         }
-        this.getCategories();
-        this.getUser();
-        this.getCartData();
-    
+        this.getCategories();        
     },
     methods:{
-
-        async removeCoupon()
-        {
-            this.couponName = '';
-            try {
-            
-                let data = await axios.post(getUrlList().removeCoupon,
-                {
-                    'token':this.user_info.user_id,
-                    'auth':this.user_info.auth,
-                });
-                if(data.status == 200)
-                {
-                 
-                }else{
-                    console.log('Data Not found');
-                }
-            } catch (error) {
-                
-            }
-        },
-        async getUserCoupon()
-        {
-            try {
-                let data = await axios.post(getUrlList().getUserCoupon,
-                {
-                    'token':this.user_info.user_id,
-                    'auth':this.user_info.auth,
-                    'cartTotal':this.oldCart,
-                });
-                if(data.status == 200)
-                {
-                   this.cartTotal = data.data.data.data;
-                   this.couponName = data.data.data.couponName;
-                //    console.log(this.couponName);
-                }else{
-                    console.log('Data Not found');
-                }
-            } catch (error) {
-                
-            }
-        },
-        async addCoupon(coupon)
-        {
-            try {
-                let data = await axios.post(getUrlList().addCoupon,
-                {
-                    'token':this.user_info.user_id,
-                    'auth':this.user_info.auth,
-                    'cartTotal':this.oldCart,
-                    'coupon':coupon,
-                });
-                if(data.status == 200)
-                {
-                   this.cartTotal = data.data.data.data;
-                   this.couponName = data.data.data.couponName;
-                }else{
-                    console.log('Data Not found');
-                }
-            } catch (error) {
-                
-            }
-        },
-
-        async removeCartData(product_id,product_attr_id,qty)
-        {
-            try {
-                let data = await axios.post(getUrlList().removeCartData,
-                {
-                    'token':this.user_info.user_id,
-                    'auth':this.user_info.auth,
-                    'product_id':product_id,
-                    'product_attr_id':product_attr_id,
-                    'qty':qty,
-                });
-                if(data.status == 200)
-                {
-                    this.getCartData();
-                }else{
-                    console.log('Data Not found');
-                }
-            } catch (error) {
-                
-            }
-        },
-        async addToCart(product_id,product_attr_id,qty)
-        {   
-            console.log(product_attr_id);
-            if(product_id =='' || product_attr_id == '' || qty ==''){
-                alert('Select Color or qty');
-            }else if(qty<1)
-            {
-                alert('If qty is less than 1 then remove it');
-            }else{
-                try {
-                let data = await axios.post(getUrlList().addToCart,
-                {
-                    'token':this.user_info.user_id,
-                    'auth':this.user_info.auth,
-                    'product_id':product_id,
-                    'product_attr_id':product_attr_id,
-                    'qty':qty,
-                });
-                if(data.status == 200)
-                {
-                    this.getCartData();
-                }else{
-                    console.log('Data Not found');
-                }
-            } catch (error) {
-                
-            }
-            }
-           
-        },
-        
-            async getCartData()
-            {
-                try {
-                    let data = await axios.post(getUrlList().getCartData,
-                    {
-                        'token':this.user_info.user_id,
-                        'auth':this.user_info.auth,
-                    });
-                    if(data.status == 200)
-                    {
-                        this.cartCount = data.data.data.data.length;
-                        this.cartProduct = data.data.data.data;
-                    }else{
-                        console.log('Data Not found');
-                    }
-                } catch (error) {
-                    
-                }
-            },
-        async getUser()
-        {
-            
-            if(localStorage.getItem('user_info')){
-                // user set into local storage
-                var user = localStorage.getItem('user_info');
-                var testUser = JSON.parse(user);
-                this.user_info.user_id = testUser.user_id;
-                this.getUserData();
-            }else{
-                // user not set to localStorage
-                this.getUserData();
-            }
-        },
-        async getUserData()
-        {
-            try {
-                let data = await axios.post(getUrlList().getUserData,
-                {
-                    'token':this.user_info.user_id,
-                });
-                if(data.status == 200)
-                {
-                    if(data.data.data.data.user_type == 1){
-                        // Auth USer
-                        this.user_info.auth=true;
-                        this.user_info.user_id=data.data.data.data.token;
-                        localStorage.setItem('user_info',JSON.stringify(this.user_info));
-                    }else{
-                        // Not Auth USer
-                        this.user_info.auth=false;
-                        this.user_info.user_id=data.data.data.data.token;
-                        localStorage.setItem('user_info',JSON.stringify(this.user_info));
-                    }
-                }else{
-                    console.log('Data Not found');
-                }
-            } catch (error) {
-                
-            }
-        },
         async getCategories(){
-            try {
+            try{
                 let data = await axios.get(getUrlList().getHeaderCategoriesData);
-                // console.log(data.data.data.data.categories);
-                if(data.status == 200 && data.data.data.data.categories.length >0){
+                if(data.status == 200 && data.data.data.data.categories.length > 0){
                     this.headerCategories = data.data.data.data.categories;
-                    // console.log(this.headerCategories);
+                    console.log(this.headerCategories);
                 }else{
-                console.log('Data not found');
-                // console.log(data);
-                }
-            } catch (error) {
-                console.log('Error');  
+                    console.log('Data not Found');
+                    console.log(data);
+                }                
+            }catch (error){
+                console.log('Error');
             }
         }
     }
 }
+
 </script>
