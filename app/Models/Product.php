@@ -31,7 +31,8 @@ class Product extends Model
 
     public function productAttributes()
     {
-         return $this->hasMany(ProductAttr::class,'product_id','id')->with('images','sizes','colors');
+        //  return $this->hasMany(ProductAttr::class,'product_id','id')->with('images','sizes','colors');
+        return $this->hasMany(ProductAttribute::class, 'product_id', 'id');
     }
        protected function Image(): Attribute
     {

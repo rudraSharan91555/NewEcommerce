@@ -130,7 +130,7 @@
                                                     <i class="far fa-star"></i>
                                                 </div>
                                                 <h5><a href="shop-details.html">{{ item.name }}</a></h5>
-                                                <p class="pricee">{{ item.product_attributes[0].price }}</p>
+                                                <p class="price">$67.00</p>
                                                 <div class="features-product-bottom">
                                                     <ul>
                                                         <li class="color-option">
@@ -203,7 +203,7 @@
         <!-- shoes-banner-area -->
         <section class="shoes-banner-area">
             <div class="container">
-                <div class="shoes-banner-active">
+                <div  class="shoes-banner-active">
                     <div class="shoes-banner-bg" data-background="/front_assets/img/bg/shoes-banner_bg.jpg">
                         <div class="row">
                             <div class="col-12">
@@ -286,67 +286,23 @@
 
         <!-- instagram-post-area -->
         <div class="instagram-post-area">
-            <div class="container-fluid p-0 fix">
-                <div class="row no-gutters insta-active">
-                    <div class="col">
-                        <div class="insta-post-item">
-                            <a href="#">
-                                <i class="fab fa-instagram"></i>
-                                <img src="/front_assets/img/instagram/s_insta_post01.jpg" alt="">
-                            </a>
+                <div class="container-fluid p-0 fix">
+                    <div class="row no-gutters insta-active">
+
+                        <div v-for="item in homeBrands" class="col">
+                            <div class="insta-post-item">
+                                <a href="#">
+                                    <i class="fab fa-instagram"></i>
+                                    <img style="height: 300px; width:300px" :src="item.image" alt="">
+                                </a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col">
-                        <div class="insta-post-item">
-                            <a href="#">
-                                <i class="fab fa-instagram"></i>
-                                <img src="/front_assets/img/instagram/s_insta_post02.jpg" alt="">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="insta-post-item">
-                            <a href="#">
-                                <i class="fab fa-instagram"></i>
-                                <img src="/front_assets/img/instagram/s_insta_post03.jpg" alt="">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="insta-post-item">
-                            <a href="#">
-                                <i class="fab fa-instagram"></i>
-                                <img src="/front_assets/img/instagram/s_insta_post04.jpg" alt="">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="insta-post-item">
-                            <a href="#">
-                                <i class="fab fa-instagram"></i>
-                                <img src="/front_assets/img/instagram/s_insta_post05.jpg" alt="">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="insta-post-item">
-                            <a href="#">
-                                <i class="fab fa-instagram"></i>
-                                <img src="/front_assets/img/instagram/s_insta_post03.jpg" alt="">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="insta-post-item">
-                            <a href="#">
-                                <i class="fab fa-instagram"></i>
-                                <img src="/front_assets/img/instagram/s_insta_post04.jpg" alt="">
-                            </a>
-                        </div>
+
+                     
+                      
                     </div>
                 </div>
             </div>
-        </div>
         <!-- instagram-post-area-end -->
 
 
