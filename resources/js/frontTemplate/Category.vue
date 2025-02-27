@@ -126,7 +126,10 @@
                                         <h4 class="widget-title">Product Brand</h4>
                                         <div class="sidebar-brand-list">
                                             <ul>
-                                                <li v-for="item in brands" :key="item.id"><a href="javascript:void(0)">{{ item.text }} <i class="fas fa-angle-double-right"></i></a></li>
+                                                <li v-for="item in brands" :key="item.id" 
+                                                v-on:click="addDataAttr('brand',item.id)">
+                                                    <a :class="this.brand.includes(item.id) ? brandColor : ''" href="javascript:void(0)">{{ item.text }} 
+                                                        <i class="fas fa-angle-double-right"></i></a></li>
                                                 
                                             </ul>
                                         </div>
@@ -136,7 +139,10 @@
                                             <h4 class="widget-title">Product Size</h4>
                                             <div class="shop-size-list">
                                                 <ul>
-                                                    <li v-for="item in sizes" :key="item.id"><a href="javascript:void(0)">{{ item.text }}</a></li>
+                                                    <li v-for="item in sizes" :key="item.id" 
+                                                    v-on:click="addDataAttr('size',item.id)">
+                                                        <a :class="this.size.includes(item.id) ? sizeColor : ''" 
+                                                         href="javascript:void(0)">{{ item.text }}</a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -144,14 +150,20 @@
                                             <h4 class="widget-title">Color</h4>
                                             <div class="shop-color-list">
                                                 <ul>
-                                                    <li></li>
-                                                    <li></li>
-                                                    <li></li>
-                                                    <li></li>
+                                                    <li v-for="item in colors" :key="item.id" 
+                                                    v-on:click="addDataAttr('color',item.id)" 
+                                                    :class="this.color.includes(item.id) ? colorColor : ''"
+                                                     :style="{ backgroundColor: item.value}"></li>
                                                 </ul>
                                             </div>
                                         </div>
+                                        <div class="cart-coupon">
+                                            <form >
+                                                <button  class="btn">Filter</button>
+                                            </form>
+                                        </div>
                                     </div>
+                                    
                                     <div class="widget">
                                         <h4 class="widget-title">Top Items</h4>
                                         <div class="sidebar-product-list">
@@ -245,7 +257,13 @@ export default {
             highPrice: '',
             lowPrice: '',
             slug:'',
-            priceRange:''
+            priceRange:'',
+            brand:[],
+            size:[],
+            color:[],
+            brandColor:'brandColor',
+            sizeColor:'sizeColor',
+            colorColor:'colorColor',
         } 
     },
     watch:{
@@ -259,6 +277,50 @@ export default {
         this.getProducts();
     },
     methods:{
+
+        addDataAttr(type,value)
+        {
+            if(type == 'brand'){
+                // console.log(this.brand) to check
+                if(this.checkArray(type,value)){
+                    // true value exist in array
+                    this.brand.splice(this.brand.indexOf(value),1);
+                }else{
+                    // false value not exist in array
+                    this.brand.push(value);
+                }
+                console.log(this.brand);
+            }else if(type == 'size'){
+                if(this.checkArray(type,value)){
+                    // true value exist in array
+                    this.size.splice(this.size.indexOf(value),1);
+                }else{
+                    // false value not exist in array
+                    this.size.push(value);
+                }
+            }else(type == 'color')
+            {
+                if(this.checkArray(type,value)){
+                    // true value exist in array
+                    this.color.splice(this.color.indexOf(value),1);
+                }else{
+                    // false value not exist in array
+                    this.color.push(value);
+                }
+            }
+        },
+
+        checkArray(type, value) {
+            if (type == 'brand') {
+                return this.brand.includes(value);
+            } else if (type == 'size') {
+                return this.size.includes(value);
+            } else if (type == 'color') {
+                return this.color.includes(value);
+            }
+            
+        },
+
         async getProducts() {
             try {
                 const route = useRoute();
@@ -274,6 +336,7 @@ export default {
                     this.categories = data.data.data.data.categories;
                     this.products = data.data.data.data.products.data;
                     this.brands = data.data.data.data.brands;
+                    this.colors = data.data.data.data.colors;
                     this.sizes = data.data.data.data.sizes;
                     this.highPrice = data.data.data.data.highPrice;
                     this.lowPrice = data.data.data.data.lowPrice;
@@ -295,3 +358,16 @@ export default {
     }
 }
 </script>
+<style>
+.brandColor::before{
+    background-color: #ff5400;
+}.sizeColor{
+    background-color: #ff5400;
+    color: #ffff; 
+}.colorColor::before{
+    content: '\2713';
+    display: inline-block;
+    color: red;
+    padding: 0 6px 0 0;
+}
+</style>
