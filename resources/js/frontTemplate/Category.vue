@@ -115,7 +115,9 @@
                                             <div id="slider-range"></div>
                                             <div class="price_slider_amount">
                                                 <span>Price :</span>
-                                                <input type="text" id="amount" name="price"
+                                                <!-- <input type="text" id="amount" name="price"
+                                                    placeholder="Add Your Price" /> -->
+                                                <input type="text" id="amount" name="price" v-model="priceRange"
                                                     placeholder="Add Your Price" />
                                             </div>
                                         </div>
@@ -124,14 +126,8 @@
                                         <h4 class="widget-title">Product Brand</h4>
                                         <div class="sidebar-brand-list">
                                             <ul>
-                                                <li><a href="#">New Arrivals <i
-                                                            class="fas fa-angle-double-right"></i></a></li>
-                                                <li><a href="#">Clothing & Accessories <i
-                                                            class="fas fa-angle-double-right"></i></a></li>
-                                                <li><a href="#">Winter Jacket <i
-                                                            class="fas fa-angle-double-right"></i></a></li>
-                                                <li><a href="#">Baby Clothing <i
-                                                            class="fas fa-angle-double-right"></i></a></li>
+                                                <li v-for="item in brands" :key="item.id"><a href="javascript:void(0)">{{ item.text }} <i class="fas fa-angle-double-right"></i></a></li>
+                                                
                                             </ul>
                                         </div>
                                     </div>
@@ -140,11 +136,7 @@
                                             <h4 class="widget-title">Product Size</h4>
                                             <div class="shop-size-list">
                                                 <ul>
-                                                    <li><a href="#">S</a></li>
-                                                    <li><a href="#">M</a></li>
-                                                    <li><a href="#">L</a></li>
-                                                    <li><a href="#">XL</a></li>
-                                                    <li><a href="#">XXL</a></li>
+                                                    <li v-for="item in sizes" :key="item.id"><a href="javascript:void(0)">{{ item.text }}</a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -222,6 +214,8 @@
                             </div>
                         </div>
                     </div>
+                    <!-- <input type="hidden" id="highPrice" v-model="highPrice"/>
+                    <input type="lowPrice" id="highPrice" v-model="lowPrice"/> -->
                 </section>
                 <!-- shop-area-end -->
 
@@ -250,7 +244,8 @@ export default {
             catgeory: '',
             highPrice: '',
             lowPrice: '',
-            slug:''
+            slug:'',
+            priceRange:''
         } 
     },
     watch:{
@@ -280,7 +275,8 @@ export default {
                     this.products = data.data.data.data.products.data;
                     this.brands = data.data.data.data.brands;
                     this.sizes = data.data.data.data.sizes;
-                    this.colors = data.data.data.data.colors;
+                    this.highPrice = data.data.data.data.highPrice;
+                    this.lowPrice = data.data.data.data.lowPrice;
                     // console.log(this.headerCategories);
                     this.catCount = 0;
                 } else {
