@@ -113,4 +113,8 @@ class HomePageController extends Controller
     $products = $products->with('productAttributes')->select('id', 'name', 'slug', 'image', 'item_code')->paginate(10);
     return $products;
   }
+
+  public function getUserData(Request $request){
+    prx($request->all());
+  }
 }

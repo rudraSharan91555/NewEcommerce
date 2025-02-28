@@ -396,145 +396,10 @@ export default {
         }
         this.getCategories();
         this.getUser();
-        this.getCartData();
     
     },
     methods:{
 
-        async removeCoupon()
-        {
-            this.couponName = '';
-            try {
-            
-                let data = await axios.post(getUrlList().removeCoupon,
-                {
-                    'token':this.user_info.user_id,
-                    'auth':this.user_info.auth,
-                });
-                if(data.status == 200)
-                {
-                 
-                }else{
-                    console.log('Data Not found');
-                }
-            } catch (error) {
-                
-            }
-        },
-        async getUserCoupon()
-        {
-            try {
-                let data = await axios.post(getUrlList().getUserCoupon,
-                {
-                    'token':this.user_info.user_id,
-                    'auth':this.user_info.auth,
-                    'cartTotal':this.oldCart,
-                });
-                if(data.status == 200)
-                {
-                   this.cartTotal = data.data.data.data;
-                   this.couponName = data.data.data.couponName;
-                //    console.log(this.couponName);
-                }else{
-                    console.log('Data Not found');
-                }
-            } catch (error) {
-                
-            }
-        },
-        async addCoupon(coupon)
-        {
-            try {
-                let data = await axios.post(getUrlList().addCoupon,
-                {
-                    'token':this.user_info.user_id,
-                    'auth':this.user_info.auth,
-                    'cartTotal':this.oldCart,
-                    'coupon':coupon,
-                });
-                if(data.status == 200)
-                {
-                   this.cartTotal = data.data.data.data;
-                   this.couponName = data.data.data.couponName;
-                }else{
-                    console.log('Data Not found');
-                }
-            } catch (error) {
-                
-            }
-        },
-
-        async removeCartData(product_id,product_attr_id,qty)
-        {
-            try {
-                let data = await axios.post(getUrlList().removeCartData,
-                {
-                    'token':this.user_info.user_id,
-                    'auth':this.user_info.auth,
-                    'product_id':product_id,
-                    'product_attr_id':product_attr_id,
-                    'qty':qty,
-                });
-                if(data.status == 200)
-                {
-                    this.getCartData();
-                }else{
-                    console.log('Data Not found');
-                }
-            } catch (error) {
-                
-            }
-        },
-        async addToCart(product_id,product_attr_id,qty)
-        {   
-            console.log(product_attr_id);
-            if(product_id =='' || product_attr_id == '' || qty ==''){
-                alert('Select Color or qty');
-            }else if(qty<1)
-            {
-                alert('If qty is less than 1 then remove it');
-            }else{
-                try {
-                let data = await axios.post(getUrlList().addToCart,
-                {
-                    'token':this.user_info.user_id,
-                    'auth':this.user_info.auth,
-                    'product_id':product_id,
-                    'product_attr_id':product_attr_id,
-                    'qty':qty,
-                });
-                if(data.status == 200)
-                {
-                    this.getCartData();
-                }else{
-                    console.log('Data Not found');
-                }
-            } catch (error) {
-                
-            }
-            }
-           
-        },
-        
-        async getCartData()
-        {
-            try {
-                let data = await axios.post(getUrlList().getCartData,
-                {
-                    'token':this.user_info.user_id,
-                    'auth':this.user_info.auth,
-                });
-                if(data.status == 200)
-                {
-                    this.cartCount = data.data.data.data.length;
-                    this.cartProduct = data.data.data.data;
-                }else{
-                    console.log('Data Not found');
-                }
-            } catch (error) {
-                
-            }
-        },
         async getUser()
         {
             
@@ -549,33 +414,23 @@ export default {
                 this.getUserData();
             }
         },
-        async getUserData()
-        {
-            try {
-                let data = await axios.post(getUrlList().getUserData,
-                {
-                    'token':this.user_info.user_id,
-                });
-                if(data.status == 200)
-                {
-                    if(data.data.data.data.user_type == 1){
-                        // Auth USer
-                        this.user_info.auth=true;
-                        this.user_info.user_id=data.data.data.data.token;
-                        localStorage.setItem('user_info',JSON.stringify(this.user_info));
-                    }else{
-                        // Not Auth USer
-                        this.user_info.auth=false;
-                        this.user_info.user_id=data.data.data.data.token;
-                        localStorage.setItem('user_info',JSON.stringify(this.user_info));
-                    }
-                }else{
-                    console.log('Data Not found');
-                }
-            } catch (error) {
-                
+       async getUserData()
+       {
+         try{
+            let data = await axios.post(getUrlList().getUserData,
+            {
+                'token':this.user_info.user_id,
+            });
+            if(data.status == 200)
+            {
+
+            }else{
+
             }
-        },
+         }catch (error){
+
+         }
+       },
         async getCategories(){
             try {
                 let data = await axios.get(getUrlList().getHeaderCategoriesData);
