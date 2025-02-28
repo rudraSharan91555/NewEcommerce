@@ -400,40 +400,54 @@ export default {
     },
     methods:{
 
-        async getUser()
-        {
-            
-            if(localStorage.getItem('user_info')){
-                // user set into local storage
-                var user = localStorage.getItem('user_info');
-                var testUser = JSON.parse(user);
-                this.user_info.user_id = testUser.user_id;
-                this.getUserData();
-            }else{
-                // user not set to localStorage
-                this.getUserData();
-            }
-        },
-       async getUserData()
-       {
-         try{
-            let data = await axios.post(getUrlList().getUserData,
-            {
-                'token':this.user_info.user_id,
-            });
-            if(data.status == 200)
-            {
+ 
+async getUser() {
+    let storedUser = localStorage.getItem('user_info');
+    
+    if (storedUser) {
+        let parsedUser = JSON.parse(storedUser);
+        if (parsedUser && parsedUser.user_id) {
+            this.user_info.user_id = parsedUser.user_id;
+        } else {
+            this.user_info.user_id = null;
+        }
+    } else {
+        this.user_info.user_id = null;
+    }
 
-            }else{
+    console.log("Retrieved token from localStorage:", this.user_info.user_id); // Debugging
 
-            }
-         }catch (error){
+    await this.getUserData();
+},
 
-         }
-       },
-        async getCategories(){
+async getUserData() {
+    try {
+        let token = this.user_info.user_id || "";
+        console.log("Sending token:", token); // Debugging
+
+        let response = await axios.post(getUrlList().getUserData, 
+            { token: token }, // Ensure correct structure
+            { headers: { 'Content-Type': 'application/json' } }
+        );
+
+        if (response.status === 200 && response.data.data) {
+            let userData = response.data.data;
+            this.user_info.auth = userData.user_type === 1;
+            this.user_info.user_id = userData.token;
+            localStorage.setItem('user_info', JSON.stringify(this.user_info));
+
+            console.log("New token saved:", this.user_info.user_id); // Debugging
+        } else {
+            console.error('Invalid response:', response);
+        }
+    } catch (error) {
+        console.error("Error fetching user data:", error.response ? error.response.data : error.message);
+    }
+}
+,
+    async getCategories(){
             try {
-                let data = await axios.get(getUrlList().getHeaderCategoriesData);
+                let data = await axios.get(getUrlLisusert().getHeaderCategoriesData);
                 // console.log(data.data.data.data.categories);
                 if(data.status == 200 && data.data.data.data.categories.length >0){
                     this.headerCategories = data.data.data.data.categories;

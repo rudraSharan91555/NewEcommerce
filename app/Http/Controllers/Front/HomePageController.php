@@ -11,6 +11,7 @@ use App\Models\HomeBanner;
 use App\Models\Product;
 use App\Models\ProductAttr;
 use App\Models\Size;
+use App\Models\TempUsers;
 use App\Traits\ApiResponse;
 use Illuminate\Http\Request;
 
@@ -114,7 +115,46 @@ class HomePageController extends Controller
     return $products;
   }
 
-  public function getUserData(Request $request){
-    prx($request->all());
+
+  public function getUserData(Request $request)
+  {
+      // Debugging ke liye request data check karo
+      if (!$request->has('token') || empty($request->token)) {
+          return response()->json(['error' => 'Token is missing'], 400);
+      }
+  
+      $token = $request->token;
+      $checkUser = TempUsers::where('token', $token)->first();
+  
+      if ($checkUser) {
+          // Token exists
+          $data['user_type'] = $checkUser->user_type;
+          $data['token'] = $checkUser->token;
+  
+          if (checkTokenExpiryInMinutes($checkUser->updated_at, 60)) {
+              // Generate new token
+              $newToken = generateRandomString();
+              $checkUser->token = $newToken;
+              $checkUser->updated_at = now();
+              $checkUser->save();
+  
+              $data['token'] = $newToken;
+          }
+      } else {
+          // Token does not exist, create a new user
+          $user_id = rand(11111, 99999);
+          $newToken = generateRandomString();
+          $time = now();
+  
+          TempUsers::create([
+              'user_id' => $user_id, 'token' => $newToken, 'created_at' => $time, 'updated_at' => $time
+          ]);
+  
+          $data['user_type'] = 2;
+          $data['token'] = $newToken;
+      }
+  
+      return $this->success(['data' => $data], 'Successfully fetched data');
   }
+  
 }

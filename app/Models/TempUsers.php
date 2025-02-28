@@ -14,4 +14,5 @@ class TempUsers extends Model
         'token',
         
     ];
+    public $timestamps = true;
 }
