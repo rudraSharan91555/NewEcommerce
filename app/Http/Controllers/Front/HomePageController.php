@@ -36,7 +36,7 @@ class HomePageController extends Controller
     return $this->success(['data' => $data], 'Successfully data fetched');
   }
 
-  
+
   public function getCategoryData(Request $request)
   {
 
@@ -49,8 +49,8 @@ class HomePageController extends Controller
     $slug             = $request->slug;
     $category = Category::where('slug', $slug)->first();
     if (isset($category->id)) {
-      $products = Product::where('category_id', $category->id)->with('productAttributes')->select('id', 'name', 'slug', 'image', 'item_code')->paginate(10);
-      // $products = $this->getFilterProducts($category->id, $size, $color, $brand, $attribute, $lowPrice, $highPrice);
+      // $products = Product::where('category_id', $category->id)->with('productAttributes')->select('id', 'name', 'slug', 'image', 'item_code')->paginate(10);
+      $products = $this->getFilterProducts($category->id, $size, $color, $brand, $attribute, $lowPrice, $highPrice);
       if ($category->parent_category_id == Null || $category->parent_category_id == '') {
         // parent cat
         $categories = Category::where('parent_category_id', $category->id)->get();
@@ -78,4 +78,39 @@ class HomePageController extends Controller
     return $this->success(['data' => get_defined_vars()], 'Successfully data fetched');
   }
 
+  function getFilterProducts($category_id, $size, $color, $brand, $attribute, $lowPrice, $highPrice)
+  {
+    $products = Product::where('category_id', $category_id);
+
+    if (sizeof($brand) > 0) {
+      $products = $products->whereIn('brand_id', $brand);
+    }
+
+    if (sizeof($attribute) > 0) {
+      $products = $products->withWhereHas('attribute', function ($q) use ($attribute) {
+        $q->whereIn('attribute_value_id', $attribute);
+      });
+    }
+
+    if (sizeof($size) > 0) {
+      $products = $products->withWhereHas('productAttributes', function ($q) use ($size) {
+        $q->whereIn('size_id', $size);
+      });
+    }
+
+    if (sizeof($color) > 0) {
+      $products = $products->withWhereHas('productAttributes', function ($q) use ($color) {
+        $q->whereIn('color_id', $color);
+      });
+    }
+
+    if ($lowPrice != '' && $lowPrice != null && $highPrice != '') {
+      $products = $products->withWhereHas('productAttributes', function ($q) use ($lowPrice, $highPrice) {
+        $q->whereBetween('price', [$lowPrice, $highPrice]);
+      });
+    }
+
+    $products = $products->with('productAttributes')->select('id', 'name', 'slug', 'image', 'item_code')->paginate(10);
+    return $products;
+  }
 }

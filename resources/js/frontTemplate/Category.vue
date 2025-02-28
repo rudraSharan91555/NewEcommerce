@@ -119,9 +119,9 @@
                                                 <span>Price :</span>
                                                 <!-- <input type="text" id="amount" name="price"
                                                     placeholder="Add Your Price" /> -->
-                                                <input type="text"  @keypress="isNumber($event)" ref="lowPrice" id="amount"  v-model="lowPrice"
+                                                <input type="text"  @keypress="isNumber($event)" ref="lowPrice" id="amount" 
                                                     placeholder="Add Your Price" />
-                                                <input type="text" @keypress="isNumber($event)" ref="highPrice" id="highPrice" v-model="highPrice" 
+                                                <input type="text" @keypress="isNumber($event)" ref="highPrice" id="highPrice" 
                                                     placeholder="Add Your Price" />
                                             </div>
                                         </div>
@@ -179,7 +179,7 @@
                                         </div>
                                         <div class="cart-coupon">
                                             <form>
-                                                <button class="btn">Filter</button>
+                                                <button type="button" v-on:click="getProducts" class="btn">Filter</button>
                                             </form>
                                         </div>
                                     </div>
@@ -370,7 +370,15 @@ export default {
                 if (this.slug == '' || this.slug == undefined || this.slug == null) {
                     this.$router.push({ name: 'Index' });
                 } else {
-                    let data = await axios.get(getUrlList().getCategoryData + '/' + this.slug);
+                    let data = await axios.post(getUrlList().getCategoryData,{
+                        "slug":this.slug,
+                        "attribute":this.attribute,
+                        "lowPrice":this.$refs.lowPrice.value,
+                        "highPrice":this.$refs.highPrice.value,
+                        "brand":this.brand,
+                        "size":this.size,
+                        "color":this.color,
+                    } );
                     console.log(data.data.data.data.products.data);
                     // console.log(data.data.data.data.categories);
                     if (data.status == 200 && data.data.data.data.products.data.length > 0) {
@@ -380,8 +388,10 @@ export default {
                         this.colors = data.data.data.data.colors;
                         this.sizes = data.data.data.data.sizes;
                         this.attributes = data.data.data.data.attributes;
-                        this.highPrice = data.data.data.data.highPrice;
+                        this.$refs.lowPrice = data.data.data.data.lowPrice;
+                        this.$refs.highPrice  = data.data.data.data.highPrice ;
                         this.lowPrice = data.data.data.data.lowPrice;
+                        this.highPrice = data.data.data.data.highPrice;
                         // console.log(this.headerCategories);
                         this.catCount = 0;
                     } else {
