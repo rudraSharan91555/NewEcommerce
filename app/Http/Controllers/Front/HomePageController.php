@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
+use App\Models\Cart;
 use App\Models\Category;
 use App\Models\CategoryAttribute;
 use App\Models\Color;
@@ -14,6 +15,8 @@ use App\Models\Size;
 use App\Models\TempUsers;
 use App\Traits\ApiResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+
 
 class HomePageController extends Controller
 {
@@ -116,45 +119,55 @@ class HomePageController extends Controller
   }
 
 
+
+
   public function getUserData(Request $request)
   {
-      // Debugging ke liye request data check karo
-      if (!$request->has('token') || empty($request->token)) {
-          return response()->json(['error' => 'Token is missing'], 400);
+    $token = $request->token;
+
+    if (!$token) {
+      $newToken = generateRandomString();
+      $user_id = rand(11111, 99999);
+      $time = now();
+
+      TempUsers::create([
+        'user_id' => $user_id,
+        'token' => $newToken,
+        'created_at' => $time,
+        'updated_at' => $time
+      ]);
+
+      return $this->success(['data' => ['user_type' => 2, 'token' => $newToken]], 'New user created');
+    }
+    $checkUser = TempUsers::where('token', $token)->first();
+
+    if ($checkUser) {
+      if (checkTokenExpiryInMinutes($checkUser->updated_at, 60)) {
+        $newToken = generateRandomString();
+        $checkUser->token = $newToken;
+        $checkUser->updated_at = now();
+        $checkUser->save();
+        $token = $newToken;
       }
-  
-      $token = $request->token;
-      $checkUser = TempUsers::where('token', $token)->first();
-  
-      if ($checkUser) {
-          // Token exists
-          $data['user_type'] = $checkUser->user_type;
-          $data['token'] = $checkUser->token;
-  
-          if (checkTokenExpiryInMinutes($checkUser->updated_at, 60)) {
-              // Generate new token
-              $newToken = generateRandomString();
-              $checkUser->token = $newToken;
-              $checkUser->updated_at = now();
-              $checkUser->save();
-  
-              $data['token'] = $newToken;
-          }
-      } else {
-          // Token does not exist, create a new user
-          $user_id = rand(11111, 99999);
-          $newToken = generateRandomString();
-          $time = now();
-  
-          TempUsers::create([
-              'user_id' => $user_id, 'token' => $newToken, 'created_at' => $time, 'updated_at' => $time
-          ]);
-  
-          $data['user_type'] = 2;
-          $data['token'] = $newToken;
-      }
-  
-      return $this->success(['data' => $data], 'Successfully fetched data');
+
+      return $this->success(['data' => ['user_type' => $checkUser->user_type, 'token' => $token]], 'User data fetched');
+    }
+
+    return response()->json(['error' => 'Invalid token'], 400);
   }
-  
+
+  public function getCartData(Request $request)
+  {
+    $validation = Validator::make($request->all(), [
+      'token'    => 'required|exists:temp_users,token',
+
+    ]);
+    if ($validation->fails()) {
+      return $this->error($validation->errors()->first(), 400, []);
+    } else {
+      $userToken = TempUsers::where('token', $request->token)->first();
+      $data      =  Cart::where('user_id', $userToken->user_id)->with('products')->get();
+      return $this->success(['data' => $data], 'Successfully data fetched');
+    }
+  }
 }

@@ -41,40 +41,42 @@
                         <div class="menu-wrap">
                             <nav class="menu-nav show">
                                 <div class="logo">
-                                     <router-link :to="'/'"  class="main-logo"><img src="/front_assets/img/logo/fw_logo.png"
-                                            alt="Logo"></router-link>
-                                            <router-link :to="'/'" class="sticky-logo"><img src="/front_assets/img/logo/logo.png"
-                                            alt="Logo"></router-link>
+                                    <router-link :to="'/'" class="main-logo"><img
+                                            src="/front_assets/img/logo/fw_logo.png" alt="Logo"></router-link>
+                                    <router-link :to="'/'" class="sticky-logo"><img
+                                            src="/front_assets/img/logo/logo.png" alt="Logo"></router-link>
                                 </div>
                                 <div class="navbar-wrap main-menu d-none d-lg-flex">
                                     <ul class="navigation">
-                                      
+
                                         <li v-for="item in headerCategories" :key="item.id" class="has--mega--menu">
-                                            <router-link :to="'/category/'+item.slug">{{ item.name }}</router-link>
+                                            <router-link :to="'/category/' + item.slug">{{ item.name }}</router-link>
                                             <ul class="mega-menu">
                                                 <li class="mega-menu-wrap">
                                                     <ul class="mega-menu-col">
-                                                        <li class="mega-title"><a href="shop.html">{{ item.name }}</a></li>
-                                                        <li v-for="subitem in item.subcategories" :key="subitem.id" >
-                                                            <router-link :to="'/category/'+subitem.slug">{{ subitem.name }}</router-link>
-                                                            </li>
-                                                     
+                                                        <li class="mega-title"><a href="shop.html">{{ item.name }}</a>
+                                                        </li>
+                                                        <li v-for="subitem in item.subcategories" :key="subitem.id">
+                                                            <router-link :to="'/category/' + subitem.slug">{{ subitem.name
+                                                                }}</router-link>
+                                                        </li>
+
                                                     </ul>
-                                                  
+
                                                     <ul class="mega-menu-col sub-cat-post">
                                                         <li>
                                                             <a href="shop-sidebar.html">
-                                                                <img :src=" item.image " alt="">
+                                                                <img :src="item.image" alt="">
                                                                 <span class="btn">{{ item.name }}</span>
                                                             </a>
                                                         </li>
                                                     </ul>
-                                                 
+
                                                 </li>
                                             </ul>
                                         </li>
                                         <li><a href="about-us.html">About Us</a></li>
-                                       
+
                                         <li><a href="contact.html">Contact Us</a></li>
                                     </ul>
                                 </div>
@@ -85,23 +87,27 @@
                                         <li class="header-shop-cart"><a href="#"><i
                                                     class="flaticon-shopping-bag"></i><span>{{ cartCount }}</span></a>
                                             <ul class="minicart">
-                                                <li v-if="cartCount > 0" v-for="item in cartProduct" :key="item.id" class="d-flex align-items-start">
+                                                <li v-if="cartCount > 0" v-for="item in cartProduct" :key="item.id"
+                                                    class="d-flex align-items-start">
                                                     <div class="cart-img">
-                                                        <a href="#"><img :src=" item.products[0].image "
-                                                                alt=""></a>
+                                                        <a href="#"><img :src="item.products[0].image" alt=""></a>
                                                     </div>
                                                     <div class="cart-content">
                                                         <h4><a href="#">{{ item.products[0].name }}</a></h4>
                                                         <div class="cart-price">
-                                                            <span class="new">Rs {{ item.products[0].product_attributes[0].price }}</span>
-                                                            <span><del>Rs {{ item.products[0].product_attributes[0].mrp }}</del></span>
+                                                            <span class="new">Rs {{
+                                                                item.products[0].product_attributes[0].price }}</span>
+                                                            <span><del>Rs {{ item.products[0].product_attributes[0].mrp
+                                                                    }}</del></span>
                                                         </div>
                                                     </div>
                                                     <div class="del-icon">
-                                                        <a href="javascript:void(0)" @click="removeCartData(item.products[0].id,item.products[0].product_attributes[0].id,1)"><i class="far fa-trash-alt"></i></a>
+                                                        <a href="javascript:void(0)"
+                                                            @click="removeCartData(item.products[0].id, item.products[0].product_attributes[0].id, 1)"><i
+                                                                class="far fa-trash-alt"></i></a>
                                                     </div>
                                                 </li>
-                                              
+
                                                 <li>
                                                     <div class="total-price">
                                                         <span class="f-left">Total:</span>
@@ -110,7 +116,7 @@
                                                 </li>
                                                 <li>
                                                     <div class="checkout-link">
-                                                        <router-link :to="'/ShoppingCart'" >Shopping Cart</router-link>
+                                                        <router-link :to="'/ShoppingCart'">Shopping Cart</router-link>
                                                         <a class="black-color" href="#">Checkout</a>
                                                     </div>
                                                 </li>
@@ -126,8 +132,8 @@
                         <div class="mobile-menu">
                             <div class="close-btn"><i class="flaticon-targeting-cross"></i></div>
                             <nav class="menu-box">
-                                <div class="nav-logo"><a href="index.html"><img src="/front_assets/img/logo/logo.png" alt=""
-                                            title=""></a>
+                                <div class="nav-logo"><a href="index.html"><img src="/front_assets/img/logo/logo.png"
+                                            alt="" title=""></a>
                                 </div>
                                 <div class="menu-outer">
                                     <ul class="navigation">
@@ -144,7 +150,7 @@
                                                 <li><a href="index-9.html">Home Nine</a></li>
                                             </ul>
                                         </li>
-                                        <li  class="menu-item-has-children">
+                                        <li class="menu-item-has-children">
                                             <a href="#">Shop</a>
                                             <ul class="submenu">
                                                 <li><a href="shop.html">Shop Page</a></li>
@@ -214,7 +220,8 @@
                                     <a href="index.html"><img src="/front_assets/img/logo/logo.png" alt=""></a>
                                 </div>
                                 <div class="content-box">
-                                    <p>WooCommerce and WordPress are both free, open source software reasons many ...</p>
+                                    <p>WooCommerce and WordPress are both free, open source software reasons many ...
+                                    </p>
                                 </div>
                                 <div class="contact-info">
                                     <h4 class="title">CONTACT US</h4>
@@ -282,8 +289,8 @@
     <!-- header-area-end -->
     <main>
         <slot name="content" :addToCart="addToCart" :cartCount="cartCount" :cartProduct="cartProduct"
-         :cartTotal="cartTotal" :removeCartData="removeCartData" :addCoupon="addCoupon" :getCartData="getCartData"
-         :removeCoupon="removeCoupon" :couponName="couponName">
+            :cartTotal="cartTotal" :removeCartData="removeCartData" :addCoupon="addCoupon" :getCartData="getCartData"
+            :removeCoupon="removeCoupon" :couponName="couponName">
 
         </slot>
     </main>
@@ -332,132 +339,161 @@
             <div class="copyright-wrap">
                 <div class="row align-items-center">
                     <div class="col-lg-6">
-                    <div class="copyright-text">
-                        <p>&copy; 2021 <a href="index.html">adara</a>. All Rights Reserved | Ph (+09) 456 457869</p>
+                        <div class="copyright-text">
+                            <p>&copy; 2021 <a href="index.html">adara</a>. All Rights Reserved | Ph (+09) 456 457869</p>
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="pay-method-img">
-                        <img src="/front_assets/img/images/payment_method_img.png" alt="">
+                    <div class="col-lg-6">
+                        <div class="pay-method-img">
+                            <img src="/front_assets/img/images/payment_method_img.png" alt="">
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</footer>
-<div id="scripts"></div>
+    </footer>
+    <div id="scripts"></div>
 </template>
 <script>
 import axios from 'axios';
 import getUrlList from '../provider.js';
 export default {
     name: 'Layout',
-    data(){
+    data() {
         return {
-            
-            headerCategories:[],
-            user_info:{
-                'user_id':'',
-                'auth':false
+
+            headerCategories: [],
+            user_info: {
+                'user_id': '',
+                'auth': false
             },
-            cartCount:0,
-            cartProduct:[],
-            cartTotal:0,
-            oldCart:0,
-            couponName:'',
-        
+            cartCount: 0,
+            cartProduct: [],
+            cartTotal: 0,
+            oldCart: 0,
+            couponName: '',
+
         }
     },
-    watch:{
-        cartProduct(val){
+    watch: {
+        cartProduct(val) {
             this.cartTotal = 0;
 
-            for(var item in val){
+            for (var item in val) {
                 this.cartTotal += val[item].qty * val[item].products[0].product_attributes[0].price;
             }
             this.oldCart = this.cartTotal;
             this.getUserCoupon();
         }
     },
-    mounted(){
-        var src = ['/front_assets/js/popper.min.js','/front_assets/js/bootstrap.min.js'
-        ,'/front_assets/js/isotope.pkgd.min.js','/front_assets/js/imagesloaded.pkgd.min.js'
-        ,'/front_assets/js/jquery.magnific-popup.min.js','/front_assets/js/jquery.mCustomScrollbar.concat.min.js'
-        ,'/front_assets/js/bootstrap-datepicker.min.js','/front_assets/js/jquery.nice-select.min.js'
-        ,'/front_assets/js/jquery.countdown.min.js','/front_assets/js/swiper-bundle.min.js'
-        ,'/front_assets/js/jarallax.min.js','/front_assets/js/slick.min.js'
-        ,'/front_assets/js/wow.min.js','/front_assets/js/nav-tool.js'
-        ,'/front_assets/js/plugins.js','/front_assets/js/main.js'];
-        for( var i=0; i<src.length;i++){
+    mounted() {
+        var src = ['/front_assets/js/popper.min.js', '/front_assets/js/bootstrap.min.js'
+            , '/front_assets/js/isotope.pkgd.min.js', '/front_assets/js/imagesloaded.pkgd.min.js'
+            , '/front_assets/js/jquery.magnific-popup.min.js', '/front_assets/js/jquery.mCustomScrollbar.concat.min.js'
+            , '/front_assets/js/bootstrap-datepicker.min.js', '/front_assets/js/jquery.nice-select.min.js'
+            , '/front_assets/js/jquery.countdown.min.js', '/front_assets/js/swiper-bundle.min.js'
+            , '/front_assets/js/jarallax.min.js', '/front_assets/js/slick.min.js'
+            , '/front_assets/js/wow.min.js', '/front_assets/js/nav-tool.js'
+            , '/front_assets/js/plugins.js', '/front_assets/js/main.js'];
+        for (var i = 0; i < src.length; i++) {
             const script = document.createElement('script');
             script.src = src[i];
-            script.async=false;
+            script.async = false;
             document.getElementById('scripts').appendChild(script);
         }
         this.getCategories();
         this.getUser();
-    
+        this.getCartData();
+
     },
-    methods:{
+    methods: {
 
- 
-async getUser() {
-    let storedUser = localStorage.getItem('user_info');
-    
-    if (storedUser) {
-        let parsedUser = JSON.parse(storedUser);
-        if (parsedUser && parsedUser.user_id) {
-            this.user_info.user_id = parsedUser.user_id;
-        } else {
-            this.user_info.user_id = null;
+        async getCartData()
+        {
+            try {
+                let data = await axios.post(getUrlList().getCartData,
+                {
+                    'token':this.user_info.user_id,
+                    'auth':this.user_info.auth,
+                });
+                if(data.status == 200)
+                {
+                    this.cartCount = data.data.data.data.length;
+                    this.cartProduct = data.data.data.data;
+                }else{
+                    console.log('Data Not found');
+                }
+            } catch (error) {
+                
+            }
+        },
+
+
+        async getUser() {
+            let storedUser = localStorage.getItem('user_info');
+
+            if (storedUser) {
+                let parsedUser = JSON.parse(storedUser);
+                if (parsedUser && parsedUser.user_id) {
+                    this.user_info.user_id = parsedUser.user_id;
+                } else {
+                    this.user_info.user_id = null;
+                }
+            } else {
+                this.user_info.user_id = null;
+            }
+
+            console.log("Retrieved token from localStorage:", this.user_info.user_id); // Debugging
+
+            await this.getUserData();
+        },
+
+
+        async getUserData() {
+            try {
+                let token = this.user_info.user_id;
+
+                if (!token) {
+                    console.warn("No token found, generating new user.");
+                    token = null; 
+                }
+
+                console.log("Sending token:", token); 
+
+                let response = await axios.post(getUrlList().getUserData,
+                    { token: token },
+                    { headers: { 'Content-Type': 'application/json' } }
+                );
+
+                if (response.status === 200 && response.data.data) {
+                    let userData = response.data.data;
+                    this.user_info.auth = userData.user_type === 1;
+                    this.user_info.user_id = userData.token;
+                    localStorage.setItem('user_info', JSON.stringify(this.user_info));
+
+                    console.log("New token saved:", this.user_info.user_id);
+                } else {
+                    console.error('Invalid response:', response);
+                }
+            } catch (error) {
+                console.error("Error fetching user data:", error.response ? error.response.data : error.message);
+            }
         }
-    } else {
-        this.user_info.user_id = null;
-    }
 
-    console.log("Retrieved token from localStorage:", this.user_info.user_id); // Debugging
-
-    await this.getUserData();
-},
-
-async getUserData() {
-    try {
-        let token = this.user_info.user_id || "";
-        console.log("Sending token:", token); // Debugging
-
-        let response = await axios.post(getUrlList().getUserData, 
-            { token: token }, // Ensure correct structure
-            { headers: { 'Content-Type': 'application/json' } }
-        );
-
-        if (response.status === 200 && response.data.data) {
-            let userData = response.data.data;
-            this.user_info.auth = userData.user_type === 1;
-            this.user_info.user_id = userData.token;
-            localStorage.setItem('user_info', JSON.stringify(this.user_info));
-
-            console.log("New token saved:", this.user_info.user_id); // Debugging
-        } else {
-            console.error('Invalid response:', response);
-        }
-    } catch (error) {
-        console.error("Error fetching user data:", error.response ? error.response.data : error.message);
-    }
-}
-,
-    async getCategories(){
+        ,
+        async getCategories() {
             try {
                 let data = await axios.get(getUrlLisusert().getHeaderCategoriesData);
                 // console.log(data.data.data.data.categories);
-                if(data.status == 200 && data.data.data.data.categories.length >0){
+                if (data.status == 200 && data.data.data.data.categories.length > 0) {
                     this.headerCategories = data.data.data.data.categories;
                     // console.log(this.headerCategories);
-                }else{
-                console.log('Data not found');
-                // console.log(data);
+                } else {
+                    console.log('Data not found');
+                    // console.log(data);
                 }
             } catch (error) {
-                console.log('Error');  
+                console.log('Error');
             }
         }
     }
