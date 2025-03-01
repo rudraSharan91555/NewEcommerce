@@ -22,7 +22,7 @@ return new class extends Migration
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->foreign('product_attr_id')->references('id')->on('product_attrs')->onDelete('cascade');
         });
-    }
+    }  
 
     /**
      * Reverse the migrations.

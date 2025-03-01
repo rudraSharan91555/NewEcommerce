@@ -57,7 +57,8 @@
                                                         <li class="mega-title"><a href="shop.html">{{ item.name }}</a>
                                                         </li>
                                                         <li v-for="subitem in item.subcategories" :key="subitem.id">
-                                                            <router-link :to="'/category/' + subitem.slug">{{ subitem.name
+                                                            <router-link :to="'/category/' + subitem.slug">{{
+                                                                subitem.name
                                                                 }}</router-link>
                                                         </li>
 
@@ -98,7 +99,7 @@
                                                             <span class="new">Rs {{
                                                                 item.products[0].product_attributes[0].price }}</span>
                                                             <span><del>Rs {{ item.products[0].product_attributes[0].mrp
-                                                                    }}</del></span>
+                                                            }}</del></span>
                                                         </div>
                                                     </div>
                                                     <div class="del-icon">
@@ -372,6 +373,7 @@ export default {
             cartTotal: 0,
             oldCart: 0,
             couponName: '',
+            user_info: JSON.parse(localStorage.getItem("user_info")) || {}
 
         }
     },
@@ -404,29 +406,54 @@ export default {
         this.getCategories();
         this.getUser();
         this.getCartData();
+        this.user_info = JSON.parse(localStorage.getItem("user_info")) || {};
+        console.log("Mounted User Info:", this.user_info);
+        let storedUser = localStorage.getItem("user_info");
+
+        if (storedUser) {
+            this.user_info = JSON.parse(storedUser);
+            console.log("Loaded user info from localStorage:", this.user_info);
+        } else {
+            console.error("User info not found in localStorage!");
+        }
+
+        // Ensure token exists before calling API
+        if (!this.user_info.token) {
+            console.warn("Token not found, fetching new user data...");
+            this.getUserData();
+        }
 
     },
     methods: {
 
-        async getCartData()
-        {
+
+        async getCartData() {
             try {
-                let data = await axios.post(getUrlList().getCartData,
-                {
-                    'token':this.user_info.user_id,
-                    'auth':this.user_info.auth,
+                console.log("User Info:", this.user_info);
+
+                if (!this.user_info.token) {
+                    console.error(" Token is missing!");
+                    return;
+                }
+
+                let response = await axios.post("http://127.0.0.1:8000/api/getCartData", {
+                    token: this.user_info.token
                 });
-                if(data.status == 200)
-                {
-                    this.cartCount = data.data.data.data.length;
-                    this.cartProduct = data.data.data.data;
-                }else{
-                    console.log('Data Not found');
+
+                console.log(" API Response:", response.data);
+
+                if (response.data.status === "Success") {
+                    this.cartCount = response.data.data.length;
+                    this.cartProduct = response.data.data;
+                } else {
+                    console.warn(" Cart is empty or data not found.");
                 }
             } catch (error) {
-                
+                console.error(" API Error:", error.response?.data || error);
             }
-        },
+        }
+
+        ,
 
 
         async getUser() {
@@ -449,16 +476,16 @@ export default {
         },
 
 
+
         async getUserData() {
             try {
-                let token = this.user_info.user_id;
+                let token = this.user_info.token || null;
 
                 if (!token) {
                     console.warn("No token found, generating new user.");
-                    token = null; 
                 }
 
-                console.log("Sending token:", token); 
+                console.log("Sending token:", token);
 
                 let response = await axios.post(getUrlList().getUserData,
                     { token: token },
@@ -467,20 +494,20 @@ export default {
 
                 if (response.status === 200 && response.data.data) {
                     let userData = response.data.data;
+                    this.user_info.token = userData.token;
                     this.user_info.auth = userData.user_type === 1;
-                    this.user_info.user_id = userData.token;
+
+
                     localStorage.setItem('user_info', JSON.stringify(this.user_info));
 
-                    console.log("New token saved:", this.user_info.user_id);
+                    console.log("New token saved:", this.user_info.token);
                 } else {
                     console.error('Invalid response:', response);
                 }
             } catch (error) {
                 console.error("Error fetching user data:", error.response ? error.response.data : error.message);
             }
-        }
-
-        ,
+        },
         async getCategories() {
             try {
                 let data = await axios.get(getUrlLisusert().getHeaderCategoriesData);
