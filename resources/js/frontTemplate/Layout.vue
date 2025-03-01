@@ -507,10 +507,13 @@ export default {
             } catch (error) {
                 console.error("Error fetching user data:", error.response ? error.response.data : error.message);
             }
-        },
+        }
+
+
+        ,
         async getCategories() {
             try {
-                let data = await axios.get(getUrlLisusert().getHeaderCategoriesData);
+                let data = await axios.get(getUrlList().getHeaderCategoriesData);
                 // console.log(data.data.data.data.categories);
                 if (data.status == 200 && data.data.data.data.categories.length > 0) {
                     this.headerCategories = data.data.data.data.categories;
