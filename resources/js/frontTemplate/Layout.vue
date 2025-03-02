@@ -452,7 +452,7 @@ export default {
         async addToCart(product_id, product_attr_id, qty) {
     try {
         let response = await axios.post(getUrlList().addToCart, {
-            'token': this.user_info.token,  // ✅ सही
+            'token': this.user_info.token,  
             'auth': this.user_info.auth,
             'product_id': product_id,
             'product_attr_id': product_attr_id,
