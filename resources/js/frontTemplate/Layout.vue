@@ -59,7 +59,7 @@
                                                         <li v-for="subitem in item.subcategories" :key="subitem.id">
                                                             <router-link :to="'/category/' + subitem.slug">{{
                                                                 subitem.name
-                                                                }}</router-link>
+                                                            }}</router-link>
                                                         </li>
 
                                                     </ul>
@@ -99,7 +99,7 @@
                                                             <span class="new">Rs {{
                                                                 item.products[0].product_attributes[0].price }}</span>
                                                             <span><del>Rs {{ item.products[0].product_attributes[0].mrp
-                                                            }}</del></span>
+                                                                    }}</del></span>
                                                         </div>
                                                     </div>
                                                     <div class="del-icon">
@@ -289,9 +289,7 @@
     </header>
     <!-- header-area-end -->
     <main>
-        <slot name="content" :addToCart="addToCart" :cartCount="cartCount" :cartProduct="cartProduct"
-            :cartTotal="cartTotal" :removeCartData="removeCartData" :addCoupon="addCoupon" :getCartData="getCartData"
-            :removeCoupon="removeCoupon" :couponName="couponName">
+        <slot name="content" :addToCart="addToCart" >
 
         </slot>
     </main>
@@ -406,6 +404,7 @@ export default {
         this.getCategories();
         this.getUser();
         this.getCartData();
+        this.addToCart();
         this.user_info = JSON.parse(localStorage.getItem("user_info")) || {};
         console.log("Mounted User Info:", this.user_info);
         let storedUser = localStorage.getItem("user_info");
@@ -426,6 +425,49 @@ export default {
     },
     methods: {
 
+
+        
+        // async addToCart(product_id,product_attr_id,qty)
+        // {
+        //     try{
+        //         let data = await axios.post(getUrlList().addToCart,
+        //         {
+        //             'token':this.user_info.user_id,
+        //             'auth':this.user_info.auth,
+        //             'product_id':product_id,
+        //             'product_attr_id':product_attr_id,
+        //             'qty':qty,
+        //         });
+        //         if(data.status == 200){
+                    
+        //         }else{
+        //             console.log('Data Not Found');
+        //         }
+        //     }catch(error){
+                
+        //     }
+            
+        // },
+        async addToCart(product_id, product_attr_id, qty) {
+    try {
+        let response = await axios.post(getUrlList().addToCart, {
+            'token': this.user_info.token,  // ✅ सही
+            'auth': this.user_info.auth,
+            'product_id': product_id,
+            'product_attr_id': product_attr_id,
+            'qty': qty,
+        });
+
+        if (response.status === 200) {
+            console.log("Cart Updated", response.data);
+        } else {
+            console.log("Data Not Found");
+        }
+    } catch (error) {
+        console.error("Error:", error.response.data);
+    }
+}
+,
 
         async getCartData() {
             try {
@@ -451,9 +493,7 @@ export default {
             } catch (error) {
                 console.error(" API Error:", error.response?.data || error);
             }
-        }
-
-        ,
+        },
 
 
         async getUser() {

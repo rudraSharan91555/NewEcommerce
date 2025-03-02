@@ -45,3 +45,4 @@ Route::get('/getHomeData', [HomePageController::class, 'getHomeData']);
 Route::post('/getCategoryData', [HomePageController::class, 'getCategoryData']);
 Route::post('/getUserData', [HomePageController::class, 'getUserData']);
 Route::post('/getCartData', [HomePageController::class, 'getUserData']);
+Route::post('/addToCart', [HomePageController::class, 'addToCart']);

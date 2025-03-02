@@ -16,7 +16,7 @@ use App\Models\TempUsers;
 use App\Traits\ApiResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Log; 
 
 
 class HomePageController extends Controller
@@ -122,7 +122,7 @@ class HomePageController extends Controller
 
 
 
-  // public function getUserData(Request $request)
+ 
   // {
   //   $token = $request->token;
 
@@ -185,7 +185,7 @@ class HomePageController extends Controller
   //         ], 400);
   //     }
 
-
+      
   //     $cartData = Cart::where('user_id', $userToken->user_id)->with('products')->get();
 
   //     return response()->json([
@@ -197,77 +197,122 @@ class HomePageController extends Controller
 
   public function getUserData(Request $request)
   {
-    $token = $request->token;
-
-    if (!$token) {
-      $newToken = generateRandomString();
-      $user_id = rand(11111, 99999);
-      $time = now();
-
-      TempUsers::create([
-        'user_id' => $user_id,
-        'token' => $newToken,
-        'created_at' => $time,
-        'updated_at' => $time
-      ]);
-
-      return response()->json([
-        'status' => 'Success',
-        'message' => 'New user created',
-        'data' => ['user_type' => 2, 'token' => $newToken]
-      ], 200);
-    }
-
-    $checkUser = TempUsers::where('token', $token)->first();
-
-    if ($checkUser) {
-      if (checkTokenExpiryInMinutes($checkUser->updated_at, 60)) {
-        $newToken = generateRandomString();
-        $checkUser->token = $newToken;
-        $checkUser->updated_at = now();
-        $checkUser->save();
-        $token = $newToken;
+      $token = $request->token;
+  
+      if (!$token) {
+          $newToken = generateRandomString();
+          $user_id = rand(11111, 99999);
+          $time = now();
+  
+          TempUsers::create([
+              'user_id' => $user_id,
+              'token' => $newToken,
+              'created_at' => $time,
+              'updated_at' => $time
+          ]);
+  
+          return response()->json([
+              'status' => 'Success',
+              'message' => 'New user created',
+              'data' => ['user_type' => 2, 'token' => $newToken]
+          ], 200);
       }
-
-      return response()->json([
-        'status' => 'Success',
-        'message' => 'User data fetched',
-        'data' => ['user_type' => $checkUser->user_type, 'token' => $token]
-      ], 200);
-    }
-
-    return response()->json(['status' => 'Error', 'message' => 'Invalid token'], 400);
+  
+      $checkUser = TempUsers::where('token', $token)->first();
+  
+      if ($checkUser) {
+          if (checkTokenExpiryInMinutes($checkUser->updated_at, 60)) {
+              $newToken = generateRandomString();
+              $checkUser->token = $newToken;
+              $checkUser->updated_at = now();
+              $checkUser->save();
+              $token = $newToken;
+          }
+  
+          return response()->json([
+              'status' => 'Success',
+              'message' => 'User data fetched',
+              'data' => ['user_type' => $checkUser->user_type, 'token' => $token]
+          ], 200);
+      }
+  
+      return response()->json(['status' => 'Error', 'message' => 'Invalid token'], 400);
   }
-
-
+ 
+    
   public function getCartData(Request $request)
   {
-    Log::info('Received Token:', ['token' => $request->token]);
-
+      Log::info('Received Token:', ['token' => $request->token]);
+  
+      $validation = Validator::make($request->all(), [
+          'token' => 'required|exists:temp_users,token',
+      ]);
+  
+      if ($validation->fails()) {
+          Log::error('Validation failed:', $validation->errors()->toArray());
+          return response()->json([
+              'status' => 'Error',
+              'message' => $validation->errors()->first(),
+              'data' => []
+          ], 400);
+      }
+  
+      $userToken = TempUsers::where('token', $request->token)->first();
+      Log::info('User Token Data:', ['user_id' => $userToken->user_id]);
+  
+      $cartData = Cart::where('user_id', $userToken->user_id)->with('products')->get();
+      Log::info('Fetched Cart Data:', $cartData->toArray());
+  
+      return response()->json([
+          'status' => 'Success',
+          'message' => 'Cart data fetched successfully',
+          'data' => $cartData
+      ], 200);
+  }
+  // public function addToCart(Request $request)
+  // {
+  //     $validation = Validator::make($request->all(), [
+  //         'token' => 'required|exists:temp_users,token',
+  //         'product_id' => 'required|exists:temp_users,product,id',
+  //         'product_attr_id' => 'required|exists:temp_users,product_attr,id',
+  //         'qty' => 'required|numeric|min:0|not_in:0',
+  //     ]);
+  
+  //     if ($validation->fails()) {
+  //         return $this->error($validation->errors()->first(), 400, []);
+  //     } else{
+  //       $user = TempUsers::where('token', $request->token)->first();
+  //       Cart::updateOrCreate(['user_id'=>$user->user_id,'product_id'=>$request->product_id,
+  //       'product_attr_id'=>$request->product_attr_id],
+  //       ['user_id'=>$user->user_id,'product_id'=>$request->product_id,
+  //       'product_attr_id'=>$request->product_attr_id,'qty'=>$request->qty,'user_type'=>$user->user_type]
+  //     );
+  //       return $this->success(['data' => $user], 'Successfully fetched data');
+  //     }
+  // }
+  
+ 
+  public function addToCart(Request $request) 
+{
     $validation = Validator::make($request->all(), [
-      'token' => 'required|exists:temp_users,token',
+        'token' => 'required|exists:temp_users,token',
+        'product_id' => 'nullable|exists:products,id',  
+        'product_attr_id' => 'nullable|exists:product_attrs,id',  
+        'qty' => 'nullable|numeric|min:1',  // ❌ required हटाया
     ]);
 
     if ($validation->fails()) {
-      Log::error('Validation failed:', $validation->errors()->toArray());
-      return response()->json([
-        'status' => 'Error',
-        'message' => $validation->errors()->first(),
-        'data' => []
-      ], 400);
+        return response()->json([
+            'error' => true,
+            'message' => $validation->errors()->first()
+        ], 400);
     }
 
-    $userToken = TempUsers::where('token', $request->token)->first();
-    Log::info('User Token Data:', ['user_id' => $userToken->user_id]);
-
-    // Fetch cart data with the correct product relationship
-    $cartData = Cart::where('user_id', $userToken->user_id)->with('product')->get();
-    Log::info('Fetched Cart Data:', $cartData->toArray());
-
     return response()->json([
-      'status' => 'Success',
-      'message' => 'Cart data fetched successfully',
-      'data' => $cartData
+        'error' => false,
+        'message' => 'Item added to cart successfully!',
     ], 200);
-  }
+}
+
+  
 }

@@ -6,6 +6,7 @@ export function getUrlList() {
         getCategoryData : ''+baseUrl+'/getCategoryData',
         getUserData : ''+baseUrl+'/getUserData',
         getCartData : ''+baseUrl+'/getCartData',
+        addToCart : ''+baseUrl+'/addToCart',
     };
 }
 
