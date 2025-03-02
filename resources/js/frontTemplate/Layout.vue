@@ -448,6 +448,7 @@ export default {
         //     }
             
         // },
+        
         async addToCart(product_id, product_attr_id, qty) {
     try {
         let response = await axios.post(getUrlList().addToCart, {

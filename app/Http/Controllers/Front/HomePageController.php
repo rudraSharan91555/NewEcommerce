@@ -122,78 +122,6 @@ class HomePageController extends Controller
 
 
 
- 
-  // {
-  //   $token = $request->token;
-
-  //   if (!$token) {
-  //     $newToken = generateRandomString();
-  //     $user_id = rand(11111, 99999);
-  //     $time = now();
-
-  //     TempUsers::create([
-  //       'user_id' => $user_id,
-  //       'token' => $newToken,
-  //       'created_at' => $time,
-  //       'updated_at' => $time
-  //     ]);
-
-  //     return $this->success(['data' => ['user_type' => 2, 'token' => $newToken]], 'New user created');
-  //   }
-  //   $checkUser = TempUsers::where('token', $token)->first();
-
-  //   if ($checkUser) {
-  //     if (checkTokenExpiryInMinutes($checkUser->updated_at, 60)) {
-  //       $newToken = generateRandomString();
-  //       $checkUser->token = $newToken;
-  //       $checkUser->updated_at = now();
-  //       $checkUser->save();
-  //       $token = $newToken;
-  //     }
-
-  //     return $this->success(['data' => ['user_type' => $checkUser->user_type, 'token' => $token]], 'User data fetched');
-  //   }
-
-  //   return response()->json(['error' => 'Invalid token'], 400);
-  // }
-
-  // public function getCartData(Request $request)
-  // {
-  //     Log::info('Received Request:', $request->all());
-
-  //     $validation = Validator::make($request->all(), [
-  //         'token' => 'required|exists:temp_users,token',
-  //     ]);
-
-  //     if ($validation->fails()) {
-  //         Log::error('Validation failed:', $validation->errors()->toArray());
-  //         return response()->json([
-  //             'status' => 'Error',
-  //             'message' => $validation->errors()->first(),
-  //             'data' => []
-  //         ], 400);
-  //     }
-
-  //     $userToken = TempUsers::where('token', $request->token)->first();
-
-  //     if (!$userToken) {
-  //         Log::error('Token not found in temp_users:', ['token' => $request->token]);
-  //         return response()->json([
-  //             'status' => 'Error',
-  //             'message' => 'Invalid token',
-  //             'data' => []
-  //         ], 400);
-  //     }
-
-      
-  //     $cartData = Cart::where('user_id', $userToken->user_id)->with('products')->get();
-
-  //     return response()->json([
-  //         'status' => 'Success',
-  //         'message' => 'Cart data fetched successfully',
-  //         'data' => $cartData
-  //     ], 200);
-  // }
 
   public function getUserData(Request $request)
   {
@@ -298,7 +226,7 @@ class HomePageController extends Controller
         'token' => 'required|exists:temp_users,token',
         'product_id' => 'nullable|exists:products,id',  
         'product_attr_id' => 'nullable|exists:product_attrs,id',  
-        'qty' => 'nullable|numeric|min:1',  // ❌ required हटाया
+        'qty' => 'nullable|numeric|min:1',  
     ]);
 
     if ($validation->fails()) {
