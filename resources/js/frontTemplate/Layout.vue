@@ -369,24 +369,23 @@ export default {
             cartCount: 0,
             cartProduct: [],
             cartTotal: 0,
-            oldCart: 0,
-            couponName: '',
-            user_info: JSON.parse(localStorage.getItem("user_info")) || {}
+            
+            // user_info: JSON.parse(localStorage.getItem("user_info")) || {}
 
         }
     },
-    watch: {
-        cartProduct(val) {
-            this.cartTotal = 0;
+    // watch: {
+    //     cartProduct(val) {
+    //         this.cartTotal = 0;
 
-            for (var item in val) {
-                // this.cartTotal += val[item].qty * val[item].products[0].product_attributes[0].price;
-                // this.cartTotal += val[item].qty * val[item].products[1];
-            }
-            this.oldCart = this.cartTotal;
-            // this.getUserCoupon();
-        }
-    },
+    //         for (var item in val) {
+    //             // this.cartTotal += val[item].qty * val[item].products[0].product_attributes[0].price;
+    //             // this.cartTotal += val[item].qty * val[item].products[1];
+    //         }
+    //         this.oldCart = this.cartTotal;
+    //         // this.getUserCoupon();
+    //     }
+    // },
     mounted() {
         var src = ['/front_assets/js/popper.min.js', '/front_assets/js/bootstrap.min.js'
             , '/front_assets/js/isotope.pkgd.min.js', '/front_assets/js/imagesloaded.pkgd.min.js'
@@ -404,8 +403,25 @@ export default {
         }
         this.getCategories();
         this.getUser();
+        this.getCartData();
     },
     methods: {
+
+        async getCartData(){
+            try{
+            let data = await axios.post(getUrlList().getCartData,{
+                'token':this.user_info.user_id,
+                'auth':this.user_info.auth,
+            });
+            if(data.status == 200){
+                
+            }else{
+                console.log("Data Not Found")
+            }
+           } catch(error){
+
+           }
+        },
 
         async getUser(){
             if (localStorage.getItem('user_info')){

@@ -160,95 +160,19 @@ class HomePageController extends Controller
     return $this->success(['data' => $data], 'Successfully data fetched');
   }
 
+  
   public function getCartData(Request $request)
   {
-      Log::info('Received Token:', ['token' => $request->token]);
-  
-      $validation = Validator::make($request->all(), [
-          'token' => 'required|exists:temp_users,token',
-      ]);
-  
-      if ($validation->fails()) {
-          Log::error('Validation failed:', $validation->errors()->toArray());
-          return response()->json([
-              'status' => 'Error',
-              'message' => $validation->errors()->first(),
-              'data' => []
-          ], 400);
-      }
-  
-      $userToken = TempUsers::where('token', $request->token)->first();
-      Log::info('User Token Data:', ['user_id' => $userToken->user_id]);
-  
-      $cartData = Cart::where('user_id', $userToken->user_id)->with('products')->get();
-      Log::info('Fetched Cart Data:', $cartData->toArray());
-  
-      return response()->json([
-          'status' => 'Success',
-          'message' => 'Cart data fetched successfully',
-          'data' => $cartData
-      ], 200);
+    $validation = Validator::make($request->all(),[
+      'token' => 'required|exists:temp_users,token',
+    ]);
+    if($validation->fails()){
+      return $this->error($validation->errors()->first(),400,[]);
+    }else{
+      $userToken = TempUsers::where('token',$request->token)->first();
+      $data   = Cart::where('user_id',$userToken->user_id)->with('products')->get();
+      return $this->success(['data'=>$data],"Successfully data Fetched");
+    }
   }
   
-  
-  public function addToCart(Request $request)
-  {
-      Log::info(' Received Data:', $request->all()); 
-  
-      $validated = $request->validate([
-          'product_id' => 'required|exists:products,id',
-          'product_attr_id' => 'required|exists:product_attrs,id',
-          'qty' => 'required|integer|min:1'
-      ]);
-  
-  
-      return response()->json(['status' => 'success', 'message' => 'Product added to cart']);
-  }
-  
-//   public function addToCart(Request $request)
-// {
-//     Log::info(' Received Data:', $request->all());
-//     $validation = Validator::make($request->all(), [
-//         'product_id' => 'required|exists:products,id',
-//         'product_attr_id' => 'required|exists:product_attrs,id',
-//         'qty' => 'required|integer|min:1',
-//         'token' => 'required|exists:temp_users,token',
-//     ]);
-
-//     if ($validation->fails()) {
-//         return response()->json([
-//             'status' => 'error',
-//             'message' => $validation->errors()->first(),
-//             'errors' => $validation->errors(),
-//         ], 422);
-//     }
-//     $user = TempUsers::where('token', $request->token)->first();
-//     if (!$user) {
-//         return response()->json([
-//             'status' => 'error',
-//             'message' => 'Invalid token'
-//         ], 400);
-//     }
-//     $existingCart = Cart::where('user_id', $user->user_id)
-//         ->where('product_id', $request->product_id)
-//         ->where('product_attr_id', $request->product_attr_id)
-//         ->first();
-
-//     if ($existingCart) {
-//         $existingCart->qty += $request->qty;
-//         $existingCart->save();
-//     } else {
-//         // Add new cart item
-//         Cart::create([
-//             'user_id' => $user->user_id,
-//             'user_type' => $user->user_type,
-//             'product_id' => $request->product_id,
-//             'product_attr_id' => $request->product_attr_id,
-//             'qty' => $request->qty,
-//         ]);
-//     }
-
-//     return response()->json(['status' => 'success', 'message' => 'Product added to cart']);
-// }
-
 }
