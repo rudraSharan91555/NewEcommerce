@@ -53,7 +53,7 @@
                                             <p class="price">$67.00</p>
                                             <div class="features-product-cart">
                                                 <!-- <a href="javascript:void(0)" @click="addToCart(item.id, item.product_attributes[0].id, 1)">Add to cart</a> -->
-                                                <a href="javascript:void(0)" @click="addToCart(item.id, item.product_attributes_id, 1)">Add to cart</a>
+                                                <a href="javascript:void(0)" @click="addToCart(item.id,item.product_attributes[0].id,1)">Add to cart</a>
                                             </div>
                                         </div>
                                     </div>
@@ -74,37 +74,9 @@ export default {
     name: 'TrendingProducts',
     props: {
         homeCategory: Array,
-        showActiveClass: Function
+        showActiveClass: Function,
+        addToCart:Function
     },
-    data() {
-        return {
-            user_info: JSON.parse(localStorage.getItem('user_info')) || {} 
-        };
-    },
-    methods: {
-        async addToCart(product_id, product_attr_id, qty) {
-            if (!this.user_info || !this.user_info.token) {
-                console.error("User token is missing! Please log in.");
-                return;
-            }
-            try {
-                let response = await axios.post(getUrlList().addToCart, {
-                    'token': this.user_info.token,  
-                    'auth': this.user_info.auth,
-                    'product_id': product_id,
-                    'product_attr_id': product_attr_id,
-                    'qty': qty,
-                });
 
-                if (response.status === 200) {
-                    console.log("Cart Updated", response.data);
-                } else {
-                    console.log("Data Not Found");
-                }
-            } catch (error) {
-                console.error("Error:", error.response?.data || error.message);
-            }
-        }
-    }
 };
 </script>

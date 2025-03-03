@@ -33,6 +33,7 @@
 		<div class="col">
 			<button type="button" onclick="saveData('0','','','')" class="btn btn-outline-info px-5 radius-30" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Home Banner</button>
 		</div>
+		<hr/>
 		<div class="card">
 			<div class="card-body">
 				<div class="table-responsive">
