@@ -200,23 +200,63 @@ class HomePageController extends Controller
   
   
   public function addToCart(Request $request)
-{
-    Log::info('📡 Received Data:', $request->all()); // Debugging ke liye
-
-    $validated = $request->validate([
-        'product_id' => 'required|exists:products,id',
-        'product_attr_id' => 'required|exists:product_attrs,id',
-        'qty' => 'required|integer|min:1'
-    ]);
-
-    // Agar validation pass ho gaya to cart me add karo
-    return response()->json(['status' => 'success', 'message' => 'Product added to cart']);
-}
-
-
+  {
+      Log::info('📡 Received Data:', $request->all()); 
   
-
+      $validated = $request->validate([
+          'product_id' => 'required|exists:products,id',
+          'product_attr_id' => 'required|exists:product_attrs,id',
+          'qty' => 'required|integer|min:1'
+      ]);
   
   
+      return response()->json(['status' => 'success', 'message' => 'Product added to cart']);
+  }
+  
+//   public function addToCart(Request $request)
+// {
+//     Log::info(' Received Data:', $request->all());
+//     $validation = Validator::make($request->all(), [
+//         'product_id' => 'required|exists:products,id',
+//         'product_attr_id' => 'required|exists:product_attrs,id',
+//         'qty' => 'required|integer|min:1',
+//         'token' => 'required|exists:temp_users,token',
+//     ]);
+
+//     if ($validation->fails()) {
+//         return response()->json([
+//             'status' => 'error',
+//             'message' => $validation->errors()->first(),
+//             'errors' => $validation->errors(),
+//         ], 422);
+//     }
+//     $user = TempUsers::where('token', $request->token)->first();
+//     if (!$user) {
+//         return response()->json([
+//             'status' => 'error',
+//             'message' => 'Invalid token'
+//         ], 400);
+//     }
+//     $existingCart = Cart::where('user_id', $user->user_id)
+//         ->where('product_id', $request->product_id)
+//         ->where('product_attr_id', $request->product_attr_id)
+//         ->first();
+
+//     if ($existingCart) {
+//         $existingCart->qty += $request->qty;
+//         $existingCart->save();
+//     } else {
+//         // Add new cart item
+//         Cart::create([
+//             'user_id' => $user->user_id,
+//             'user_type' => $user->user_type,
+//             'product_id' => $request->product_id,
+//             'product_attr_id' => $request->product_attr_id,
+//             'qty' => $request->qty,
+//         ]);
+//     }
+
+//     return response()->json(['status' => 'success', 'message' => 'Product added to cart']);
+// }
 
 }

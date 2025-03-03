@@ -445,11 +445,6 @@ export default {
                 console.error(" API Error:", error.response ? error.response.data : error);
             }
         }
-
-
-
-
-
         ,
 
         async getCartData() {
