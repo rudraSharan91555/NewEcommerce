@@ -50,7 +50,8 @@
                                         </div>
                                         <div class="features-product-content">
                                             <h5><a href="shop-details.html">{{ item.name }}</a></h5>
-                                            <p class="price">$67.00</p>
+                                            <p class="price">INR {{ item.product_attributes?.[0]?.price || 'N/A' }}</p>
+                                            
                                             <div class="features-product-cart">
                                                 <!-- <a href="javascript:void(0)" @click="addToCart(item.id, item.product_attributes[0].id, 1)">Add to cart</a> -->
                                                 <a href="javascript:void(0)" @click="addToCart(item.id,item.product_attributes[0].id,1)">Add to cart</a>

@@ -34,7 +34,7 @@
                         <div class="content">
                             <h5><router-link :to="'/product/' + item.item_code + '/'+item.slug">{{ item.name }}</router-link></h5>
                             <!-- <span class="price">$37.00</span> -->
-                            <span class="price">INR{{ item.product_attributes?.[0]?.price || 'N/A' }}</span>
+                            <span class="price">INR {{ item.product_attributes?.[0]?.price || 'N/A' }}</span>
                             <!-- <span class="price">INR{{ item.product_attributes[0].price }}</span> -->
                         </div>
                     </div>

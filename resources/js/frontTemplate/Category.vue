@@ -70,8 +70,8 @@
                                             </div>
                                             <div class="content">
                                                 <h5><a href="shop-details.html">{{ item.name }}</a></h5>
-                                                <span class="price">$37.00</span>
-                                                <!-- <span class="price">{{ item.product[0].price }}</span> -->
+                                                <!-- <span class="price">$37.00</span> -->
+                                                <span class="price">INR {{ item.product_attributes?.[0]?.price || 'N/A' }}</span>
                                             </div>
                                         </div>
                                     </div>
