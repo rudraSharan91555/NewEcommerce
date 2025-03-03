@@ -7,6 +7,7 @@ export function getUrlList() {
         getUserData : ''+baseUrl+'/getUserData',
         getCartData  : ''+baseUrl+'/getCartData',
         addToCart  : ''+baseUrl+'/addToCart',
+        removeCartData  : ''+baseUrl+'/removeCartData',
     };
 }
 

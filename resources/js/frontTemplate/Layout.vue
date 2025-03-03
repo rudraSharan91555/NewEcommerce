@@ -370,8 +370,15 @@ export default {
             cartProduct: [],
             cartTotal: 0,
             
-            // user_info: JSON.parse(localStorage.getItem("user_info")) || {}
+        }
+    },
+    watch:{
+        cartProduct(val){
+            this.cartTotal = 0;
 
+            for(var item in val){
+                this.cartTotal += val[item].qty * val[item].products[0].product_attributes[0].price;
+            }
         }
     },
     
@@ -396,6 +403,24 @@ export default {
     },
     methods: {
 
+        async removeCartData(product_id,product_attr_id,qty){
+            try{
+            let data = await axios.post(getUrlList().removeCartData,{
+                'token':this.user_info.user_id,
+                'auth':this.user_info.auth,
+                'product_id':product_id,
+                'product_attr_id':product_attr_id,
+                'qty':qty,
+            });
+            if(data.status == 200){
+                this.getCartData();
+            }else{
+                console.log("Data Not Found")
+            }
+           } catch(error){
+
+           }
+        },
         async addToCart(product_id,product_attr_id,qty){
             try{
             let data = await axios.post(getUrlList().addToCart,{
