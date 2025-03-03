@@ -427,48 +427,27 @@ export default {
 
 
         
-        // async addToCart(product_id,product_attr_id,qty)
-        // {
-        //     try{
-        //         let data = await axios.post(getUrlList().addToCart,
-        //         {
-        //             'token':this.user_info.user_id,
-        //             'auth':this.user_info.auth,
-        //             'product_id':product_id,
-        //             'product_attr_id':product_attr_id,
-        //             'qty':qty,
-        //         });
-        //         if(data.status == 200){
+        async addToCart(product_id,product_attr_id,qty)
+        {
+            try{
+                let data = await axios.post(getUrlList().addToCart,
+                {
+                    'token':this.user_info.user_id,
+                    'auth':this.user_info.auth,
+                    'product_id':product_id,
+                    'product_attr_id':product_attr_id,
+                    'qty':qty,
+                });
+                if(data.status == 200){
                     
-        //         }else{
-        //             console.log('Data Not Found');
-        //         }
-        //     }catch(error){
+                }else{
+                    console.log('Data Not Found');
+                }
+            }catch(error){
                 
-        //     }
+            }
             
-        // },
-        
-        async addToCart(product_id, product_attr_id, qty) {
-    try {
-        let response = await axios.post(getUrlList().addToCart, {
-            'token': this.user_info.token,  
-            'auth': this.user_info.auth,
-            'product_id': product_id,
-            'product_attr_id': product_attr_id,
-            'qty': qty,
-        });
-
-        if (response.status === 200) {
-            console.log("Cart Updated", response.data);
-        } else {
-            console.log("Data Not Found");
-        }
-    } catch (error) {
-        console.error("Error:", error.response.data);
-    }
-}
-,
+        },
 
         async getCartData() {
             try {
