@@ -16,7 +16,7 @@ use App\Models\TempUsers;
 use App\Traits\ApiResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Log; 
+use Illuminate\Support\Facades\Log;
 
 
 class HomePageController extends Controller
@@ -150,7 +150,9 @@ class HomePageController extends Controller
       $token = generateRandomString();
       $time = date('Y-m-d h:i:s a', time());
       TempUsers::create([
-        'user_id' => $user_id, 'token' => $token, 'created_at' => $time,
+        'user_id' => $user_id,
+        'token' => $token,
+        'created_at' => $time,
         'updated_at' => $time
       ]);
 
@@ -160,19 +162,38 @@ class HomePageController extends Controller
     return $this->success(['data' => $data], 'Successfully data fetched');
   }
 
-  
+
   public function getCartData(Request $request)
   {
-    $validation = Validator::make($request->all(),[
+    $validation = Validator::make($request->all(), [
       'token' => 'required|exists:temp_users,token',
     ]);
-    if($validation->fails()){
-      return $this->error($validation->errors()->first(),400,[]);
-    }else{
-      $userToken = TempUsers::where('token',$request->token)->first();
-      $data   = Cart::where('user_id',$userToken->user_id)->with('products')->get();
-      return $this->success(['data'=>$data],"Successfully data Fetched");
+    if ($validation->fails()) {
+      return $this->error($validation->errors()->first(), 400, []);
+    } else {
+      $userToken = TempUsers::where('token', $request->token)->first();
+      $data   = Cart::where('user_id', $userToken->user_id)->with('products')->get();
+      return $this->success(['data' => $data], "Successfully data Fetched");
     }
   }
-  
+  public function addToCart(Request $request)
+  {
+    $validation = Validator::make($request->all(), [
+      'token' => 'required|exists:temp_users,token',
+      'product_id' => 'required|exists:products,id',
+      'product_attr_id' => 'required|exists:product_attrs,id',
+      'qty' => 'required|numeric|min:0|not_in:0',
+    ]);
+    if ($validation->fails()) {
+      return $this->error($validation->errors()->first(), 400, []);
+    } else {
+      $user = TempUsers::where('token', $request->token)->first();
+      Cart::updateOrCreate(['user_id'=>$user->user_id,'product_id'=>$request->product_id,
+      'product_attr_id'=>$request->product_attr_id],
+      ['user_id'=>$user->user_id,'product_id'=>$request->product_id,
+      'product_attr_id'=>$request->product_attr_id,'qty'=>$request->qty,'user_type'=>$user->user_type],
+    );
+      return $this->success(['data' => ''], "Successfully data Fetched");
+    }
+  }
 }

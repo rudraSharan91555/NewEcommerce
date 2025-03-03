@@ -85,7 +85,7 @@
                                     <ul>
                                         <li class="header-search"><a href="#" data-toggle="modal"
                                                 data-target="#search-modal"><i class="flaticon-search"></i></a></li>
-                                        <li class="header-shop-cart"><a href="#"><i
+                                        <!-- <li class="header-shop-cart"><a href="#"><i
                                                     class="flaticon-shopping-bag"></i><span>{{ cartCount }}</span></a>
                                             <ul class="minicart">
                                                 <li v-if="cartCount > 0" v-for="item in cartProduct" :key="item.id"
@@ -122,7 +122,53 @@
                                                     </div>
                                                 </li>
                                             </ul>
-                                        </li>
+                                        </li> -->
+                                        <li class="header-shop-cart"><a href="cart.html"><i class="flaticon-shopping-bag"></i><span>0</span></a>
+                                        <ul class="minicart">
+                                            <li class="d-flex align-items-start">
+                                                <div class="cart-img">
+                                                    <a href="#"><img src="img/product/cart_p01.jpg" alt=""></a>
+                                                </div>
+                                                <div class="cart-content">
+                                                    <h4><a href="#">Exclusive Winter Jackets</a></h4>
+                                                    <div class="cart-price">
+                                                        <span class="new">$229.9</span>
+                                                        <span><del>$229.9</del></span>
+                                                    </div>
+                                                </div>
+                                                <div class="del-icon">
+                                                    <a href="#"><i class="far fa-trash-alt"></i></a>
+                                                </div>
+                                            </li>
+                                            <li class="d-flex align-items-start">
+                                                <div class="cart-img">
+                                                    <a href="#"><img src="img/product/cart_p02.jpg" alt=""></a>
+                                                </div>
+                                                <div class="cart-content">
+                                                    <h4><a href="#">Winter Jackets For Women</a></h4>
+                                                    <div class="cart-price">
+                                                        <span class="new">$229.9</span>
+                                                        <span><del>$229.9</del></span>
+                                                    </div>
+                                                </div>
+                                                <div class="del-icon">
+                                                    <a href="#"><i class="far fa-trash-alt"></i></a>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="total-price">
+                                                    <span class="f-left">Total:</span>
+                                                    <span class="f-right">$239.9</span>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="checkout-link">
+                                                    <a href="#">Shopping Cart</a>
+                                                    <a class="black-color" href="#">Checkout</a>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </li>
                                         <li class="header-profile"><a href="#"><i class="flaticon-user-profile"></i></a>
                                         </li>
                                     </ul>
@@ -369,23 +415,9 @@ export default {
             cartCount: 0,
             cartProduct: [],
             cartTotal: 0,
-            
-            // user_info: JSON.parse(localStorage.getItem("user_info")) || {}
-
         }
     },
-    // watch: {
-    //     cartProduct(val) {
-    //         this.cartTotal = 0;
-
-    //         for (var item in val) {
-    //             // this.cartTotal += val[item].qty * val[item].products[0].product_attributes[0].price;
-    //             // this.cartTotal += val[item].qty * val[item].products[1];
-    //         }
-    //         this.oldCart = this.cartTotal;
-    //         // this.getUserCoupon();
-    //     }
-    // },
+    
     mounted() {
         var src = ['/front_assets/js/popper.min.js', '/front_assets/js/bootstrap.min.js'
             , '/front_assets/js/isotope.pkgd.min.js', '/front_assets/js/imagesloaded.pkgd.min.js'
@@ -406,6 +438,25 @@ export default {
         this.getCartData();
     },
     methods: {
+
+        async addToCart(product_id,product_attr_id,qty){
+            try{
+            let data = await axios.post(getUrlList().addToCart,{
+                'token':this.user_info.user_id,
+                'auth':this.user_info.auth,
+                'product_id':product_id,
+                'product_attr_id':product_attr_id,
+                'qty':qty,
+            });
+            if(data.status == 200){
+                this.getCartData
+            }else{
+                console.log("Data Not Found")
+            }
+           } catch(error){
+
+           }
+        },
 
         async getCartData(){
             try{
