@@ -59,7 +59,7 @@
                                                         <li v-for="subitem in item.subcategories" :key="subitem.id">
                                                             <router-link :to="'/category/' + subitem.slug">{{
                                                                 subitem.name
-                                                            }}</router-link>
+                                                                }}</router-link>
                                                         </li>
 
                                                     </ul>
@@ -99,7 +99,7 @@
                                                             <span class="new">Rs {{
                                                                 item.products[0].product_attributes[0].price }}</span>
                                                             <span><del>Rs {{ item.products[0].product_attributes[0].mrp
-                                                                    }}</del></span>
+                                                            }}</del></span>
                                                         </div>
                                                     </div>
                                                     <div class="del-icon">
@@ -289,7 +289,7 @@
     </header>
     <!-- header-area-end -->
     <main>
-        <slot name="content" :addToCart="addToCart" >
+        <slot name="content" :addToCart="addToCart">
 
         </slot>
     </main>
@@ -380,10 +380,11 @@ export default {
             this.cartTotal = 0;
 
             for (var item in val) {
-                this.cartTotal += val[item].qty * val[item].products[0].product_attributes[0].price;
+                // this.cartTotal += val[item].qty * val[item].products[0].product_attributes[0].price;
+                // this.cartTotal += val[item].qty * val[item].products[1];
             }
             this.oldCart = this.cartTotal;
-            this.getUserCoupon();
+            // this.getUserCoupon();
         }
     },
     mounted() {
@@ -416,7 +417,7 @@ export default {
             console.error("User info not found in localStorage!");
         }
 
-        // Ensure token exists before calling API
+
         if (!this.user_info.token) {
             console.warn("Token not found, fetching new user data...");
             this.getUserData();
@@ -425,29 +426,31 @@ export default {
     },
     methods: {
 
+        async addToCart() {
+            let requestData = {
+                product_id: 56,
+                product_attr_id: 1,
+                qty: 1
+            };
 
-        
-        async addToCart(product_id,product_attr_id,qty)
-        {
-            try{
-                let data = await axios.post(getUrlList().addToCart,
-                {
-                    'token':this.user_info.user_id,
-                    'auth':this.user_info.auth,
-                    'product_id':product_id,
-                    'product_attr_id':product_attr_id,
-                    'qty':qty,
+            console.log("Sending Data:", requestData);
+
+            try {
+                let response = await axios.post(getUrlList().addToCart, requestData, {
+                    headers: { "Content-Type": "application/json" }
                 });
-                if(data.status == 200){
-                    
-                }else{
-                    console.log('Data Not Found');
-                }
-            }catch(error){
-                
+
+                console.log(" API Response:", response.data);
+            } catch (error) {
+                console.error(" API Error:", error.response ? error.response.data : error);
             }
-            
-        },
+        }
+
+
+
+
+
+        ,
 
         async getCartData() {
             try {
