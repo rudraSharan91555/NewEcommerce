@@ -404,131 +404,82 @@ export default {
         }
         this.getCategories();
         this.getUser();
-        this.getCartData();
-        this.addToCart();
-        this.user_info = JSON.parse(localStorage.getItem("user_info")) || {};
-        console.log("Mounted User Info:", this.user_info);
-        let storedUser = localStorage.getItem("user_info");
-
-        if (storedUser) {
-            this.user_info = JSON.parse(storedUser);
-            console.log("Loaded user info from localStorage:", this.user_info);
-        } else {
-            console.error("User info not found in localStorage!");
-        }
-
-
-        if (!this.user_info.token) {
-            console.warn("Token not found, fetching new user data...");
-            this.getUserData();
-        }
-
     },
     methods: {
 
-        async addToCart() {
-            let requestData = {
-                product_id: 56,
-                product_attr_id: 1,
-                qty: 1
-            };
-
-            console.log("Sending Data:", requestData);
-
-            try {
-                let response = await axios.post(getUrlList().addToCart, requestData, {
-                    headers: { "Content-Type": "application/json" }
-                });
-
-                console.log(" API Response:", response.data);
-            } catch (error) {
-                console.error(" API Error:", error.response ? error.response.data : error);
-            }
-        }
-        ,
-
-        async getCartData() {
-            try {
-                console.log("User Info:", this.user_info);
-
-                if (!this.user_info.token) {
-                    console.error(" Token is missing!");
-                    return;
-                }
-
-                let response = await axios.post("http://127.0.0.1:8000/api/getCartData", {
-                    token: this.user_info.token
-                });
-
-                console.log(" API Response:", response.data);
-
-                if (response.data.status === "Success") {
-                    this.cartCount = response.data.data.length;
-                    this.cartProduct = response.data.data;
-                } else {
-                    console.warn(" Cart is empty or data not found.");
-                }
-            } catch (error) {
-                console.error(" API Error:", error.response?.data || error);
+        async getUser(){
+            if (localStorage.getItem('user_info')){
+                var user = localStorage.getItem('user_info');
+                var testUser =  JSON.parse(user);
+                this.user_info.user_id = testUser.user_id;
+                this.getUserData();
+            }else{
+                this.getUserData();
             }
         },
-
-
-        async getUser() {
-            let storedUser = localStorage.getItem('user_info');
-
-            if (storedUser) {
-                let parsedUser = JSON.parse(storedUser);
-                if (parsedUser && parsedUser.user_id) {
-                    this.user_info.user_id = parsedUser.user_id;
-                } else {
-                    this.user_info.user_id = null;
-                }
-            } else {
-                this.user_info.user_id = null;
-            }
-
-            console.log("Retrieved token from localStorage:", this.user_info.user_id); // Debugging
-
-            await this.getUserData();
-        },
-
 
 
         async getUserData() {
-            try {
-                let token = this.user_info.token || null;
-
-                if (!token) {
-                    console.warn("No token found, generating new user.");
+           try{
+            let data = await axios.post(getUrlList().getUserData,{
+                'token':this.user_info.user_id,
+            });
+            if(data.status == 200){
+                if(data.data.data.data.user_type == 1){
+                    // Auth User
+                    this.user_info.auth=true;
+                    this.user_info.user_id=data.data.data.data.token;
+                    localStorage.setItem('user_info',JSON.stringify(this.user_info));
+                }else{
+                    // Not Auth User
+                    this.user_info.auth=false;
+                    this.user_info.user_id=data.data.data.data.token;
+                    localStorage.setItem('user_info',JSON.stringify(this.user_info));
                 }
-
-                console.log("Sending token:", token);
-
-                let response = await axios.post(getUrlList().getUserData,
-                    { token: token },
-                    { headers: { 'Content-Type': 'application/json' } }
-                );
-
-                if (response.status === 200 && response.data.data) {
-                    let userData = response.data.data;
-                    this.user_info.token = userData.token;
-                    this.user_info.auth = userData.user_type === 1;
-
-
-                    localStorage.setItem('user_info', JSON.stringify(this.user_info));
-
-                    console.log("New token saved:", this.user_info.token);
-                } else {
-                    console.error('Invalid response:', response);
-                }
-            } catch (error) {
-                console.error("Error fetching user data:", error.response ? error.response.data : error.message);
+            }else{
+                console.log("Data Not Found")
             }
-        }
+           } catch(error){
+
+           }
+        },
 
 
-        ,
+
+        // async getUserData() {
+        //     try {
+        //         let token = this.user_info.token || null;
+
+        //         if (!token) {
+        //             console.warn("No token found, generating new user.");
+        //         }
+
+        //         console.log("Sending token:", token);
+
+        //         let response = await axios.post(getUrlList().getUserData,
+        //             { token: token },
+        //             { headers: { 'Content-Type': 'application/json' } }
+        //         );
+
+        //         if (response.status === 200 && response.data.data) {
+        //             let userData = response.data.data;
+        //             this.user_info.token = userData.token;
+        //             this.user_info.auth = userData.user_type === 1;
+
+
+        //             localStorage.setItem('user_info', JSON.stringify(this.user_info));
+
+        //             console.log("New token saved:", this.user_info.token);
+        //         } else {
+        //             console.error('Invalid response:', response);
+        //         }
+        //     } catch (error) {
+        //         console.error("Error fetching user data:", error.response ? error.response.data : error.message);
+        //     }
+        // }
+
+
+        
         async getCategories() {
             try {
                 let data = await axios.get(getUrlList().getHeaderCategoriesData);

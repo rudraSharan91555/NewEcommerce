@@ -83,7 +83,7 @@ class HomePageController extends Controller
     return $this->success(['data' => get_defined_vars()], 'Successfully data fetched');
   }
 
-  function getFilterProducts($category_id, $size, $color, $brand, $attribute, $lowPrice, $highPrice)
+  public function getFilterProducts($category_id, $size, $color, $brand, $attribute, $lowPrice, $highPrice)
   {
     $products = Product::where('category_id', $category_id);
 
@@ -120,54 +120,46 @@ class HomePageController extends Controller
   }
 
 
-
-
-
   public function getUserData(Request $request)
   {
-      $token = $request->token;
-  
-      if (!$token) {
-          $newToken = generateRandomString();
-          $user_id = rand(11111, 99999);
-          $time = now();
-  
-          TempUsers::create([
-              'user_id' => $user_id,
-              'token' => $newToken,
-              'created_at' => $time,
-              'updated_at' => $time
-          ]);
-  
-          return response()->json([
-              'status' => 'Success',
-              'message' => 'New user created',
-              'data' => ['user_type' => 2, 'token' => $newToken]
-          ], 200);
+    // prx($request->all());
+
+    $token = $request->token;
+    $checkUser = TempUsers::where('token', $token)->first();
+
+    if (isset($checkUser->id)) {
+      // token exist in DB
+      $data['user_type'] = $checkUser->user_type;
+      $data['token'] = $checkUser->token;
+
+      if (checkTokenExpiryInMinutes($checkUser->updated_at, 60)) {
+        // token has expire
+        $token = generateRandomString();
+        $checkUser->token = $token;
+        $checkUser->updated_at = date('Y-m-d h:i:s a', time());
+        $checkUser->save();
+
+        $data['token'] = $token;
+      } else {
+        // token not expire
       }
-  
-      $checkUser = TempUsers::where('token', $token)->first();
-  
-      if ($checkUser) {
-          if (checkTokenExpiryInMinutes($checkUser->updated_at, 60)) {
-              $newToken = generateRandomString();
-              $checkUser->token = $newToken;
-              $checkUser->updated_at = now();
-              $checkUser->save();
-              $token = $newToken;
-          }
-  
-          return response()->json([
-              'status' => 'Success',
-              'message' => 'User data fetched',
-              'data' => ['user_type' => $checkUser->user_type, 'token' => $token]
-          ], 200);
-      }
-  
-      return response()->json(['status' => 'Error', 'message' => 'Invalid token'], 400);
+    } else {
+      // token not exist in DB
+
+      $user_id = rand(11111, 99999);
+      $token = generateRandomString();
+      $time = date('Y-m-d h:i:s a', time());
+      TempUsers::create([
+        'user_id' => $user_id, 'token' => $token, 'created_at' => $time,
+        'updated_at' => $time
+      ]);
+
+      $data['user_type'] = 2;
+      $data['token'] = $token;
+    }
+    return $this->success(['data' => $data], 'Successfully data fetched');
   }
- 
-    
+
   public function getCartData(Request $request)
   {
       Log::info('Received Token:', ['token' => $request->token]);
@@ -201,7 +193,7 @@ class HomePageController extends Controller
   
   public function addToCart(Request $request)
   {
-      Log::info('📡 Received Data:', $request->all()); 
+      Log::info(' Received Data:', $request->all()); 
   
       $validated = $request->validate([
           'product_id' => 'required|exists:products,id',
