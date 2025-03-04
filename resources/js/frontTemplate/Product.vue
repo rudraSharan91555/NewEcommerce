@@ -107,12 +107,13 @@
                                     <div class="perched-info">
                                         <div class="cart-plus-minus">
                                             <form action="#" class="num-block">
-                                                <input type="text" class="in-num" value="1" readonly="">
-                                                <div class="qtybutton-box">
-                                                    <span class="plus"><img src="img/icon/plus.png" alt=""></span>
-                                                    <span class="minus dis"><img src="img/icon/minus.png" alt=""></span>
-                                                </div>
-                                            </form>
+                                                    <input type="text" class="" value="{{ qty }}" v-model="qty" readonly="">
+                                                    <div class="qtybutton-box">
+                                                        <span class="plus" v-on:click="qty+=1"><img src="/front_assets/img/icon/plus.png" alt=""></span>
+                                                        <span class="minus dis" v-on:click="qty-=1"><img src="/front_assets/img/icon/minus.png"
+                                                                alt=""></span>
+                                                    </div>
+                                                </form>
                                         </div>
                                         <a href="#" class="btn">add to cart</a>
                                         <div class="wishlist-compare">
