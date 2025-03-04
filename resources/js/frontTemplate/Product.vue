@@ -87,8 +87,8 @@
                             </div>
                             <div class="col-lg-5">
                                 <div class="shop-details-content">
-                                    <a href="#" class="product-cat">Tracker Jacket</a>
-                                    <h3 class="title">Woman Tracker Jacket</h3>
+                                    <!-- <a href="#" class="product-cat">Tracker Jacket</a> -->
+                                    <h3 class="title">{{product.name}}</h3>
                                     <div class="rating">
                                         <i class="fas fa-star"></i>
                                         <i class="fas fa-star"></i>
@@ -96,8 +96,8 @@
                                         <i class="fas fa-star"></i>
                                         <i class="fas fa-star"></i>
                                     </div>
-                                    <p class="style-name">Style Name : TN-WI56-OMTJ-CqTKJ-09#</p>
-                                    <div class="price">Price : $ 29.00</div>
+                                    <p class="style-name">Style Name : {{product.item_code}}</p>
+                                    <div class="price">Price : Rs {{ product.product_attributes[0].price }}</div>
                                     <div class="product-details-info">
                                         <span>Size <a href="#">Guide</a></span>
                                         <div class="sidebar-product-size mb-30">
@@ -392,7 +392,25 @@ export default {
     data() {
         return {
             slug: '',
-            item_code:''
+            item_code:'',
+            product:{
+                product_attributes:[
+                    price=>''
+                ]
+            },
+            images:[],
+            colors:[],
+            sizes:[],
+            uniqueSizes:[],
+            uniqueColors:[],
+            size:'',
+            color:{id:'',text:'',product_attr_id:''},
+            sizeColor:'sizeColor',
+            colorColor:'colorColor',
+            qty:1,
+            otherProducts:[]
+
+        
         }
     },watch: {
         '$route'() {
@@ -414,11 +432,17 @@ export default {
                     this.$router.push({ name: 'Index' });
                 } else {
                     let data = await axios.get(getUrlList().getProductData +'/'+this.item_code + '/' + this.slug);
-                    console.log(data.data.data.data.products.data);
+                    console.log(data.data.data.data);
                     // console.log(data.data.data.data.categories);
-                    if (data.status == 200 && data.data.data.data.products.data.length > 0) {
-                        this.categories = data.data.data.data.categories;
-                        // console.log(this.headerCategories);
+                    if (data.status == 200 && data.data.data.data  != undefined > 0) {
+                        this.product = data.data.data.data;
+
+                        for(var item in this.product.product_attributes){
+                            for(var subItem in this.product.product_attributes[item].images){
+                                this.images.push(this.product.product_attributes[item].images[subItem])
+                            }
+                        }
+
                         this.catCount = 0;
                     } else {
                         console.log('Data not found');
@@ -427,9 +451,9 @@ export default {
                 }
 
             } catch (error) {
-                console.log('Error');
+                console.log('Error'); 
             }
-            console.log(this.homeBrands);
+            // console.log(this.homeBrands);
         }
     }
 }
