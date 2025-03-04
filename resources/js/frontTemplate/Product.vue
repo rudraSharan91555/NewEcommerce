@@ -42,22 +42,25 @@
                                 <div class="shop-details-flex-wrap">
                                     <div class="shop-details-nav-wrap">
                                         <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                            <li v-for="(item,index) in images" :key="item.id" class="nav-item" role="presentation">
-                                                <a :class="'nav-link '+showActiveClass(1,index)" :id="'item-'+item.id+'-tab'" data-toggle="tab"
-                                                        :href="'#item-'+item.id" role="tab" aria-controls="item-one"
-                                                        aria-selected="true"><img :src="item.image"
-                                                            alt=""></a>
+                                            <li v-for="(item, index) in images" :key="item.id" class="nav-item"
+                                                role="presentation">
+                                                <a :class="'nav-link ' + showActiveClass(1, index)"
+                                                    :id="'item-' + item.id + '-tab'" data-toggle="tab"
+                                                    :href="'#item-' + item.id" role="tab" aria-controls="item-one"
+                                                    aria-selected="true"><img :src="item.image" alt=""></a>
                                             </li>
                                         </ul>
                                     </div>
                                     <div class="shop-details-img-wrap">
                                         <div class="tab-content" id="myTabContent">
-                                            <div v-for="(item,index) in images" :key="item.id" :class="'tab-pane fade'+ showActiveClass(2,index)" :id="'item-'+item.id" role="tabpanel"
-                                                    :aria-labelledby="'item-'+item.id+'-tab'">
-                                                    <div class="shop-details-img">
-                                                        <img :src="item.image" alt="">
-                                                    </div>
+                                            <div v-for="(item, index) in images" :key="item.id"
+                                                :class="'tab-pane fade' + showActiveClass(2, index)"
+                                                :id="'item-' + item.id" role="tabpanel"
+                                                :aria-labelledby="'item-' + item.id + '-tab'">
+                                                <div class="shop-details-img">
+                                                    <img :src="item.image" alt="">
                                                 </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -65,7 +68,7 @@
                             <div class="col-lg-5">
                                 <div class="shop-details-content">
                                     <!-- <a href="#" class="product-cat">Tracker Jacket</a> -->
-                                    <h3 class="title">{{product.name}}</h3>
+                                    <h3 class="title">{{ product.name }}</h3>
                                     <div class="rating">
                                         <i class="fas fa-star"></i>
                                         <i class="fas fa-star"></i>
@@ -73,7 +76,7 @@
                                         <i class="fas fa-star"></i>
                                         <i class="fas fa-star"></i>
                                     </div>
-                                    <p class="style-name">Style Name : {{product.item_code}}</p>
+                                    <p class="style-name">Style Name : {{ product.item_code }}</p>
                                     <div class="price">Price : Rs {{ product.product_attributes[0].price }}</div>
                                     <div class="product-details-info">
                                         <span>Size <a href="#">Guide</a></span>
@@ -81,11 +84,11 @@
                                             <h4 class="widget-title">Product Size</h4>
                                             <div class="shop-size-list">
                                                 <ul>
-                                                    <li><a href="#">S</a></li>
-                                                    <li><a href="#">M</a></li>
-                                                    <li><a href="#">L</a></li>
-                                                    <li><a href="#">XL</a></li>
-                                                    <li><a href="#">XXL</a></li>
+                                                    <li v-for="item in uniqueSizes"><a href="javascript:void(0)"
+                                                            v-on:click="showColor(item),
+                                                                this.size = item"
+                                                            :class="this.size == item ? sizeColor : ''">{{ item }}</a>
+                                                    </li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -93,10 +96,10 @@
                                             <h4 class="widget-title">Color</h4>
                                             <div class="shop-color-list">
                                                 <ul>
-                                                    <li></li>
-                                                    <li></li>
-                                                    <li></li>
-                                                    <li></li>
+                                                    <li v-for="item in uniqueColors"
+                                                        v-on:click="this.color.id = item.id, this.color.text = item.text, this.color.product_attr_id = item.product_attr_id"
+                                                        :style="{ backgroundColor: item.value }"
+                                                        :class="this.color.id == item.id ? colorColor : ''"></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -153,62 +156,8 @@
                                             <div class="product-desc-title mb-30">
                                                 <h4 class="title">Additional information :</h4>
                                             </div>
-                                            <p>{{ product.description }}</p>
-                                            <div class="color-size-info">
-                                                <ul>
-                                                    <li><span>COLOR :</span> Black, Gray</li>
-                                                    <li><span>SIZE :</span> XS, S, M, L</li>
-                                                </ul>
-                                            </div>
-                                            <div class="additional-table">
-                                                <div class="table-responsive">
-                                                    <table class="table table-bordered">
-                                                        <tbody>
-                                                            <tr>
-                                                                <th scope="row">Size Name</th>
-                                                                <td>28</td>
-                                                                <td>49</td>
-                                                                <td>36</td>
-                                                                <td>55</td>
-                                                                <td>44</td>
-                                                                <td>34</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">Waist Stretch</th>
-                                                                <td>19</td>
-                                                                <td>38</td>
-                                                                <td>31</td>
-                                                                <td>55</td>
-                                                                <td>44</td>
-                                                                <td>34</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">Hip (7½” below from waist)</th>
-                                                                <td>11</td>
-                                                                <td>18</td>
-                                                                <td>21</td>
-                                                                <td>55</td>
-                                                                <td>44</td>
-                                                                <td>34</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">length (Out seam)</th>
-                                                                <td>28</td>
-                                                                <td>31</td>
-                                                                <td>19</td>
-                                                                <td>55</td>
-                                                                <td>44</td>
-                                                                <td>34</td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                            <p>The purpose of lorem ipsum is to create a natural looking block of text
-                                                (sentence, paragraph, page, etc.) that doesn't
-                                                distract from the layout. A practice not without controversy, laying out
-                                                pages with meaningless filler text can be very
-                                                useful when the focus is meant to be on design, not content.</p>
+                                            <!-- <p>{{ processHTML(product.description) }}</p> -->
+                                            <span v-html="product.description"></span>
                                         </div>
                                         <div class="tab-pane fade" id="reviews" role="tabpanel"
                                             aria-labelledby="reviews-tab">
@@ -357,41 +306,53 @@ export default {
     data() {
         return {
             slug: '',
-            item_code:'',
-            product:{
-                product_attributes:[
-                    price=>''
+            item_code: '',
+            product: {
+                product_attributes: [
+                    price => ''
                 ]
             },
-            images:[],
-            colors:[],
-            sizes:[],
-            uniqueSizes:[],
-            uniqueColors:[],
-            size:'',
-            color:{id:'',text:'',product_attr_id:''},
-            sizeColor:'sizeColor',
-            colorColor:'colorColor',
-            qty:1,
-            otherProducts:[]
+            images: [],
+            colors: [],
+            sizes: [],
+            uniqueSizes: [],
+            uniqueColors: [],
+            size: '',
+            color: { id: '', text: '', product_attr_id: '' },
+            sizeColor: 'sizeColor',
+            colorColor: 'colorColor',
+            qty: 1,
+            otherProducts: []
 
-        
+
         }
-    },watch: {
+    }, watch: {
         '$route'() {
             this.getProducts();
         },
-        
-    },mounted() {
+
+    }, mounted() {
         console.log('Index file call');
         this.getProduct();
     },
-    methods:{
-        showActiveClass(type,index)
-        {
-            if(type == 1 && index == 0){
+    methods: {
+        showColor(size) {
+            this.uniqueColors = [];
+            this.color.id = '';
+            this.color.text = '';
+            this.color.product_attr_id = '';
+
+            for (var item in this.colors) {
+                if (this.colors[item].size == size) {
+                    this.uniqueColors.push(this.colors[item]);
+                    this.size = size;
+                }
+            }
+        },
+        showActiveClass(type, index) {
+            if (type == 1 && index == 0) {
                 return 'active';
-            }else if(type==2 && index == 0){
+            } else if (type == 2 && index == 0) {
                 return 'show active';
             }
         },
@@ -404,19 +365,35 @@ export default {
                 if (this.slug == '' || this.item_code == '' || this.slug == undefined || this.slug == null) {
                     this.$router.push({ name: 'Index' });
                 } else {
-                    let data = await axios.get(getUrlList().getProductData +'/'+this.item_code + '/' + this.slug);
+                    let data = await axios.get(getUrlList().getProductData + '/' + this.item_code + '/' + this.slug);
                     console.log(data.data.data.data);
                     // console.log(data.data.data.data.categories);
-                    if (data.status == 200 && data.data.data.data  != undefined > 0) {
+                    if (data.status == 200 && data.data.data.data != undefined > 0) {
                         this.product = data.data.data.data;
 
-                        for(var item in this.product.product_attributes){
-                            for(var subItem in this.product.product_attributes[item].images){
+                        for (var item in this.product.product_attributes) {
+                            for (var subItem in this.product.product_attributes[item].images) {
                                 this.images.push(this.product.product_attributes[item].images[subItem])
                             }
-                        }
+                            this.colors.push({
+                                id: this.product.product_attributes[item].colors.id,
+                                value: this.product.product_attributes[item].colors.value,
+                                product_attr_id: this.product.product_attributes[item].id,
+                                size: this.product.product_attributes[item].sizes.text,
+                            });
 
-                        this.catCount = 0;
+                            this.sizes.push({
+                                id: this.product.product_attributes[item].sizes.id,
+                                text: this.product.product_attributes[item].sizes.text,
+                                product_attr_id: this.product.product_attributes[item].id,
+                            });
+                        }
+                        this.uniqueSizes = [...new Set(this.sizes.map(item => item.text))];
+                        this.uniqueColors = this.colors;
+                        console.log(this.uniqueSizes);
+                        // console.log(this.colors);
+                        // console.log(this.sizes);
+
                     } else {
                         console.log('Data not found');
                         // console.log(data);
@@ -424,7 +401,7 @@ export default {
                 }
 
             } catch (error) {
-                console.log('Error'); 
+                console.log('Error');
             }
             // console.log(this.homeBrands);
         }
