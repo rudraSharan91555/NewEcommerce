@@ -33,6 +33,7 @@ Route::get('/getHeaderCategoriesData', [HomePageController::class, 'getCategorie
 Route::get('/getHomeData', [HomePageController::class, 'getHomeData']);
 // Route::post('/getCategoryData/{slug?}', [HomePageController::class, 'getCategoryData']);
 Route::post('/getCategoryData', [HomePageController::class, 'getCategoryData']);
+Route::get('/getProductData/{item_code?}/{slug?}', [HomePageController::class, 'getProductData']);
 Route::post('/getUserData', [HomePageController::class, 'getUserData']);
 Route::post('/getCartData', [HomePageController::class, 'getCartData']);
 Route::post('/addToCart', [HomePageController::class, 'addToCart']);

@@ -108,7 +108,7 @@ class productController extends Controller
                 return $this->error($validation->errors()->first(), 400, []);
                 // return response()->json(['status'=>400,'message'=>$validation->errors()->first()]);
             } else {
-                // $slug = replceStr($request->slug);
+                $slug = replceStr($request->slug);
                 if ($request->hasfile('image')) {
                     if ($request->id > 0) {
                         $image = Product::where('id', $request->id)->first();
@@ -123,6 +123,7 @@ class productController extends Controller
                 } elseif ($request->id > 0) {
                     $image_name = Product::where('id', $request->post('id'))->pluck('image')->first();
                 }
+                
                 $productId =   Product::updateOrCreate(
                     ['id' => $request->id],
                     [
