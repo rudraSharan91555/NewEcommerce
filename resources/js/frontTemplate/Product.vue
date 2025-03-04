@@ -42,45 +42,22 @@
                                 <div class="shop-details-flex-wrap">
                                     <div class="shop-details-nav-wrap">
                                         <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                            <li class="nav-item" role="presentation">
-                                                <a class="nav-link active" id="item-one-tab" data-toggle="tab"
-                                                    href="#item-one" role="tab" aria-controls="item-one"
-                                                    aria-selected="true"><img src="img/product/sd_nav_img01.jpg"
-                                                        alt=""></a>
-                                            </li>
-                                            <li class="nav-item" role="presentation">
-                                                <a class="nav-link" id="item-two-tab" data-toggle="tab" href="#item-two"
-                                                    role="tab" aria-controls="item-two" aria-selected="false"><img
-                                                        src="img/product/sd_nav_img02.jpg" alt=""></a>
-                                            </li>
-                                            <li class="nav-item" role="presentation">
-                                                <a class="nav-link" id="item-three-tab" data-toggle="tab"
-                                                    href="#item-three" role="tab" aria-controls="item-three"
-                                                    aria-selected="false"><img src="img/product/sd_nav_img03.jpg"
-                                                        alt=""></a>
+                                            <li v-for="(item,index) in images" :key="item.id" class="nav-item" role="presentation">
+                                                <a :class="'nav-link '+showActiveClass(1,index)" :id="'item-'+item.id+'-tab'" data-toggle="tab"
+                                                        :href="'#item-'+item.id" role="tab" aria-controls="item-one"
+                                                        aria-selected="true"><img :src="item.image"
+                                                            alt=""></a>
                                             </li>
                                         </ul>
                                     </div>
                                     <div class="shop-details-img-wrap">
                                         <div class="tab-content" id="myTabContent">
-                                            <div class="tab-pane fade show active" id="item-one" role="tabpanel"
-                                                aria-labelledby="item-one-tab">
-                                                <div class="shop-details-img">
-                                                    <img src="img/product/shop_details_img01.jpg" alt="">
+                                            <div v-for="(item,index) in images" :key="item.id" :class="'tab-pane fade'+ showActiveClass(2,index)" :id="'item-'+item.id" role="tabpanel"
+                                                    :aria-labelledby="'item-'+item.id+'-tab'">
+                                                    <div class="shop-details-img">
+                                                        <img :src="item.image" alt="">
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="tab-pane fade" id="item-two" role="tabpanel"
-                                                aria-labelledby="item-two-tab">
-                                                <div class="shop-details-img">
-                                                    <img src="img/product/shop_details_img02.jpg" alt="">
-                                                </div>
-                                            </div>
-                                            <div class="tab-pane fade" id="item-three" role="tabpanel"
-                                                aria-labelledby="item-three-tab">
-                                                <div class="shop-details-img">
-                                                    <img src="img/product/shop_details_img03.jpg" alt="">
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -176,19 +153,7 @@
                                             <div class="product-desc-title mb-30">
                                                 <h4 class="title">Additional information :</h4>
                                             </div>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                                tempor incididunt ut labore et dolore magna
-                                                aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                                                laboris nisi ut aliquip ex ea commodo consequat. Duis
-                                                aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
-                                                eu fugiat nulla pariatur. Excepteur sint
-                                                occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-                                                mollit anim id est laborum.</p>
-                                            <p>The purpose of lorem ipsum is to create a natural looking block of text
-                                                (sentence, paragraph, page, etc.) that doesn't
-                                                distract from the layout. A practice not without controversy, laying out
-                                                pages with meaningless filler text can be very
-                                                useful when the focus is meant to be on design, not content.</p>
+                                            <p>{{ product.description }}</p>
                                             <div class="color-size-info">
                                                 <ul>
                                                     <li><span>COLOR :</span> Black, Gray</li>
@@ -422,6 +387,14 @@ export default {
         this.getProduct();
     },
     methods:{
+        showActiveClass(type,index)
+        {
+            if(type == 1 && index == 0){
+                return 'active';
+            }else if(type==2 && index == 0){
+                return 'show active';
+            }
+        },
         async getProduct() {
             try {
                 const route = useRoute();
