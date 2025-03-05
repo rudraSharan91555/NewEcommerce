@@ -118,7 +118,8 @@
                                                 <li>
                                                     <div class="checkout-link">
                                                         <router-link :to="'/ShoppingCart'">Shopping Cart</router-link>
-                                                        <a class="black-color" href="#">Checkout</a>
+                                                        <!-- <a class="black-color" h ref="#">Checkout</a> -->
+                                                        <router-link :to="'/checkout'" class="black-color">CHECKOUT</router-link>
                                                     </div>
                                                 </li>
                                             </ul>
