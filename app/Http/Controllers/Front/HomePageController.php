@@ -13,10 +13,13 @@ use App\Models\HomeBanner;
 use App\Models\Pincode;
 use App\Models\Product;
 use App\Models\ProductAttr;
+use App\Models\Role;
 use App\Models\Size;
 use App\Models\TempUsers;
+use App\Models\User;
 use App\Traits\ApiResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Log;
 
@@ -190,11 +193,20 @@ class HomePageController extends Controller
       return $this->error($validation->errors()->first(), 400, []);
     } else {
       $user = TempUsers::where('token', $request->token)->first();
-      Cart::updateOrCreate(['user_id'=>$user->user_id,'product_id'=>$request->product_id,
-      'product_attr_id'=>$request->product_attr_id],
-      ['user_id'=>$user->user_id,'product_id'=>$request->product_id,
-      'product_attr_id'=>$request->product_attr_id,'qty'=>$request->qty,'user_type'=>$user->user_type],
-    );
+      Cart::updateOrCreate(
+        [
+          'user_id' => $user->user_id,
+          'product_id' => $request->product_id,
+          'product_attr_id' => $request->product_attr_id
+        ],
+        [
+          'user_id' => $user->user_id,
+          'product_id' => $request->product_id,
+          'product_attr_id' => $request->product_attr_id,
+          'qty' => $request->qty,
+          'user_type' => $user->user_type
+        ],
+      );
       return $this->success(['data' => ''], "Successfully data Fetched");
     }
   }
@@ -211,17 +223,20 @@ class HomePageController extends Controller
       return $this->error($validation->errors()->first(), 400, []);
     } else {
       $user = TempUsers::where('token', $request->token)->first();
-      $cart = Cart::where(['user_id'=>$user->user_id,'product_id'=>$request->product_id,
-      'product_attr_id'=>$request->product_attr_id])->first();
-      
-      if(isset($cart->id)){
+      $cart = Cart::where([
+        'user_id' => $user->user_id,
+        'product_id' => $request->product_id,
+        'product_attr_id' => $request->product_attr_id
+      ])->first();
+
+      if (isset($cart->id)) {
         $qty = $request->qty;
-        if($cart->qty == $qty){
+        if ($cart->qty == $qty) {
           $cart->delete();
-        }elseif($cart->qty > $qty){
-          $cart->qty -=$qty;
+        } elseif ($cart->qty > $qty) {
+          $cart->qty -= $qty;
           $cart->save();
-        }else{
+        } else {
           $cart->delete();
         }
       }
@@ -229,31 +244,63 @@ class HomePageController extends Controller
     }
   }
 
-  public function getProductData($item_code='',$slug='')
+  public function getProductData($item_code = '', $slug = '')
   {
-    $product = Product::where(['item_code'=>$item_code,'slug'=>$slug])->first();
-    if(isset($product->id)){
+    $product = Product::where(['item_code' => $item_code, 'slug' => $slug])->first();
+    if (isset($product->id)) {
       $data = Product::where(['item_code' => $item_code, 'slug' => $slug])->with('productAttributes')->first();
-      $data['otherProducts'] = Product::where('category_id',$data->category_id)->with('productAttributes')->get();
+      $data['otherProducts'] = Product::where('category_id', $data->category_id)->with('productAttributes')->get();
       // $data['otherProducts'] = Product::where('category_id',$data->category_id)->where('id','!=',$data->id)->with('productAttributes')->get();
       return $this->success(['data' => $data], "Successfully data Fetched");
-    }else{
+    } else {
       return $this->error('Product Not Found', 400, []);
     }
   }
 
-public function getPincodeDetails(Request $request)
-{
-  $validation = Validator::make($request->all(),[
-    'token' => 'required|exists:temp_users,token',
-    'pincode' => 'required|exists:pincodes,Pincode',
-  ]);
-  if ($validation->fails()) {
-    return $this->error($validation->errors()->first(), 400, []);
-  } else{
-    $data = Pincode::where('Pincode',$request->pincode)->first();
+  public function getPincodeDetails(Request $request)
+  {
+    $validation = Validator::make($request->all(), [
+      'token' => 'required|exists:temp_users,token',
+      'pincode' => 'required|exists:pincodes,Pincode',
+    ]);
+    if ($validation->fails()) {
+      return $this->error($validation->errors()->first(), 400, []);
+    } else {
+      $data = Pincode::where('Pincode', $request->pincode)->first();
       return $this->success(['data' => $data], 'Successfully data fetched');
+    }
   }
-}
 
+  public function  placeOrder(Request $request)
+  {
+    $validation = Validator::make($request->all(), [
+      'token'         => 'required|exists:temp_users,token',
+      'pincode'       => 'required|exists:pincodes,Pincode',
+      'firstName'     => 'required|string|max:255',
+      'lastName'     => 'required|string|max:255',
+      'email'     => 'required|email|max:255',
+      'country'     => 'required|string|max:255',
+      'city'     => 'required|string|max:255',
+      'state'     => 'required|string|max:255',
+      'phone'     => 'required|numeric',
+    ]);
+    if ($validation->fails()) {
+      return $this->error($validation->errors()->first(), 400, []);
+    } else {
+      $user_id = $this->createUser($request->all());
+      return $this->success(['data' => $data], 'Successfully data fetched');
+    }
+  }
+
+  public function createUser($data)
+  {
+    $user = User::create([
+      'name'=>$data['firstName'].' '.$data['lastName'],
+      'password'=>Hash::make(''.$data['firstName'].'@123'),
+      'email'=>$data['email']
+    ]);
+    $customer = Role::where('slug', 'customer')->first();
+    $user->roles()->attach($customer);
+    return $user->id;
+  }
 }
