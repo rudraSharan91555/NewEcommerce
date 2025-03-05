@@ -1,6 +1,6 @@
 <template>
     <Layout>
-        <template v-slot:content>
+        <template v-slot:content="slotProps">
             <main>
 
                 <!-- breadcrumb-area -->
@@ -113,16 +113,17 @@
                                                         <span class="minus dis" v-on:click="qty-=1"><img src="/front_assets/img/icon/minus.png"
                                                                 alt=""></span>
                                                     </div>
-                                                </form>
+                                                </form> 
                                         </div>
-                                        <a href="#" class="btn">add to cart</a>
-                                        <div class="wishlist-compare">
-                                            <ul>
-                                                <li><a href="#"><i class="far fa-heart"></i> Add to Wishlist</a></li>
-                                                <li><a href="#"><i class="fas fa-retweet"></i> Add to Compare List</a>
-                                                </li>
-                                            </ul>
-                                        </div>
+                                        <a href="javascript:void(0)"v-on:click="slotProps.addToCart(this.product.id,this.color.product_attr_id,this.qty)" class="btn">add to cart</a>
+                                            <div class="wishlist-compare">
+                                                <ul>
+                                                    <li><a href="javscript:void(0)" ><i class="far fa-heart"></i> Add To Cart</a>
+                                                    </li>
+                                                    <li><a href="#"><i class="fas fa-retweet"></i> Add to Compare
+                                                            List</a></li>
+                                                </ul>
+                                            </div>
                                     </div>
                                     <div class="product-details-share">
                                         <ul>
@@ -331,6 +332,11 @@ export default {
         '$route'() {
             this.getProducts();
         },
+        qty(val){
+            if(val == 0 || val <1){
+                this.qty = 1;
+            }
+        }
 
     }, mounted() {
         console.log('Index file call');

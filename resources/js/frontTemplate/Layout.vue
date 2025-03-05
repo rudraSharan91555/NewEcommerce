@@ -422,7 +422,10 @@ export default {
            }
         },
         async addToCart(product_id,product_attr_id,qty){
-            try{
+            if(product_id == '' || product_attr_id == '' || qty<1){
+                alert('select color or qty')
+            }else{
+                try{
             let data = await axios.post(getUrlList().addToCart,{
                 'token':this.user_info.user_id,
                 'auth':this.user_info.auth,
@@ -438,6 +441,8 @@ export default {
            } catch(error){
 
            }
+            }
+            
         },
 
         async getCartData(){
