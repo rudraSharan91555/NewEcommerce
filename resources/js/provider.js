@@ -9,6 +9,8 @@ export function getUrlList() {
         getCartData  : ''+baseUrl+'/getCartData',
         addToCart  : ''+baseUrl+'/addToCart',
         removeCartData  : ''+baseUrl+'/removeCartData',
+        getPincodeDetails  : ''+baseUrl+'/getPincodeDetails',
+        placeOrder : ''+baseUrl+'/ placeOrder',
     };
 }
 

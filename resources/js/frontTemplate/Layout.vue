@@ -399,7 +399,6 @@ export default {
             script.async = false;
             document.getElementById('scripts').appendChild(script);
         }
-        console.log('layout')
         this.getCategories();
         this.getUser();
         this.getCartData();

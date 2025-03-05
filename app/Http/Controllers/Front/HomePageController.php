@@ -8,7 +8,9 @@ use App\Models\Cart;
 use App\Models\Category;
 use App\Models\CategoryAttribute;
 use App\Models\Color;
+use App\Models\Coupon;
 use App\Models\HomeBanner;
+use App\Models\Pincode;
 use App\Models\Product;
 use App\Models\ProductAttr;
 use App\Models\Size;
@@ -239,5 +241,19 @@ class HomePageController extends Controller
       return $this->error('Product Not Found', 400, []);
     }
   }
+
+public function getPincodeDetails(Request $request)
+{
+  $validation = Validator::make($request->all(),[
+    'token' => 'required|exists:temp_users,token',
+    'pincode' => 'required|exists:pincodes,Pincode',
+  ]);
+  if ($validation->fails()) {
+    return $this->error($validation->errors()->first(), 400, []);
+  } else{
+    $data = Pincode::where('Pincode',$request->pincode)->first();
+      return $this->success(['data' => $data], 'Successfully data fetched');
+  }
+}
 
 }
