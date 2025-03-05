@@ -83,7 +83,7 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                    <div class="shop-cart-bottom mt-20">
+                                    <!-- <div class="shop-cart-bottom mt-20">
                                         <div class="cart-coupon">
                                             <form action="#">
                                                 <input type="text" placeholder="Enter Coupon Code..." ref="couponName"
@@ -98,7 +98,7 @@
                                                 @click="slotProps.getCartData(), slotProps.removeCoupon(), this.$refs.couponName.value = ''"
                                                 class="btn">Remove Coupon</a>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <div class="cart-total pt-95">
                                     <h3 class="title">CART TOTALS</h3>
