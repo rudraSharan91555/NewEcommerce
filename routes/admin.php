@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\attributeController;
 use App\Http\Controllers\Admin\brandController;
 use App\Http\Controllers\Admin\categoryController;
 use App\Http\Controllers\Admin\colorController;
+use App\Http\Controllers\Admin\couponController;
 use App\Http\Controllers\Admin\dashboardController;
 use App\Http\Controllers\Admin\homeBannerController;
 use App\Http\Controllers\Admin\productController;
@@ -63,6 +64,11 @@ Route::post('/updateProduct',[productController::class,'store']);
 Route::post('/getAttributes',[productController::class,'getAttributes']);
 Route::post('/createNewAttr',[productController::class,'createNewAttr']);
 Route::post('/removeAttrId',[productController::class,'removeAttrId']);
+
+
+// Coupon
+Route::get('/manage_coupon',[couponController::class,'index']);
+Route::post('/updatecoupon',[couponController::class,'store']);
 
 // Delete Data
 Route::get('/deleteData/{id?}/{table?}',[dashboardController::class,'deleteData']);

@@ -289,7 +289,8 @@
     </header>
     <!-- header-area-end -->
     <main>
-        <slot name="content" :addToCart="addToCart">
+        <slot name="content" :addToCart="addToCart" :cartCount="cartCount" 
+        :cartProduct="cartProduct" :cartTotal="cartTotal" :removeCartData="removeCartData">
 
         </slot>
     </main>

@@ -33,6 +33,7 @@
         <div class="col">
             <button data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="saveData('0','','','')" type="button" class="btn btn-outline-info px-5 radius-30">Add New Coupon</button>
         </div>
+        <hr />
         <div class="card">
             <div class="card-body">
                 <div class="table-responsive">

@@ -29,7 +29,7 @@
                                     <li><a href="shop-details.html"><i class="far fa-eye"></i></a></li>
                                     <li><a href="javascript:void(0)" @click="addToCart(item.id,item.product_attributes[0].id,1)"><i class="fa fa-shopping-cart"></i></a></li>
                                 </ul>
-                            </div>
+                            </div> 
                         </div>
                         <div class="content">
                             <h5><router-link :to="'/product/' + item.item_code + '/'+item.slug">{{ item.name }}</router-link></h5>

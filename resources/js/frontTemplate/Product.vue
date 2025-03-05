@@ -210,7 +210,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row related-product-active">
+                            <!-- <div class="row related-product-active">
                                 <div class="col-xl-3">
                                     <div class="new-arrival-item text-center">
                                         <div class="thumb mb-25">
@@ -229,63 +229,28 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xl-3">
-                                    <div class="new-arrival-item text-center">
-                                        <div class="thumb mb-25">
-                                            <div class="discount-tag">- 20%</div>
-                                            <a href="shop-details.html"><img src="img/product/n_arrival_product02.jpg"
-                                                    alt=""></a>
-                                            <div class="product-overlay-action">
-                                                <ul>
-                                                    <li><a href="cart.html"><i class="far fa-heart"></i></a></li>
-                                                    <li><a href="shop-details.html"><i class="far fa-eye"></i></a></li>
-                                                </ul>
+                            </div> -->
+                            <div class="row related-product-active">
+                                    <div v-for="item in otherProducts" :key="item.id" class="col-xl-3">
+                                        <div class="new-arrival-item text-center">
+                                            <div class="thumb mb-25">
+                                                <a href="shop-details.html"><img
+                                                        :src="item.image" alt=""></a>
+                                                <div class="product-overlay-action">
+                                                    <ul>
+                                                        <li><a href="javascript:void(0)" v-on:click="slotProps.addToCart(item.id,item.product_attributes[0].id,1)"><i class="far fa-heart"></i></a></li>
+                                                        <li><a href="shop-details.html"><i class="far fa-eye"></i></a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="content">
+                                                <h5><a href="shop-details.html">{{ item.name }}</a></h5>
+                                                <span class="price">Rs {{ item.product_attributes[0].price }}</span>
                                             </div>
                                         </div>
-                                        <div class="content">
-                                            <h5><a href="shop-details.html">Travelling Bags</a></h5>
-                                            <span class="price">$25.00</span>
-                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-xl-3">
-                                    <div class="new-arrival-item text-center">
-                                        <div class="thumb mb-25">
-                                            <a href="shop-details.html"><img src="img/product/n_arrival_product03.jpg"
-                                                    alt=""></a>
-                                            <div class="product-overlay-action">
-                                                <ul>
-                                                    <li><a href="cart.html"><i class="far fa-heart"></i></a></li>
-                                                    <li><a href="shop-details.html"><i class="far fa-eye"></i></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="content">
-                                            <h5><a href="shop-details.html">Exclusive Handbags</a></h5>
-                                            <span class="price">$19.50</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-3">
-                                    <div class="new-arrival-item text-center">
-                                        <div class="thumb mb-25">
-                                            <div class="discount-tag new">New</div>
-                                            <a href="shop-details.html"><img src="img/product/n_arrival_product04.jpg"
-                                                    alt=""></a>
-                                            <div class="product-overlay-action">
-                                                <ul>
-                                                    <li><a href="cart.html"><i class="far fa-heart"></i></a></li>
-                                                    <li><a href="shop-details.html"><i class="far fa-eye"></i></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="content">
-                                            <h5><a href="shop-details.html">Women Shoes</a></h5>
-                                            <span class="price">$12.90</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        </div>
                         </div>
                     </div>
                 </section>
@@ -377,6 +342,7 @@ export default {
                     // console.log(data.data.data.data.categories);
                     if (data.status == 200 && data.data.data.data != undefined > 0) {
                         this.product = data.data.data.data;
+                        this.otherProducts = data.data.data.data.otherProducts;
 
                         for (var item in this.product.product_attributes) {
                             for (var subItem in this.product.product_attributes[item].images) {
