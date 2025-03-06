@@ -17,6 +17,9 @@ use App\Models\Role;
 use App\Models\Size;
 use App\Models\TempUsers;
 use App\Models\User;
+use App\Models\UserAddress;
+use App\Models\UserOrders;
+use App\Models\UserOrdersDetails;
 use App\Traits\ApiResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -288,16 +291,110 @@ class HomePageController extends Controller
       return $this->error($validation->errors()->first(), 400, []);
     } else {
       $user_id = $this->createUser($request->all());
-      return $this->success(['data' => $data], 'Successfully data fetched');
+      $address_id = $this->saveAddress($request->all(), $user_id);
+      $order = $this->saveOrder($request->all(), $user_id, $address_id);
+
+
+      $user = TempUsers::where('token', $request->token)->first();
+      Cart::where('user_id', $user->user_id)->delete();
+      $user->delete();
+
+      return $this->success(['data' => $order], 'Successfully data fetched');
     }
+  }
+
+
+  public function saveOrder($data, $user_id, $address_id)
+  {
+    $cart = $this->getOrderTotalValue($data);
+
+    $order = UserOrders::create([
+      'user_id' => $user_id,
+      'address_id' => $address_id,
+      'total_value' => $cart['carttotal'],
+      'coupon' => $cart['couponName'],
+      'payment_method' => $data['paymentMethod'],
+      'shipping_service' => 'Standard'
+    ]);
+    $orderDetails = $this->saveOrderDetails($data, $user_id, $order->id);
+    return $order->id;
+  }
+
+  public function saveOrderDetails($data, $user_id, $order_id)
+  {
+    $user = TempUsers::where('token', $data['token'])->first();
+    $cart = Cart::where('user_id', $user->user_id)->get();
+    $totalPrice = 0;
+    foreach ($cart as $list) {
+      $productAttr = ProductAttr::where('id', $list->product_attr_id)->first();
+      $price = $productAttr->price * $list->qty;
+      $totalPrice += $price;
+
+      $orderDetails = UserOrdersDetails::create([
+        'user_id' => $user_id,
+        'order_id' => $order_id,
+        'product_attr_id' => $list->product_attr_id,
+        'total_value' => $totalPrice,
+        'qty' => $list->qty
+      ]);
+    }
+    return;
+  }
+
+  public function getOrderTotalValue($data)
+  {
+    $user = TempUsers::where('token', $data['token'])->first();
+    $totalCartValue = $this->totalCartValue($data);
+
+    // Simply return the total cart value without any coupon logic
+    $data['carttotal'] = $totalCartValue;
+    $data['couponName'] = '';  // No coupon applied
+    return $data;
+  }
+  public function totalCartValue($data)
+  { 
+    $user = TempUsers::where('token', $data['token'])->first();
+    $cart = Cart::where('user_id', $user->user_id)->get();
+    $totalPrice = 0;
+    foreach ($cart as $list) {
+      $productAttr = ProductAttr::where('id', $list->product_attr_id)->first();
+      $price = $productAttr->price * $list->qty;
+      $totalPrice += $price;
+    }
+    return $totalPrice;
+  }
+
+  public function saveAddress($data ,$user_id)
+  {
+    $pincode = Pincode::where('Pincode',$data['pincode'])->first();
+
+    $userAddress = UserAddress::UpdateOrCreate([
+      'user_id'=>$user_id,
+      'pincode'=>$pincode->Pincode,
+      'city'=>$pincode->City,
+      'state'=>$pincode->State,
+      'address'=>$data['address'],
+      'country'=>$data['country']
+    ],
+    [
+      'user_id'=>$user_id,
+      'pincode'=>$pincode->Pincode,
+      'city'=>$pincode->City,
+      'state'=>$pincode->State,
+      'address'=>$data['address'],
+      'country'=>$data['country']
+    ]
+  );
+
+    return $userAddress->id;
   }
 
   public function createUser($data)
   {
     $user = User::create([
-      'name'=>$data['firstName'].' '.$data['lastName'],
-      'password'=>Hash::make(''.$data['firstName'].'@123'),
-      'email'=>$data['email']
+      'name' => $data['firstName'] . ' ' . $data['lastName'],
+      'password' => Hash::make('' . $data['firstName'] . '@123'),
+      'email' => $data['email']
     ]);
     $customer = Role::where('slug', 'customer')->first();
     $user->roles()->attach($customer);
