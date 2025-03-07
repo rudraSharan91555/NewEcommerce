@@ -5,6 +5,7 @@ import Category from './frontTemplate/Category.vue';
 import Product from './frontTemplate/Product.vue';
 import ShoppingCart from './frontTemplate/ShoppingCart.vue';
 import Checkout from './frontTemplate/Checkout.vue';
+import Orderdetail from './frontTemplate/Orderdetail.vue';
 
 
 
@@ -42,6 +43,13 @@ const routes = [
         name: 'Checkout',
         path: '/checkout',
         component: Checkout,
+
+    },
+    
+    {
+        name: 'Orderdetail',
+        path: '/orderdetail',
+        component: Orderdetail,
 
     },
    

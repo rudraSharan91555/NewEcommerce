@@ -10,7 +10,8 @@ export function getUrlList() {
         addToCart  : ''+baseUrl+'/addToCart',
         removeCartData  : ''+baseUrl+'/removeCartData',
         getPincodeDetails  : ''+baseUrl+'/getPincodeDetails',
-        placeOrder : ''+baseUrl+'/ placeOrder',
+        placeOrder : ''+baseUrl+'/placeOrder',
+        orderdetails : ''+baseUrl+'/orderdetails',
     };
 }
 

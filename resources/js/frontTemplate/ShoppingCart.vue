@@ -83,22 +83,6 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                    <!-- <div class="shop-cart-bottom mt-20">
-                                        <div class="cart-coupon">
-                                            <form action="#">
-                                                <input type="text" placeholder="Enter Coupon Code..." ref="couponName"
-                                                    :value="slotProps.couponName">
-                                                <button type="button" class="btn"
-                                                    @click="slotProps.addCoupon(this.$refs.couponName.value)">Apply
-                                                    Coupon</button>
-                                            </form>
-                                        </div>
-                                        <div class="continue-shopping">
-                                            <a href="javascript:void(0)"
-                                                @click="slotProps.getCartData(), slotProps.removeCoupon(), this.$refs.couponName.value = ''"
-                                                class="btn">Remove Coupon</a>
-                                        </div>
-                                    </div> -->
                                 </div>
                                 <div class="cart-total pt-95">
                                     <h3 class="title">CART TOTALS</h3>

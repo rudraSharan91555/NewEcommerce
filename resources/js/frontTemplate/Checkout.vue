@@ -250,6 +250,7 @@ export default {
                 if(result.status == 200){
                    this.city = data.data.data.data.City;
                    this.state = data.data.data.data.State;
+                   this.$router.push({ name: 'Orderdetail' });
                 }else{
                     console.log('Rec not found');
                 }

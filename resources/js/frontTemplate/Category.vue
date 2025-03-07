@@ -313,12 +313,9 @@ export default {
 
         addDataAttr(type, value) {
             if (type == 'brand') {
-                // console.log(this.brand);
                 if (this.checkArray(type, value)) {
-                    // true value exist in array
                     this.brand.splice(this.brand.indexOf(value), 1);
                 } else {
-                    // false value not exist in array
                     this.brand.push(value);
                 }
                 console.log(this.brand);

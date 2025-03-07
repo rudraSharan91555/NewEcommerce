@@ -22,6 +22,7 @@ use App\Models\UserOrders;
 use App\Models\UserOrdersDetails;
 use App\Traits\ApiResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Log;
@@ -184,6 +185,9 @@ class HomePageController extends Controller
       return $this->success(['data' => $data], "Successfully data Fetched");
     }
   }
+ 
+ 
+ 
   public function addToCart(Request $request)
   {
     $validation = Validator::make($request->all(), [
@@ -313,7 +317,7 @@ class HomePageController extends Controller
       'address_id' => $address_id,
       'total_value' => $cart['carttotal'],
       'coupon' => $cart['couponName'],
-      'payment_method' => $data['paymentMethod'],
+      // 'payment_method' => $data['paymentMethod'],
       'shipping_service' => 'Standard'
     ]);
     $orderDetails = $this->saveOrderDetails($data, $user_id, $order->id);
@@ -389,7 +393,46 @@ class HomePageController extends Controller
     return $userAddress->id;
   }
 
-  public function createUser($data)
+  //   public function orderdetails(Request $request)
+  // {
+  //     return response()->json([
+  //         'success' => true,
+  //         'message' => 'API is working!'
+  //     ]);
+  // }
+
+  public function orderdetails(Request $request)
+  {
+      Log::info("API Hit! User ID: " . $request->user_id);
+  
+      $orders = DB::table('user_orders')
+          ->where('user_id', $request->user_id)
+          ->get();
+  
+      Log::info(" Orders Found: ", $orders->toArray());
+  
+      if ($orders->isEmpty()) {
+          return response()->json(['success' => false, 'message' => 'No orders found']);
+      }
+  
+      $order_ids = $orders->pluck('id');
+  
+      $order_details = DB::table('user_orders_details')
+          ->whereIn('order_id', $order_ids)
+          ->get();
+  
+      Log::info("Order Details: ", $order_details->toArray());
+  
+      return response()->json([
+          'success' => true,
+          'message' => 'Orders retrieved successfully',
+          'orders' => $orders,
+          'order_details' => $order_details
+      ]);
+  }
+  
+
+    public function createUser($data)
   {
     $user = User::create([
       'name' => $data['firstName'] . ' ' . $data['lastName'],
